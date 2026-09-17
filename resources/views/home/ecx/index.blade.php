@@ -401,6 +401,82 @@
       font-size: 14px;
       line-height: 1.7;
     }
+
+    /* Hero Floating Shapes - Perfect Responsive Display */
+    .banner__shape {
+      pointer-events: none;
+    }
+    .banner__shape-item {
+      position: absolute;
+      pointer-events: none;
+      z-index: 3 !important;
+    }
+    /* Desktop (>= 992px): Clearly visible floating in outer margins */
+    @media (min-width: 992px) {
+      .banner__shape-item--1 {
+        top: 26% !important;
+        right: 5% !important;
+        left: auto !important;
+        bottom: auto !important;
+        width: 68px !important;
+        opacity: 0.9 !important;
+        display: block !important;
+        filter: drop-shadow(0 0 16px rgba(0, 245, 155, 0.45));
+      }
+      .banner__shape-item--5 {
+        top: 22% !important;
+        left: 5% !important;
+        right: auto !important;
+        bottom: auto !important;
+        width: 80px !important;
+        opacity: 0.9 !important;
+        display: block !important;
+        filter: drop-shadow(0 0 16px rgba(14, 165, 233, 0.45));
+      }
+    }
+    @media (min-width: 1400px) {
+      .banner__shape-item--1 {
+        right: 7% !important;
+        top: 28% !important;
+        width: 78px !important;
+      }
+      .banner__shape-item--5 {
+        left: 7% !important;
+        top: 22% !important;
+        width: 90px !important;
+      }
+    }
+    /* Tablet & Medium devices (576px - 991px): scaled down in safe corners */
+    @media (max-width: 991.98px) and (min-width: 576px) {
+      .banner__shape-item--1 {
+        top: 6% !important;
+        right: 2% !important;
+        left: auto !important;
+        bottom: auto !important;
+        width: 36px !important;
+        opacity: 0.45 !important;
+      }
+      .banner__shape-item--5 {
+        top: 4% !important;
+        left: 2% !important;
+        right: auto !important;
+        bottom: auto !important;
+        width: 42px !important;
+        opacity: 0.45 !important;
+      }
+    }
+    /* Small Mobile (< 576px): completely prevent any overlap on text/buttons */
+    @media (max-width: 575.98px) {
+      .banner__shape-item--1 {
+        display: none !important; /* Eliminate right floating shape on phones so it cannot cover text/buttons */
+      }
+      .banner__shape-item--5 {
+        top: 2% !important;
+        left: 1% !important;
+        width: 28px !important;
+        opacity: 0.3 !important;
+      }
+    }
   </style>
 
   <!-- ===============>> Hero Banner Section Start <<================= -->
