@@ -10114,7 +10114,7 @@ textarea:focus-within {
 }
 
 .counter {
-  margin-top: -150px;
+  margin-top: 0;
 }
 .counter__item-inner {
   -webkit-transition: all 0.3s ease-out;

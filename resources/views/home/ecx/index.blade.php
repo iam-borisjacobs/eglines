@@ -82,17 +82,24 @@
 
     /* Institutional Trust Bar */
     .ecx-trust-bar {
-      background: rgba(11, 19, 38, 0.85);
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(11, 19, 38, 0.95);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       padding: 24px 0;
       backdrop-filter: blur(16px);
+      position: relative;
+      z-index: 5;
+    }
+    .counter {
+      margin-top: 0 !important;
+      position: relative;
+      z-index: 4;
     }
     .trust-pillar-item {
       display: flex;
       align-items: center;
-      gap: 14px;
-      padding: 10px 14px;
+      gap: 12px;
+      padding: 10px 10px;
       border-radius: 12px;
       transition: all 0.25s ease;
     }
@@ -620,7 +627,7 @@
   <!-- ===============>> Institutional Trust & Security Bar End <<================= -->
 
   <!-- ===============>> Counter / Market Metrics Start <<================= -->
-  <div class="counter" style="padding: 45px 0 35px; background: rgba(7, 13, 24, 0.95);">
+  <div class="counter" style="margin-top: 0 !important; padding: 45px 0 35px; background: rgba(7, 13, 24, 0.95); position: relative; z-index: 4;">
     <div class="container">
       <!-- Real-Time Metrics Counters -->
       <div class="counter__wrapper">
