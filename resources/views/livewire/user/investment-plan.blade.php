@@ -364,11 +364,12 @@
                                              wire:click="selectPlan({{ $plan->id }})">
                                             
                                             @if(!empty($plan->image))
-                                                <div class="plan-card-image-wrap mb-2 rounded-2 overflow-hidden position-relative shadow-sm" style="height: 110px; background: #0f172a;">
-                                                    <img src="{{ $plan->image_url }}" alt="{{ $plan->name }}" class="w-100 h-100" style="object-fit: cover;">
-                                                    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.72) 100%);"></div>
+                                                <div class="plan-card-image-wrap mb-2 rounded-2 overflow-hidden position-relative shadow-sm d-flex align-items-center justify-content-center" 
+                                                     style="height: 110px; background: radial-gradient(circle, #1e293b 0%, #0f172a 100%);">
+                                                    <img src="{{ $plan->image_url }}" alt="{{ $plan->name }}" class="h-100" style="object-fit: contain; max-height: 102px; padding: 4px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));">
+                                                    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,0.65) 100%); pointer-events: none;"></div>
                                                     <span class="position-absolute bottom-0 start-0 m-2 badge bg-black bg-opacity-75 text-white f-10 rounded-pill px-2 py-1 border border-white border-opacity-25">
-                                                        <i class="fa-solid {{ $plan->isTruck() ? 'fa-truck' : 'fa-coins' }} me-1"></i>{{ $plan->category_label }}
+                                                        <i class="fa-solid {{ $plan->isTruck() ? 'fa-truck' : 'fa-gem' }} me-1"></i>{{ $plan->isTruck() ? $plan->category_label : 'ECX Tier' }}
                                                     </span>
                                                 </div>
                                             @endif
@@ -780,16 +781,21 @@
                             
                             <div class="position-relative p-3 p-xl-4 d-flex flex-column justify-content-between h-100" style="z-index: 2;">
                                 <div class="d-flex align-items-start justify-content-between mb-2">
-                                    <div>
-                                        <div class="d-flex align-items-center gap-1 mb-1">
-                                            <span class="badge {{ $planSelected->isTruck() ? 'bg-warning text-dark' : 'bg-primary text-white' }} f-10 rounded-pill px-2 py-1 f-w-700 shadow-sm">
-                                                <i class="fa-solid {{ $planSelected->isTruck() ? 'fa-truck' : 'fa-coins' }} me-1"></i>{{ $planSelected->category_label }}
-                                            </span>
-                                            <span class="badge bg-white bg-opacity-20 text-white border border-white border-opacity-25 rounded-pill f-10 px-2 py-1">
-                                                <i class="fa-regular fa-clock me-1"></i>{{ $planSelected->expiration }}
-                                            </span>
+                                    <div class="d-flex align-items-center gap-2.5">
+                                        <div style="width: 44px; height: 58px; flex-shrink: 0; background: rgba(0,0,0,0.5); border-radius: 8px; border: 1px solid rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; padding: 2px;">
+                                            <img src="{{ $planSelected->image_url }}" alt="{{ $planSelected->name }}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
                                         </div>
-                                        <h5 class="mb-0 text-white f-w-800" style="letter-spacing: -0.02em; text-shadow: 0 2px 4px rgba(0,0,0,0.6);">{{ $planSelected->name }}</h5>
+                                        <div>
+                                            <div class="d-flex align-items-center gap-1 mb-1">
+                                                <span class="badge {{ $planSelected->isTruck() ? 'bg-warning text-dark' : 'bg-primary text-white' }} f-10 rounded-pill px-2 py-1 f-w-700 shadow-sm">
+                                                    <i class="fa-solid {{ $planSelected->isTruck() ? 'fa-truck' : 'fa-gem' }} me-1"></i>{{ $planSelected->isTruck() ? $planSelected->category_label : 'ECX Tier' }}
+                                                </span>
+                                                <span class="badge bg-white bg-opacity-20 text-white border border-white border-opacity-25 rounded-pill f-10 px-2 py-1">
+                                                    <i class="fa-regular fa-clock me-1"></i>{{ $planSelected->expiration }}
+                                                </span>
+                                            </div>
+                                            <h5 class="mb-0 text-white f-w-800" style="letter-spacing: -0.02em; text-shadow: 0 2px 4px rgba(0,0,0,0.6);">{{ $planSelected->name }}</h5>
+                                        </div>
                                     </div>
                                     <div class="text-end">
                                         <span class="text-white text-opacity-75 f-10 text-uppercase f-w-700 d-block">Yield Rate</span>

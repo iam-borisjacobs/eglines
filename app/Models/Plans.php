@@ -27,6 +27,16 @@ class Plans extends Model
         }
 
         $clean = ltrim($this->image, '/');
+        $baseName = basename($clean);
+
+        // Tracked ECX theme plan image fallback
+        if (file_exists(public_path('themes/ecx/assets/images/plans/' . $baseName))) {
+            return asset('themes/ecx/assets/images/plans/' . $baseName);
+        }
+
+        if (file_exists(public_path('photos/' . $baseName))) {
+            return asset('photos/' . $baseName);
+        }
 
         if (str_starts_with($clean, 'storage/app/public/')) {
             return asset($clean);
