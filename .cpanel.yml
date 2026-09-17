@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/<CPANEL_USERNAME>/eglines.yourdomain.com/
+    - /bin/cp -R * $DEPLOYPATH
+
