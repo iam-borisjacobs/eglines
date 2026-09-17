@@ -3,4 +3,7 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/maxihold/ecxgroups.com/
     - /bin/cp -R * $DEPLOYPATH
+    - /bin/cp -f .htaccess $DEPLOYPATH 2>/dev/null || true
+    - /bin/mkdir -p $DEPLOYPATH/storage/logs $DEPLOYPATH/storage/framework/views $DEPLOYPATH/storage/framework/sessions $DEPLOYPATH/storage/framework/cache $DEPLOYPATH/bootstrap/cache 2>/dev/null || true
+    - /bin/chmod -R 775 $DEPLOYPATH/storage $DEPLOYPATH/bootstrap/cache 2>/dev/null || true
 

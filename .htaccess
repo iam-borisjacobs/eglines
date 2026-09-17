@@ -39,6 +39,7 @@
     </IfModule>
 
     RewriteEngine On
+    RewriteBase /
 
     # Force HTTPS (supports direct SSL and reverse proxy / Cloudflare)
     RewriteCond %{HTTPS} off
