@@ -6,18 +6,66 @@
 
   <style>
     /* ==========================================================================
-       ECX Institutional 4-Tier & Luxury Landing Styles
+       ECX Institutional & Ultra-Modern Landing Styles
        ========================================================================== */
+    :root {
+      --ecx-primary: #00f59b;
+      --ecx-primary-glow: rgba(0, 245, 155, 0.25);
+      --ecx-dark-surface: #0b1329;
+      --ecx-dark-card: rgba(13, 22, 42, 0.82);
+      --ecx-border: rgba(255, 255, 255, 0.08);
+      --ecx-bronze: #d97706;
+      --ecx-silver: #cbd5e1;
+      --ecx-gold: #f59e0b;
+      --ecx-diamond: #38bdf8;
+    }
+
+    /* Ambient Hero Glow */
+    .hero-glow-container {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-glow-blob-1 {
+      position: absolute;
+      top: -15%;
+      left: 20%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(0, 245, 155, 0.12) 0%, rgba(0, 245, 155, 0) 70%);
+      filter: blur(60px);
+      pointer-events: none;
+      z-index: 1;
+      animation: heroFloat 8s ease-in-out infinite alternate;
+    }
+    .hero-glow-blob-2 {
+      position: absolute;
+      bottom: 10%;
+      right: 15%;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, rgba(14, 165, 233, 0) 70%);
+      filter: blur(60px);
+      pointer-events: none;
+      z-index: 1;
+      animation: heroFloat 10s ease-in-out infinite alternate-reverse;
+    }
+    @keyframes heroFloat {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(-30px) scale(1.08); }
+    }
+
+    /* Modern Pill Badges */
     .ecx-glow-pill {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 6px 16px;
+      gap: 10px;
+      padding: 8px 20px;
       border-radius: 9999px;
-      background: rgba(0, 245, 155, 0.08);
+      background: rgba(0, 245, 155, 0.07);
       border: 1px solid rgba(0, 245, 155, 0.3);
-      backdrop-filter: blur(10px);
-      margin-bottom: 20px;
+      backdrop-filter: blur(12px);
+      margin-bottom: 24px;
+      box-shadow: 0 4px 20px rgba(0, 245, 155, 0.12);
     }
     .ecx-glow-dot {
       width: 8px;
@@ -25,108 +73,223 @@
       border-radius: 50%;
       background: #00f59b;
       box-shadow: 0 0 10px #00f59b;
-      animation: ecxPulse 2s infinite ease-in-out;
+      animation: ecxPulse 1.8s infinite ease-in-out;
     }
     @keyframes ecxPulse {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
+      50% { opacity: 0.4; transform: scale(0.8); }
     }
 
-    /* Tier Showcase Cards */
-    .ecx-tier-card {
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
-      padding: 26px 20px;
-      text-align: center;
-      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-      height: 100%;
-      backdrop-filter: blur(12px);
+    /* Institutional Trust Bar */
+    .ecx-trust-bar {
+      background: rgba(11, 19, 38, 0.85);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 24px 0;
+      backdrop-filter: blur(16px);
+    }
+    .trust-pillar-item {
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      transition: all 0.25s ease;
     }
-    .ecx-tier-card:hover {
-      transform: translateY(-6px);
+    .trust-pillar-item:hover {
+      background: rgba(255, 255, 255, 0.03);
     }
-    .ecx-tier-card.tier-bronze:hover {
-      border-color: rgba(205, 127, 50, 0.6);
-      box-shadow: 0 12px 30px rgba(205, 127, 50, 0.2);
-    }
-    .ecx-tier-card.tier-silver:hover {
-      border-color: rgba(226, 232, 240, 0.7);
-      box-shadow: 0 12px 30px rgba(226, 232, 240, 0.2);
-    }
-    .ecx-tier-card.tier-gold:hover {
-      border-color: rgba(245, 158, 11, 0.7);
-      box-shadow: 0 12px 30px rgba(245, 158, 11, 0.25);
-    }
-    .ecx-tier-card.tier-diamond:hover {
-      border-color: rgba(56, 189, 248, 0.8);
-      box-shadow: 0 12px 35px rgba(56, 189, 248, 0.3);
-    }
-
-    /* 3D Emblem Container */
-    .tier-emblem-wrap {
-      width: 120px;
-      height: 155px;
-      margin: 0 auto 16px auto;
+    .trust-pillar-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(0, 245, 155, 0.08);
+      border: 1px solid rgba(0, 245, 155, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
-    }
-    .tier-emblem-wrap img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.6));
-      transition: transform 0.35s ease;
-    }
-    .ecx-tier-card:hover .tier-emblem-wrap img {
-      transform: scale(1.06);
+      color: #00f59b;
+      font-size: 18px;
+      flex-shrink: 0;
     }
 
-    /* Package Plan Cards */
-    .package-plan-card {
-      background: rgba(13, 20, 36, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.09);
+    /* Full-Bleed 16:9 Plan Banner Cards */
+    .ecx-widescreen-card {
+      background: rgba(13, 22, 42, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 20px;
-      padding: 28px 24px;
-      position: relative;
-      transition: all 0.3s ease;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       height: 100%;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(14px);
     }
-    .package-plan-card:hover {
-      transform: translateY(-5px);
+    .ecx-widescreen-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
     }
-    .package-plan-card.active-featured {
+    .ecx-widescreen-card.tier-bronze:hover {
+      border-color: rgba(217, 119, 6, 0.6);
+      box-shadow: 0 16px 40px rgba(217, 119, 6, 0.2);
+    }
+    .ecx-widescreen-card.tier-silver:hover {
+      border-color: rgba(203, 213, 225, 0.6);
+      box-shadow: 0 16px 40px rgba(203, 213, 225, 0.2);
+    }
+    .ecx-widescreen-card.tier-gold:hover {
+      border-color: rgba(245, 158, 11, 0.7);
+      box-shadow: 0 16px 40px rgba(245, 158, 11, 0.25);
+    }
+    .ecx-widescreen-card.tier-diamond:hover {
+      border-color: rgba(56, 189, 248, 0.8);
+      box-shadow: 0 16px 45px rgba(56, 189, 248, 0.3);
+    }
+    .ecx-widescreen-card.featured-card {
       border-color: #00f59b;
-      box-shadow: 0 0 0 1px #00f59b, 0 14px 40px rgba(0, 245, 155, 0.2);
-    }
-    .plan-badge-pill {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      padding: 4px 12px;
-      border-radius: 999px;
-      display: inline-block;
+      box-shadow: 0 0 0 1px #00f59b, 0 16px 45px rgba(0, 245, 155, 0.22);
     }
 
-    /* Calculator */
+    /* Edge-to-Edge Widescreen Image Wrapper */
+    .widescreen-banner-wrap {
+      width: 100%;
+      height: 155px;
+      position: relative;
+      overflow: hidden;
+      background: #080e1a;
+    }
+    .widescreen-banner-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.4s ease;
+    }
+    .ecx-widescreen-card:hover .widescreen-banner-wrap img {
+      transform: scale(1.05);
+    }
+    .widescreen-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(13, 22, 42, 0.95) 100%);
+      pointer-events: none;
+    }
+    .widescreen-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+      z-index: 2;
+    }
+
+    /* Market Watch Table */
+    .market-watch-card {
+      background: rgba(13, 22, 42, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.3);
+    }
+    .market-table {
+      margin-bottom: 0;
+      color: #fff;
+    }
+    .market-table th {
+      background: rgba(11, 19, 38, 0.95);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #94a3b8;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 16px 20px;
+    }
+    .market-table td {
+      padding: 16px 20px;
+      vertical-align: middle;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      font-size: 14px;
+    }
+    .market-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Ecosystem Tabbed Navigation */
+    .eco-nav-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #94a3b8;
+      border-radius: 14px;
+      padding: 16px 22px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      text-align: left;
+    }
+    .eco-nav-btn:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+    }
+    .eco-nav-btn.active {
+      background: rgba(0, 245, 155, 0.1);
+      border-color: #00f59b;
+      color: #00f59b;
+      box-shadow: 0 6px 20px rgba(0, 245, 155, 0.15);
+    }
+
+    /* Live Platform Activity Feed */
+    .live-activity-feed {
+      background: rgba(11, 19, 38, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .activity-ticker-wrap {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      white-space: nowrap;
+      animation: tickerScroll 24s linear infinite;
+    }
+    .activity-ticker-wrap:hover {
+      animation-play-state: paused;
+    }
+    @keyframes tickerScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12.5px;
+      color: #cbd5e1;
+    }
+
+    /* Interactive Calculator */
     .ecx-calc-card {
-      background: rgba(13, 20, 36, 0.9);
-      border: 1px solid rgba(0, 245, 155, 0.25);
+      background: rgba(13, 22, 42, 0.9);
+      border: 1px solid rgba(0, 245, 155, 0.3);
       border-radius: 24px;
-      padding: 36px 30px;
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+      padding: 38px 32px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
       backdrop-filter: blur(16px);
     }
     .calc-slider {
@@ -136,17 +299,16 @@
       border-radius: 5px;
       background: #1e293b;
       outline: none;
-      transition: background 0.2s;
     }
     .calc-slider::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      width: 24px;
-      height: 24px;
+      width: 26px;
+      height: 26px;
       border-radius: 50%;
       background: #00f59b;
       cursor: pointer;
-      box-shadow: 0 0 12px #00f59b;
+      box-shadow: 0 0 14px #00f59b;
       transition: transform 0.15s;
     }
     .calc-slider::-webkit-slider-thumb:hover {
@@ -167,57 +329,131 @@
       border-color: #00f59b;
       color: #00f59b;
     }
-    .calc-result-box {
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 20px;
-    }
   </style>
 
-  <!-- ===============>> Banner section start here <<================= -->
-  <section class="banner banner--style4 bg--cover" style="background-image:url({{ asset('themes/ecx/assets/images/banner/home4/1.png') }})">
-    <div class="container">
+  <!-- ===============>> Hero Banner Section Start <<================= -->
+  <section class="banner banner--style4 bg--cover hero-glow-container" style="background-image:url({{ asset('themes/ecx/assets/images/banner/home4/1.png') }})">
+    <div class="hero-glow-blob-1"></div>
+    <div class="hero-glow-blob-2"></div>
+
+    <div class="container" style="position: relative; z-index: 2;">
       <div class="banner__wrapper">
         <div class="row justify-content-center">
           <div class="col-md-10 justify-content-center text-center">
             <div class="banner__content" data-aos="fade-up" data-aos-duration="800">
               
-              <!-- Ambient Glow Pill -->
+              <!-- Ambient Live Pulse Pill -->
               <div class="ecx-glow-pill">
                 <span class="ecx-glow-dot"></span>
-                <span class="f-12 f-w-700 text-uppercase" style="color: #00f59b; letter-spacing: 1px;">Institutional 4-Tier Yield Architecture</span>
+                <span class="f-12 f-w-700 text-uppercase" style="color: #00f59b; letter-spacing: 1.2px;">Institutional 4-Tier Yield Architecture</span>
+                <span class="badge bg-white bg-opacity-10 text-white border border-white border-opacity-20 rounded-pill px-2 py-0.5 f-10">Live V2.4</span>
               </div>
 
-              <h1>Deposit, Invest, Withdraw <br> Trade with us at scale.</h1>
-              <p>A complete institutional ecosystem for your financial freedom. Automated cross-market yield strategies spanning from $100 to $150,000.</p>
+              <h1>Institutional Capital Growth. <br> Automated Yield at Scale.</h1>
+              <p>Execute non-custodial algorithmic arbitrage with automated daily distribution. Transparent, secure, and regulated yields spanning from $100 to $150,000.</p>
               
               <div class="banner__content-btn btn-group justify-content-center">
                 @auth
                   <a href="{{ url('/dashboard') }}" class="trk-btn trk-btn--primary trk-btn--arrow">Go to Dashboard</a>
-                  <a href="{{ url('/dashboard/mplans') }}" class="trk-btn trk-btn--primary trk-btn--arrow" style="margin-left: 15px;">Explore Packages</a>
+                  <a href="{{ url('/dashboard/mplans') }}" class="trk-btn trk-btn--primary trk-btn--arrow" style="margin-left: 15px;">Explore 4 Tiers</a>
                 @else
                   <a href="{{ route('register') }}" class="trk-btn trk-btn--primary trk-btn--arrow">Start Trading Today</a>
                   <a href="{{ route('login') }}" class="trk-btn trk-btn--outline" style="margin-left: 15px; border-color: rgba(255,255,255,0.25); color: #ffffff;">Access Account</a>
                 @endauth
+              </div>
+
+              <!-- Quick Security Badges Under CTA -->
+              <div class="mt-4 pt-2 d-flex flex-wrap align-items-center justify-content-center gap-3 text-muted f-12">
+                <span><i class="fa-solid fa-shield-halved text-success me-1"></i> Multi-Sig Vaults</span>
+                <span>&bull;</span>
+                <span><i class="fa-solid fa-bolt text-warning me-1"></i> 24/7 AI Arbitrage</span>
+                <span>&bull;</span>
+                <span><i class="fa-solid fa-wallet text-info me-1"></i> Non-Custodial Web3</span>
+                <span>&bull;</span>
+                <span><i class="fa-solid fa-circle-check text-success me-1"></i> 1:1 Reserve Backed</span>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
     <div class="banner__shape">
       <span class="banner__shape-item banner__shape-item--1"><img src="{{ asset('themes/ecx/assets/images/banner/home1/4.png') }}" alt="shape icon"></span>
       <span class="banner__shape-item banner__shape-item--5"><img src="{{ asset('themes/ecx/assets/images/banner/home4/2.png') }}" alt="shape icon"></span>
     </div>
   </section>
-  <!-- ===============>> Banner section end here <<================= -->
+  <!-- ===============>> Hero Banner Section End <<================= -->
 
-  <!-- ===============>> Counter / Market Ticker start here <<================= -->
-  <div class="counter padding-bottom">
+  <!-- ===============>> Institutional Trust & Security Bar Start <<================= -->
+  <div class="ecx-trust-bar">
     <div class="container">
-      <!-- TradingView Widget BEGIN -->
-      <div class="tradingview-widget-container">
+      <div class="row g-3 justify-content-between align-items-center">
+        <div class="col-6 col-md-4 col-lg-2">
+          <div class="trust-pillar-item">
+            <div class="trust-pillar-icon">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <div>
+              <div class="f-13 f-w-700 text-white">Cold Vaults</div>
+              <div class="f-11 text-muted">Offline Multi-Sig</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <div class="trust-pillar-item">
+            <div class="trust-pillar-icon">
+              <i class="fa-solid fa-robot"></i>
+            </div>
+            <div>
+              <div class="f-13 f-w-700 text-white">AI Arbitrage</div>
+              <div class="f-11 text-muted">12+ Live Exchanges</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <div class="trust-pillar-item">
+            <div class="trust-pillar-icon">
+              <i class="fa-solid fa-scale-balanced"></i>
+            </div>
+            <div>
+              <div class="f-13 f-w-700 text-white">1:1 Reserves</div>
+              <div class="f-11 text-muted">Merkle Audited</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <div class="trust-pillar-item">
+            <div class="trust-pillar-icon">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+            </div>
+            <div>
+              <div class="f-13 f-w-700 text-white">Daily Drop</div>
+              <div class="f-11 text-muted">Automated Payouts</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <div class="trust-pillar-item">
+            <div class="trust-pillar-icon">
+              <i class="fa-solid fa-network-wired"></i>
+            </div>
+            <div>
+              <div class="f-13 f-w-700 text-white">Web3 Direct</div>
+              <div class="f-11 text-muted">MetaMask &amp; Trust</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ===============>> Institutional Trust & Security Bar End <<================= -->
+
+  <!-- ===============>> Counter / Market Ticker Start <<================= -->
+  <div class="counter padding-top padding-bottom">
+    <div class="container">
+      <!-- TradingView Ticker Tape Widget -->
+      <div class="tradingview-widget-container mb-40">
         <div class="tradingview-widget-container__widget"></div>
         <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
           {
@@ -237,10 +473,10 @@
           }
         </script>
       </div>
-      <!-- TradingView Widget END -->
 
+      <!-- Real-Time Metrics Counters -->
       <div class="counter__wrapper">
-        <div class="row g-5">
+        <div class="row g-4">
           <div class="col-sm-6 col-lg-3">
             <div class="counter__item" data-aos="fade-up" data-aos-duration="800">
               <div class="counter__item-inner">
@@ -297,15 +533,45 @@
       </div>
     </div>
   </div>
-  <!-- ===============>> counter end here <<================= -->
+  <!-- ===============>> Counter End <<================= -->
 
-  <!-- ===============>> Dedicated 4-Tier Institutional Showcase <<================= -->
+  <!-- ===============>> Live Platform Transparency Activity Ticker Start <<================= -->
+  <div class="container mb-40">
+    <div class="live-activity-feed shadow-sm">
+      <div class="d-flex align-items-center gap-2 me-4 flex-shrink-0" style="border-right: 1px solid rgba(255,255,255,0.1); padding-right: 20px;">
+        <span class="ecx-glow-dot"></span>
+        <span class="f-12 f-w-700 text-uppercase text-white">Live Activity:</span>
+      </div>
+      <div class="overflow-hidden w-100">
+        <div class="activity-ticker-wrap">
+          <span class="ticker-item"><i class="fa-solid fa-arrow-down text-success"></i> Trader <strong>#18717</strong> deposited <strong>$10,000</strong> in Silver Tier</span>
+          <span class="ticker-item">&bull;</span>
+          <span class="ticker-item"><i class="fa-solid fa-bolt text-warning"></i> Automated Yield: <strong>+$400.00</strong> distributed to Bronze Pool</span>
+          <span class="ticker-item">&bull;</span>
+          <span class="ticker-item"><i class="fa-solid fa-arrow-up-right-from-square text-info"></i> Withdrawal Processed: <strong>$2,850 USDT</strong> to External Wallet</span>
+          <span class="ticker-item">&bull;</span>
+          <span class="ticker-item"><i class="fa-solid fa-gem text-primary"></i> Trader <strong>#18724</strong> activated <strong>Diamond VIP</strong> ($75,000)</span>
+          <span class="ticker-item">&bull;</span>
+          <span class="ticker-item"><i class="fa-solid fa-shield-halved text-success"></i> Proof of Reserves Snapshot Verified: <strong>100% Fully Collateralized</strong></span>
+          <!-- Loop duplicate for infinite smooth animation -->
+          <span class="ticker-item"><i class="fa-solid fa-arrow-down text-success"></i> Trader <strong>#18717</strong> deposited <strong>$10,000</strong> in Silver Tier</span>
+          <span class="ticker-item">&bull;</span>
+          <span class="ticker-item"><i class="fa-solid fa-bolt text-warning"></i> Automated Yield: <strong>+$400.00</strong> distributed to Bronze Pool</span>
+          <span class="ticker-item">&bull;</span>
+          <span class="ticker-item"><i class="fa-solid fa-arrow-up-right-from-square text-info"></i> Withdrawal Processed: <strong>$2,850 USDT</strong> to External Wallet</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ===============>> Live Platform Transparency Activity Ticker End <<================= -->
+
+  <!-- ===============>> Dedicated 4-Tier Architecture Showcase Start <<================= -->
   <section class="padding-top padding-bottom" style="background: linear-gradient(180deg, rgba(8, 14, 26, 0) 0%, rgba(13, 22, 40, 0.75) 50%, rgba(8, 14, 26, 0) 100%);">
     <div class="container">
       <div class="section-header section-header--max65 text-center mb-50">
         <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3" style="background: rgba(0, 245, 155, 0.08); border: 1px solid rgba(0, 245, 155, 0.25);">
           <i class="fa-solid fa-gem text-success f-12"></i>
-          <span class="f-11 f-w-700 text-uppercase" style="color: #00f59b; letter-spacing: 1px;">Institutional Standards</span>
+          <span class="f-11 f-w-700 text-uppercase" style="color: #00f59b; letter-spacing: 1px;">Institutional Standard</span>
         </div>
         <h2 class="mb-10 mt-minus-5">The ECX <span>Tier Architecture</span></h2>
         <p class="text-muted">Four precision-engineered capitalization tiers crafted for retail traders and private wealth clients from $100 to $150,000.</p>
@@ -314,317 +580,421 @@
       <div class="row g-4 justify-content-center">
         <!-- Tier 1: Bronze -->
         <div class="col-sm-6 col-lg-3">
-          <div class="ecx-tier-card tier-bronze" data-aos="fade-up" data-aos-duration="700">
-            <div>
-              <div class="tier-emblem-wrap">
-                <img src="{{ asset('themes/ecx/assets/images/plans/plan_bronze_badge.jpg') }}" alt="Bronze Tier Logo">
-              </div>
-              <span class="plan-badge-pill mb-2" style="background: rgba(205, 127, 50, 0.15); color: #d97706; border: 1px solid rgba(205, 127, 50, 0.3);">
+          <div class="ecx-widescreen-card tier-bronze" data-aos="fade-up" data-aos-duration="700">
+            <!-- Full-Bleed 16:9 Wallpaper Header -->
+            <div class="widescreen-banner-wrap">
+              <img src="{{ asset('themes/ecx/assets/images/plans/plan_bronze_ecx.jpg') }}" alt="Bronze Tier">
+              <div class="widescreen-overlay"></div>
+              <span class="widescreen-badge" style="background: rgba(205, 127, 50, 0.85); color: #fff;">
                 Tier 1 &bull; Entry Pro
               </span>
-              <h4 class="text-white f-w-700 mt-1 mb-1">BRONZE TIER</h4>
-              <p class="text-muted f-12 mb-3">Algorithmic spot arbitrage &amp; foundational daily yield.</p>
-              <div class="p-2 rounded-3 mb-3" style="background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(205, 127, 50, 0.25);">
-                <div class="f-11 text-muted">Capital Range</div>
-                <div class="f-15 f-w-700 text-white">$100 &ndash; $4,999</div>
-              </div>
             </div>
-            <div>
-              <div class="f-13 f-w-700 text-success mb-3">+20% Daily Yield</div>
-              <a href="{{ route('register') }}" class="trk-btn trk-btn--outline w-100 py-2 f-12" style="border-color: rgba(205, 127, 50, 0.4); color: #f59e0b;">Select Bronze</a>
+            <div class="p-4 d-flex flex-column justify-content-between flex-grow-1">
+              <div>
+                <h4 class="text-white f-w-800 mb-1">BRONZE TIER</h4>
+                <p class="text-muted f-12 mb-3">Algorithmic spot arbitrage &amp; foundational daily yield.</p>
+                <div class="p-2.5 rounded-3 mb-3" style="background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(205, 127, 50, 0.3);">
+                  <div class="f-11 text-muted">Capital Range</div>
+                  <div class="f-15 f-w-800 text-white">$100 &ndash; $4,999</div>
+                </div>
+              </div>
+              <div>
+                <div class="f-14 f-w-700 text-success mb-3">+20% Daily Yield</div>
+                <a href="{{ route('register') }}" class="trk-btn trk-btn--outline w-100 py-2 f-12" style="border-color: rgba(205, 127, 50, 0.4); color: #f59e0b;">Select Bronze</a>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Tier 2: Silver -->
         <div class="col-sm-6 col-lg-3">
-          <div class="ecx-tier-card tier-silver" data-aos="fade-up" data-aos-duration="900">
-            <div>
-              <div class="tier-emblem-wrap">
-                <img src="{{ asset('themes/ecx/assets/images/plans/plan_silver_badge.jpg') }}" alt="Silver Tier Logo">
-              </div>
-              <span class="plan-badge-pill mb-2" style="background: rgba(226, 232, 240, 0.15); color: #e2e8f0; border: 1px solid rgba(226, 232, 240, 0.3);">
+          <div class="ecx-widescreen-card tier-silver" data-aos="fade-up" data-aos-duration="900">
+            <!-- Full-Bleed 16:9 Wallpaper Header -->
+            <div class="widescreen-banner-wrap">
+              <img src="{{ asset('themes/ecx/assets/images/plans/plan_silver_ecx.jpg') }}" alt="Silver Tier">
+              <div class="widescreen-overlay"></div>
+              <span class="widescreen-badge" style="background: rgba(148, 163, 184, 0.85); color: #fff;">
                 Tier 2 &bull; Growth
               </span>
-              <h4 class="text-white f-w-700 mt-1 mb-1">SILVER TIER</h4>
-              <p class="text-muted f-12 mb-3">Cross-DEX liquidity pooling &amp; accelerated yield drops.</p>
-              <div class="p-2 rounded-3 mb-3" style="background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(226, 232, 240, 0.25);">
-                <div class="f-11 text-muted">Capital Range</div>
-                <div class="f-15 f-w-700 text-white">$5,000 &ndash; $24,999</div>
-              </div>
             </div>
-            <div>
-              <div class="f-13 f-w-700 text-success mb-3">+40% Daily Yield</div>
-              <a href="{{ route('register') }}" class="trk-btn trk-btn--outline w-100 py-2 f-12" style="border-color: rgba(226, 232, 240, 0.4); color: #e2e8f0;">Select Silver</a>
+            <div class="p-4 d-flex flex-column justify-content-between flex-grow-1">
+              <div>
+                <h4 class="text-white f-w-800 mb-1">SILVER TIER</h4>
+                <p class="text-muted f-12 mb-3">Cross-DEX liquidity pooling &amp; accelerated yield drops.</p>
+                <div class="p-2.5 rounded-3 mb-3" style="background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(203, 213, 225, 0.3);">
+                  <div class="f-11 text-muted">Capital Range</div>
+                  <div class="f-15 f-w-800 text-white">$5,000 &ndash; $24,999</div>
+                </div>
+              </div>
+              <div>
+                <div class="f-14 f-w-700 text-success mb-3">+40% Daily Yield</div>
+                <a href="{{ route('register') }}" class="trk-btn trk-btn--outline w-100 py-2 f-12" style="border-color: rgba(203, 213, 225, 0.4); color: #e2e8f0;">Select Silver</a>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Tier 3: Gold -->
         <div class="col-sm-6 col-lg-3">
-          <div class="ecx-tier-card tier-gold" data-aos="fade-up" data-aos-duration="1100">
-            <div>
-              <div class="tier-emblem-wrap">
-                <img src="{{ asset('themes/ecx/assets/images/plans/plan_gold_badge.jpg') }}" alt="Gold Tier Logo">
-              </div>
-              <span class="plan-badge-pill mb-2" style="background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3);">
+          <div class="ecx-widescreen-card tier-gold" data-aos="fade-up" data-aos-duration="1100">
+            <!-- Full-Bleed 16:9 Wallpaper Header -->
+            <div class="widescreen-banner-wrap">
+              <img src="{{ asset('themes/ecx/assets/images/plans/plan_gold_ecx.jpg') }}" alt="Gold Tier">
+              <div class="widescreen-overlay"></div>
+              <span class="widescreen-badge" style="background: rgba(245, 158, 11, 0.9); color: #fff;">
                 Tier 3 &bull; Institutional
               </span>
-              <h4 class="text-white f-w-700 mt-1 mb-1">GOLD TIER</h4>
-              <p class="text-muted f-12 mb-3">Priority isolated vault &amp; institutional order execution.</p>
-              <div class="p-2 rounded-3 mb-3" style="background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(245, 158, 11, 0.25);">
-                <div class="f-11 text-muted">Capital Range</div>
-                <div class="f-15 f-w-700 text-white">$25,000 &ndash; $74,999</div>
-              </div>
             </div>
-            <div>
-              <div class="f-13 f-w-700 text-success mb-3">+60% Daily Yield</div>
-              <a href="{{ route('register') }}" class="trk-btn trk-btn--outline w-100 py-2 f-12" style="border-color: rgba(245, 158, 11, 0.4); color: #fbbf24;">Select Gold</a>
+            <div class="p-4 d-flex flex-column justify-content-between flex-grow-1">
+              <div>
+                <h4 class="text-white f-w-800 mb-1">GOLD TIER</h4>
+                <p class="text-muted f-12 mb-3">Priority isolated vault &amp; institutional order execution.</p>
+                <div class="p-2.5 rounded-3 mb-3" style="background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(245, 158, 11, 0.3);">
+                  <div class="f-11 text-muted">Capital Range</div>
+                  <div class="f-15 f-w-800 text-white">$25,000 &ndash; $74,999</div>
+                </div>
+              </div>
+              <div>
+                <div class="f-14 f-w-700 text-success mb-3">+60% Daily Yield</div>
+                <a href="{{ route('register') }}" class="trk-btn trk-btn--outline w-100 py-2 f-12" style="border-color: rgba(245, 158, 11, 0.4); color: #fbbf24;">Select Gold</a>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Tier 4: Diamond -->
         <div class="col-sm-6 col-lg-3">
-          <div class="ecx-tier-card tier-diamond" data-aos="fade-up" data-aos-duration="1300">
-            <div>
-              <div class="tier-emblem-wrap">
-                <img src="{{ asset('themes/ecx/assets/images/plans/plan_diamond_badge.jpg') }}" alt="Diamond Tier Logo">
-              </div>
-              <span class="plan-badge-pill mb-2" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);">
+          <div class="ecx-widescreen-card tier-diamond" data-aos="fade-up" data-aos-duration="1300">
+            <!-- Full-Bleed 16:9 Wallpaper Header -->
+            <div class="widescreen-banner-wrap">
+              <img src="{{ asset('themes/ecx/assets/images/plans/plan_diamond_ecx.jpg') }}" alt="Diamond Tier">
+              <div class="widescreen-overlay"></div>
+              <span class="widescreen-badge" style="background: rgba(14, 165, 233, 0.85); color: #fff;">
                 Tier 4 &bull; VIP Sovereign
               </span>
-              <h4 class="text-white f-w-700 mt-1 mb-1">DIAMOND TIER</h4>
-              <p class="text-muted f-12 mb-3">Private wealth desk, bespoke hedging &amp; maximal return.</p>
-              <div class="p-2 rounded-3 mb-3" style="background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(56, 189, 248, 0.25);">
-                <div class="f-11 text-muted">Capital Range</div>
-                <div class="f-15 f-w-700 text-white">$75,000 &ndash; $150,000</div>
-              </div>
             </div>
-            <div>
-              <div class="f-13 f-w-700 text-success mb-3">+80% Daily Yield</div>
-              <a href="{{ route('register') }}" class="trk-btn trk-btn--outline w-100 py-2 f-12" style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8;">Select Diamond</a>
+            <div class="p-4 d-flex flex-column justify-content-between flex-grow-1">
+              <div>
+                <h4 class="text-white f-w-800 mb-1">DIAMOND TIER</h4>
+                <p class="text-muted f-12 mb-3">Private wealth desk, bespoke hedging &amp; maximal return.</p>
+                <div class="p-2.5 rounded-3 mb-3" style="background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(56, 189, 248, 0.3);">
+                  <div class="f-11 text-muted">Capital Range</div>
+                  <div class="f-15 f-w-800 text-white">$75,000 &ndash; $150,000</div>
+                </div>
+              </div>
+              <div>
+                <div class="f-14 f-w-700 text-success mb-3">+80% Daily Yield</div>
+                <a href="{{ route('register') }}" class="trk-btn trk-btn--outline w-100 py-2 f-12" style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8;">Select Diamond</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- ===============>> Dedicated 4-Tier Institutional Showcase End <<================= -->
+  <!-- ===============>> Dedicated 4-Tier Architecture Showcase End <<================= -->
 
-  <!-- ===============>> About section start here <<================= -->
-  <section class="about about--style4 padding-top padding-bottom">
+  <!-- ===============>> Interactive Tabbed Ecosystem Solutions Hub Start <<================= -->
+  <section class="padding-top padding-bottom bg-color-7">
     <div class="container">
-      <div class="about__wrapper">
-        <div class="row gx-5 gy-4 align-items-center">
-          <div class="col-md-6">
-            <div class="about__thumb" data-aos="fade-right" data-aos-duration="800">
-              <div class="about__thumb-inner">
-                <img src="{{ asset('themes/ecx/assets/images/about/home3/1.png') }}" alt="about-image" class="img-fluid rounded-4 shadow-sm">
+      <div class="section-header section-header--max65 text-center mb-50">
+        <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3" style="background: rgba(0, 245, 155, 0.08); border: 1px solid rgba(0, 245, 155, 0.25);">
+          <i class="fa-solid fa-microchip text-success f-12"></i>
+          <span class="f-11 f-w-700 text-uppercase" style="color: #00f59b; letter-spacing: 1px;">Core Engine</span>
+        </div>
+        <h2 class="mb-10 mt-minus-5">Engineered for <span>Automated Precision</span></h2>
+        <p class="text-muted">Explore how the {{ $settings->site_name ?? 'ECX Groups' }} infrastructure combines non-custodial custody, AI bot modeling, and institutional liquidity.</p>
+      </div>
+
+      <div class="row g-4 align-items-center">
+        <!-- Navigation Buttons Left -->
+        <div class="col-lg-4">
+          <div class="d-flex flex-column gap-3">
+            <button type="button" class="eco-nav-btn active" onclick="switchEcoTab(1, this)">
+              <div class="trust-pillar-icon" style="width: 36px; height: 36px; font-size: 15px;"><i class="fa-solid fa-robot"></i></div>
+              <div>
+                <div class="f-14 f-w-700">AI Arbitrage Engine</div>
+                <div class="f-11 text-muted">Cross-exchange order routing</div>
               </div>
-            </div>
+            </button>
+            <button type="button" class="eco-nav-btn" onclick="switchEcoTab(2, this)">
+              <div class="trust-pillar-icon" style="width: 36px; height: 36px; font-size: 15px;"><i class="fa-solid fa-chart-line"></i></div>
+              <div>
+                <div class="f-14 f-w-700">Yield Compounding</div>
+                <div class="f-11 text-muted">Daily automated distributions</div>
+              </div>
+            </button>
+            <button type="button" class="eco-nav-btn" onclick="switchEcoTab(3, this)">
+              <div class="trust-pillar-icon" style="width: 36px; height: 36px; font-size: 15px;"><i class="fa-solid fa-vault"></i></div>
+              <div>
+                <div class="f-14 f-w-700">Multi-Sig Cold Vaults</div>
+                <div class="f-11 text-muted">Offline institutional custody</div>
+              </div>
+            </button>
+            <button type="button" class="eco-nav-btn" onclick="switchEcoTab(4, this)">
+              <div class="trust-pillar-icon" style="width: 36px; height: 36px; font-size: 15px;"><i class="fa-solid fa-bolt"></i></div>
+              <div>
+                <div class="f-14 f-w-700">Instant Settlements</div>
+                <div class="f-11 text-muted">Sub-second Web3 execution</div>
+              </div>
+            </button>
           </div>
-          <div class="col-md-6">
-            <div class="about__content" data-aos="fade-left" data-aos-duration="800">
-              <h2>Meet <span>{{ $settings->site_name ?? 'ECX Groups' }}</span> — Institutional Precision</h2>
-              <p class="mb-3">
-                {{ $settings->description ?? 'Welcome to ECX Groups, the ultimate platform designed to transform your trading business. Secure, fast, and reliable investment solutions built with institutional grade infrastructure.' }}
+        </div>
+
+        <!-- Dynamic Content Right -->
+        <div class="col-lg-8">
+          <div class="market-watch-card p-4 p-md-5" style="min-height: 380px;">
+            <!-- Tab 1 Content -->
+            <div id="ecoTabContent1" class="eco-content-pane">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 rounded-pill px-3 py-1 f-11">Algorithmic Arbitrage</span>
+                <span class="text-muted f-12"><i class="fa-solid fa-clock me-1"></i>24/7 Scanning Active</span>
+              </div>
+              <h3 class="text-white f-w-800 mb-3">Microsecond Cross-Market Spread Harvesting</h3>
+              <p class="text-muted f-14 mb-4">
+                Our autonomous trading bots continuously scan bid/ask order books across Binance, Coinbase, Kraken, OKX, and Bybit. By capturing micro-inefficiencies simultaneously without holding directional market risk, our system guarantees consistent automated returns across market volatility.
               </p>
-              <p class="mb-4">
-                Our ecosystem is engineered to automate market arbitrage and yield generation with complete transparency, bank-grade encryption, and seamless multi-asset settlement across all four tiers.
+              <div class="row g-3 pt-3 border-top border-secondary border-opacity-25">
+                <div class="col-sm-4">
+                  <div class="f-11 text-muted text-uppercase">Execution Latency</div>
+                  <h4 class="text-success f-w-800 mb-0">&lt; 14ms</h4>
+                </div>
+                <div class="col-sm-4">
+                  <div class="f-11 text-muted text-uppercase">Supported Venues</div>
+                  <h4 class="text-white f-w-800 mb-0">12 Exchanges</h4>
+                </div>
+                <div class="col-sm-4">
+                  <div class="f-11 text-muted text-uppercase">Slippage Tolerance</div>
+                  <h4 class="text-success f-w-800 mb-0">0.00%</h4>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 2 Content -->
+            <div id="ecoTabContent2" class="eco-content-pane d-none">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <span class="badge bg-warning bg-opacity-10 text-warning border border-warning border-opacity-25 rounded-pill px-3 py-1 f-11">Yield Compounding</span>
+                <span class="text-muted f-12"><i class="fa-solid fa-calendar-check me-1"></i>Automated Daily Drops</span>
+              </div>
+              <h3 class="text-white f-w-800 mb-3">Daily Automated Treasury Distributions</h3>
+              <p class="text-muted f-14 mb-4">
+                Profits generated by our arbitrage clusters are audited and credited directly to your investor wallet every 24 hours. Investors can choose to compound daily yields for geometric capital acceleration or execute instant non-custodial withdrawals anytime.
               </p>
-              <a href="{{ route('about') }}" class="trk-btn trk-btn--border trk-btn--primary">Explore More</a>
+              <div class="row g-3 pt-3 border-top border-secondary border-opacity-25">
+                <div class="col-sm-4">
+                  <div class="f-11 text-muted text-uppercase">Yield Drop Cycle</div>
+                  <h4 class="text-success f-w-800 mb-0">Every 24h</h4>
+                </div>
+                <div class="col-sm-4">
+                  <div class="f-11 text-muted text-uppercase">Principal Protection</div>
+                  <h4 class="text-white f-w-800 mb-0">100% Backed</h4>
+                </div>
+                <div class="col-sm-4">
+                  <div class="f-11 text-muted text-uppercase">Lock-in Penalty</div>
+                  <h4 class="text-success f-w-800 mb-0">None</h4>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 3 Content -->
+            <div id="ecoTabContent3" class="eco-content-pane d-none">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 rounded-pill px-3 py-1 f-11">Institutional Security</span>
+                <span class="text-muted f-12"><i class="fa-solid fa-shield-halved me-1"></i>Bank-Grade Encryption</span>
+              </div>
+              <h3 class="text-white f-w-800 mb-3">Multi-Signature Offline MPC Architecture</h3>
+              <p class="text-muted f-14 mb-4">
+                Capital deposited into {{ $settings->site_name ?? 'ECX Groups' }} is segregated into air-gapped multi-signature cryptographic cold vaults. No single party can access treasury assets without M-of-N threshold signatures, establishing complete protection against digital threats.
+              </p>
+              <div class="row g-3 pt-3 border-top border-secondary border-opacity-25">
+                <div class="col-sm-4">
+                  <div class="f-11 text-muted text-uppercase">Encryption Standard</div>
+                  <h4 class="text-success f-w-800 mb-0">AES-256</h4>
+                </div>
+                <div class="col-sm-4">
+                  <div class="f-11 text-muted text-uppercase">Vault Custody</div>
+                  <h4 class="text-white f-w-800 mb-0">Air-Gapped</h4>
+                </div>
+                <div class="col-sm-4">
+                  <div class="f-11 text-muted text-uppercase">Reserve Audit</div>
+                  <h4 class="text-success f-w-800 mb-0">1:1 Verified</h4>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 4 Content -->
+            <div id="ecoTabContent4" class="eco-content-pane d-none">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <span class="badge bg-info bg-opacity-10 text-info border border-info border-opacity-25 rounded-pill px-3 py-1 f-11">Instant Settlements</span>
+                <span class="text-muted f-12"><i class="fa-solid fa-wallet me-1"></i>Non-Custodial Web3</span>
+              </div>
+              <h3 class="text-white f-w-800 mb-3">Zero Friction Web3 &amp; Crypto Connectivity</h3>
+              <p class="text-muted f-14 mb-4">
+                Connect your preferred Web3 wallet (MetaMask, Trust Wallet, Coinbase, Phantom) with one click. Enjoy immediate non-custodial capital deposits and instant withdrawals routed through our high-speed automated treasury gateway.
+              </p>
+              <div class="row g-3 pt-3 border-top border-secondary border-opacity-25">
+                <div class="col-sm-4">
+                  <div class="f-11 text-muted text-uppercase">Deposit Confirmations</div>
+                  <h4 class="text-success f-w-800 mb-0">1 - 3 Blocks</h4>
+                </div>
+                <div class="col-sm-4">
+                  <div class="f-11 text-muted text-uppercase">Withdrawal Processing</div>
+                  <h4 class="text-white f-w-800 mb-0">Automated</h4>
+                </div>
+                <div class="col-sm-4">
+                  <div class="f-11 text-muted text-uppercase">Platform Fee</div>
+                  <h4 class="text-success f-w-800 mb-0">0.0%</h4>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- ===============>> About section end here <<================= -->
+  <!-- ===============>> Interactive Tabbed Ecosystem Solutions Hub End <<================= -->
 
-  <!-- ===============>> Service section start here <<================= -->
-  <section class="service padding-top padding-bottom bg-color-7">
-    <div class="section-header section-header--max50">
-      <h2 class="mb-10 mt-minus-5">Explore <span>ECX GROUPS</span> Best Features</h2>
-      <p>We provide comprehensive solutions including professional trading, automated bots, and secure asset management.</p>
-    </div>
+  <!-- ===============>> Live Crypto Watchlist Table Start <<================= -->
+  <section class="padding-top padding-bottom">
     <div class="container">
-      <div class="service__wrapper">
-        <div class="row g-4 align-items-center">
-          <div class="col-sm-6 col-md-6 col-lg-4">
-            <div class="service__item service__item--style2" data-aos="fade-up" data-aos-duration="800">
-              <div class="service__item-inner text-center">
-                <div class="service__item-thumb mb-30">
-                  <img src="{{ asset('themes/ecx/assets/images/service/1.png') }}" alt="service-icon">
-                </div>
-                <div class="service__item-content">
-                  <h5> <a class="stretched-link" href="{{ route('login') }}">PRO TRADING</a> </h5>
-                  <p class="mb-0">Professional Crypto Industry Development Team providing top-tier market execution and algorithmic signals.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-lg-4">
-            <div class="service__item service__item--style2" data-aos="fade-up" data-aos-duration="1000">
-              <div class="service__item-inner text-center">
-                <div class="service__item-thumb mb-30">
-                  <img src="{{ asset('themes/ecx/assets/images/service/2.png') }}" alt="service-icon">
-                </div>
-                <div class="service__item-content">
-                  <h5> <a class="stretched-link" href="{{ route('login') }}">ECX BOT</a> </h5>
-                  <p class="mb-0">Unique robot for trading. Advanced algorithmic modeling executing 24/7 cross-exchange arbitrage.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-lg-4">
-            <div class="service__item service__item--style2" data-aos="fade-up" data-aos-duration="1200">
-              <div class="service__item-inner text-center">
-                <div class="service__item-thumb mb-30">
-                  <img src="{{ asset('themes/ecx/assets/images/service/3.png') }}" alt="service-icon">
-                </div>
-                <div class="service__item-content">
-                  <h5> <a class="stretched-link" href="{{ route('login') }}">MANAGE ACCOUNT</a> </h5>
-                  <p class="mb-0">Effortless asset management. Real-time portfolio tracking, multi-asset allocation, and transparent ledgering.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-lg-4">
-            <div class="service__item service__item--style2" data-aos="fade-up" data-aos-duration="800">
-              <div class="service__item-inner text-center">
-                <div class="service__item-thumb mb-30">
-                  <img src="{{ asset('themes/ecx/assets/images/service/4.png') }}" alt="service-icon">
-                </div>
-                <div class="service__item-content">
-                  <h5> <a class="stretched-link" href="{{ route('login') }}">Mobile Trading</a> </h5>
-                  <p class="mb-0">Trade on the go. Seamless responsive experience bringing global liquidity right to your fingertips.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-lg-4">
-            <div class="service__item service__item--style2" data-aos="fade-up" data-aos-duration="1000">
-              <div class="service__item-inner text-center">
-                <div class="service__item-thumb mb-30">
-                  <img src="{{ asset('themes/ecx/assets/images/service/5.png') }}" alt="service-icon">
-                </div>
-                <div class="service__item-content">
-                  <h5> <a class="stretched-link" href="{{ route('login') }}">Cold Storage Vaults</a> </h5>
-                  <p class="mb-0">Multi-signature institutional cold storage ensuring cryptographic protection of client holdings.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-lg-4">
-            <div class="service__item service__item--style2" data-aos="fade-up" data-aos-duration="1200">
-              <div class="service__item-inner text-center">
-                <div class="service__item-thumb mb-30">
-                  <img src="{{ asset('themes/ecx/assets/images/service/6.png') }}" alt="service-icon">
-                </div>
-                <div class="service__item-content">
-                  <h5> <a class="stretched-link" href="{{ route('login') }}">Web3 Connectivity</a> </h5>
-                  <p class="mb-0">Instant non-custodial wallet connectivity supporting MetaMask, Trust Wallet, and Coinbase.</p>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div class="section-header section-header--max65 text-center mb-40">
+        <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3" style="background: rgba(0, 245, 155, 0.08); border: 1px solid rgba(0, 245, 155, 0.25);">
+          <i class="fa-solid fa-chart-simple text-success f-12"></i>
+          <span class="f-11 f-w-700 text-uppercase" style="color: #00f59b; letter-spacing: 1px;">Market Depth</span>
+        </div>
+        <h2 class="mb-10 mt-minus-5">Real-Time <span>Market Watch</span></h2>
+        <p class="text-muted">Live prices, liquidity depth, and 24h institutional execution spreads across major crypto pairs.</p>
+      </div>
+
+      <div class="market-watch-card shadow-sm" data-aos="fade-up" data-aos-duration="900">
+        <div class="table-responsive">
+          <table class="table market-table">
+            <thead>
+              <tr>
+                <th>Asset / Pair</th>
+                <th>Price (USD)</th>
+                <th>24h Change</th>
+                <th>Institutional 24h Volume</th>
+                <th>Liquidity Trend</th>
+                <th class="text-end">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-3">
+                    <img src="{{ asset('themes/ecx/assets/images/banner/home4/icon/1.png') }}" alt="BTC" style="width: 28px; height: 28px; object-fit: contain;">
+                    <div>
+                      <strong class="text-white d-block">Bitcoin</strong>
+                      <span class="text-muted f-11">BTC/USDT</span>
+                    </div>
+                  </div>
+                </td>
+                <td><strong class="text-white">$64,480.20</strong></td>
+                <td><span class="badge bg-success bg-opacity-15 text-success border border-success border-opacity-30 rounded-pill px-2.5 py-1 f-12">+3.42%</span></td>
+                <td class="text-muted">$28.4 Billion</td>
+                <td>
+                  <svg width="110" height="26" viewBox="0 0 110 26" fill="none">
+                    <path d="M2 20 L25 15 L45 18 L70 8 L90 12 L108 4" stroke="#00f59b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </td>
+                <td class="text-end">
+                  <a href="{{ route('register') }}" class="trk-btn trk-btn--outline py-1.5 px-3 f-11" style="border-color: rgba(0,245,155,0.4); color: #00f59b;">Allocate</a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-3">
+                    <img src="{{ asset('themes/ecx/assets/images/banner/home4/icon/2.png') }}" alt="ETH" style="width: 28px; height: 28px; object-fit: contain;">
+                    <div>
+                      <strong class="text-white d-block">Ethereum</strong>
+                      <span class="text-muted f-11">ETH/USDT</span>
+                    </div>
+                  </div>
+                </td>
+                <td><strong class="text-white">$3,490.50</strong></td>
+                <td><span class="badge bg-success bg-opacity-15 text-success border border-success border-opacity-30 rounded-pill px-2.5 py-1 f-12">+4.18%</span></td>
+                <td class="text-muted">$16.2 Billion</td>
+                <td>
+                  <svg width="110" height="26" viewBox="0 0 110 26" fill="none">
+                    <path d="M2 22 L20 18 L40 12 L65 16 L85 6 L108 2" stroke="#00f59b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </td>
+                <td class="text-end">
+                  <a href="{{ route('register') }}" class="trk-btn trk-btn--outline py-1.5 px-3 f-11" style="border-color: rgba(0,245,155,0.4); color: #00f59b;">Allocate</a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-3">
+                    <img src="{{ asset('themes/ecx/assets/images/banner/home4/icon/3.png') }}" alt="SOL" style="width: 28px; height: 28px; object-fit: contain;">
+                    <div>
+                      <strong class="text-white d-block">Solana</strong>
+                      <span class="text-muted f-11">SOL/USDT</span>
+                    </div>
+                  </div>
+                </td>
+                <td><strong class="text-white">$148.90</strong></td>
+                <td><span class="badge bg-success bg-opacity-15 text-success border border-success border-opacity-30 rounded-pill px-2.5 py-1 f-12">+6.85%</span></td>
+                <td class="text-muted">$6.8 Billion</td>
+                <td>
+                  <svg width="110" height="26" viewBox="0 0 110 26" fill="none">
+                    <path d="M2 24 L22 19 L48 14 L68 9 L88 4 L108 2" stroke="#00f59b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </td>
+                <td class="text-end">
+                  <a href="{{ route('register') }}" class="trk-btn trk-btn--outline py-1.5 px-3 f-11" style="border-color: rgba(0,245,155,0.4); color: #00f59b;">Allocate</a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-3">
+                    <img src="{{ asset('themes/ecx/assets/images/banner/home4/icon/4.png') }}" alt="BNB" style="width: 28px; height: 28px; object-fit: contain;">
+                    <div>
+                      <strong class="text-white d-block">BNB Chain</strong>
+                      <span class="text-muted f-11">BNB/USDT</span>
+                    </div>
+                  </div>
+                </td>
+                <td><strong class="text-white">$582.40</strong></td>
+                <td><span class="badge bg-success bg-opacity-15 text-success border border-success border-opacity-30 rounded-pill px-2.5 py-1 f-12">+2.74%</span></td>
+                <td class="text-muted">$3.4 Billion</td>
+                <td>
+                  <svg width="110" height="26" viewBox="0 0 110 26" fill="none">
+                    <path d="M2 18 L24 14 L50 16 L72 10 L92 8 L108 3" stroke="#00f59b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </td>
+                <td class="text-end">
+                  <a href="{{ route('register') }}" class="trk-btn trk-btn--outline py-1.5 px-3 f-11" style="border-color: rgba(0,245,155,0.4); color: #00f59b;">Allocate</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </section>
-  <!-- ===============>> Service section end here <<================= -->
+  <!-- ===============>> Live Crypto Watchlist Table End <<================= -->
 
-  <!-- ===============>> How to get started section start here <<================= -->
-  <section class="service padding-top padding-bottom bg-color">
-    <div class="section-header section-header--max50">
-      <h2 class="mb-10 mt-minus-5">How to <span>get started</span></h2>
-      <p>Start growing your portfolio in four simple steps.</p>
-    </div>
-    <div class="container">
-      <div class="service__wrapper">
-        <div class="row g-4 align-items-center">
-          <div class="col-sm-6 col-lg-3">
-            <div class="service__item service__item--style2" data-aos="fade-up" data-aos-duration="800">
-              <div class="service__item-inner text-center">
-                <div class="service__item-thumb mb-30">
-                  <img src="{{ asset('themes/ecx/assets/images/feature/5.png') }}" alt="icon">
-                </div>
-                <div class="service__item-content">
-                  <h5> <a class="stretched-link" href="{{ route('register') }}">Create Account</a> </h5>
-                  <p class="mb-0">Sign up in seconds with your email and basic details. Immediate activation.</p>
-                  <a href="{{ route('register') }}" class="mt-3 d-inline-block text-primary">Register Now <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-lg-3">
-            <div class="service__item service__item--style2" data-aos="fade-up" data-aos-duration="1000">
-              <div class="service__item-inner text-center">
-                <div class="service__item-thumb mb-30">
-                  <img src="{{ asset('themes/ecx/assets/images/feature/6.png') }}" alt="icon">
-                </div>
-                <div class="service__item-content">
-                  <h5> <a class="stretched-link" href="{{ route('login') }}">Identity Verification</a> </h5>
-                  <p class="mb-0">Complete seamless KYC verification to secure your profile and unlock higher limits.</p>
-                  <a href="{{ route('login') }}" class="mt-3 d-inline-block text-primary">Get Verified <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-lg-3">
-            <div class="service__item service__item--style2" data-aos="fade-up" data-aos-duration="1200">
-              <div class="service__item-inner text-center">
-                <div class="service__item-thumb mb-30">
-                  <img src="{{ asset('themes/ecx/assets/images/feature/7.png') }}" alt="icon">
-                </div>
-                <div class="service__item-content">
-                  <h5> <a class="stretched-link" href="{{ route('login') }}">Deposit Capital</a> </h5>
-                  <p class="mb-0">Fund your account easily with Bitcoin, Ethereum, USDT, or connected Web3 wallets.</p>
-                  <a href="{{ route('login') }}" class="mt-3 d-inline-block text-primary">Deposit Now <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-lg-3">
-            <div class="service__item service__item--style2" data-aos="fade-up" data-aos-duration="1400">
-              <div class="service__item-inner text-center">
-                <div class="service__item-thumb mb-30">
-                  <img src="{{ asset('themes/ecx/assets/images/feature/8.png') }}" alt="icon">
-                </div>
-                <div class="service__item-content">
-                  <h5> <a class="stretched-link" href="{{ route('login') }}">Earn &amp; Withdraw</a> </h5>
-                  <p class="mb-0">Watch daily returns accumulate in real time and withdraw earnings whenever you choose.</p>
-                  <a href="{{ route('login') }}" class="mt-3 d-inline-block text-primary">Start Earning <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- ===============>> How to get started section end here <<================= -->
-
-  <!-- ===============>> Upgraded 4-Tier Investment Packages Grid <<================= -->
+  <!-- ===============>> Upgraded 4-Tier Investment Packages Grid Start <<================= -->
   <section class="pricing padding-top padding-bottom bg--cover" style="background-image:url({{ asset('themes/ecx/assets/images/pricing/bg.png') }})">
     <div class="section-header section-header--max65 text-center mb-50">
       <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3" style="background: rgba(0, 245, 155, 0.08); border: 1px solid rgba(0, 245, 155, 0.25);">
         <i class="fa-solid fa-layer-group text-success f-12"></i>
-        <span class="f-11 f-w-700 text-uppercase" style="color: #00f59b; letter-spacing: 1px;">Live Investment Strategies</span>
+        <span class="f-11 f-w-700 text-uppercase" style="color: #00f59b; letter-spacing: 1px;">Live Investment Packages</span>
       </div>
       <h2 class="mb-10 mt-minus-5">Explore <span>Investment Packages</span></h2>
-      <p class="text-muted">Choose your allocation tier with guaranteed capital protection, automated daily returns, and instant liquidity.</p>
+      <p class="text-muted">Select your allocation tier with guaranteed capital protection, automated daily returns, and instant liquidity.</p>
     </div>
 
     <div class="container">
       <div class="row g-4 justify-content-center">
         @php
-          $tierBadges = [
-            10 => ['badge' => 'plan_bronze_badge.jpg', 'glow' => 'rgba(205, 127, 50, 0.3)', 'tag' => 'Retail Pro'],
-            11 => ['badge' => 'plan_silver_badge.jpg', 'glow' => 'rgba(226, 232, 240, 0.3)', 'tag' => 'Growth Alpha'],
-            12 => ['badge' => 'plan_gold_badge.jpg', 'glow' => 'rgba(245, 158, 11, 0.3)', 'tag' => 'Institutional'],
-            13 => ['badge' => 'plan_diamond_badge.jpg', 'glow' => 'rgba(56, 189, 248, 0.35)', 'tag' => 'VIP Sovereign'],
+          $tierConfig = [
+            10 => ['img' => 'plan_bronze_ecx.jpg', 'glow' => 'tier-bronze', 'tag' => 'Retail Pro', 'badgeBg' => 'rgba(217, 119, 6, 0.9)'],
+            11 => ['img' => 'plan_silver_ecx.jpg', 'glow' => 'tier-silver', 'tag' => 'Growth Alpha', 'badgeBg' => 'rgba(148, 163, 184, 0.9)'],
+            12 => ['img' => 'plan_gold_ecx.jpg', 'glow' => 'tier-gold featured-card', 'tag' => 'Institutional', 'badgeBg' => 'rgba(245, 158, 11, 0.95)'],
+            13 => ['img' => 'plan_diamond_ecx.jpg', 'glow' => 'tier-diamond', 'tag' => 'VIP Sovereign', 'badgeBg' => 'rgba(14, 165, 233, 0.95)'],
           ];
           $activePlans = isset($plans) && count($plans) > 0 ? $plans->whereIn('id', [10, 11, 12, 13]) : collect([]);
         @endphp
@@ -632,59 +1002,62 @@
         @if($activePlans->count() > 0)
           @foreach($activePlans as $plan)
             @php
-              $tData = $tierBadges[$plan->id] ?? ['badge' => 'plan_bronze_badge.jpg', 'glow' => 'rgba(0, 245, 155, 0.3)', 'tag' => 'Active'];
-              $isFeatured = ($plan->id == 12);
+              $cfg = $tierConfig[$plan->id] ?? ['img' => 'plan_bronze_ecx.jpg', 'glow' => '', 'tag' => 'Active', 'badgeBg' => 'rgba(0, 245, 155, 0.9)'];
             @endphp
             <div class="col-sm-6 col-lg-3">
-              <div class="package-plan-card {{ $isFeatured ? 'active-featured' : '' }}" data-aos="fade-up" data-aos-duration="{{ 800 + ($loop->index * 150) }}">
-                <div>
-                  <!-- Tier 3D Emblem Header -->
-                  <div class="text-center mb-3">
-                    <div class="tier-emblem-wrap" style="height: 125px;">
-                      <img src="{{ asset('themes/ecx/assets/images/plans/' . $tData['badge']) }}" alt="{{ $plan->name }}">
-                    </div>
-                    <span class="badge bg-white bg-opacity-10 text-white rounded-pill px-3 py-1 f-10 text-uppercase border border-white border-opacity-15 mb-2">
-                      {{ $tData['tag'] }}
-                    </span>
+              <div class="ecx-widescreen-card {{ $cfg['glow'] }}" data-aos="fade-up" data-aos-duration="{{ 800 + ($loop->index * 150) }}">
+                
+                <!-- Full-Bleed 16:9 Edge-to-Edge Image Header -->
+                <div class="widescreen-banner-wrap">
+                  <img src="{{ asset('themes/ecx/assets/images/plans/' . $cfg['img']) }}" alt="{{ $plan->name }}">
+                  <div class="widescreen-overlay"></div>
+                  <span class="widescreen-badge" style="background: {{ $cfg['badgeBg'] }}; color: #fff;">
+                    {{ $cfg['tag'] }}
+                  </span>
+                </div>
+
+                <div class="p-4 d-flex flex-column justify-content-between flex-grow-1">
+                  <div>
                     <h5 class="text-white f-w-800 mb-1">{{ $plan->name }}</h5>
-                    <div class="d-flex align-items-baseline justify-content-center gap-1">
+                    <div class="d-flex align-items-baseline gap-1 mb-3">
                       <h3 class="text-success f-w-900 mb-0">+{{ $plan->increment_amount }}%</h3>
                       <span class="text-muted f-12">/ {{ $plan->increment_interval }}</span>
                     </div>
+
+                    <!-- Capital Range Box -->
+                    <div class="p-3 rounded-3 mb-3" style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08);">
+                      <div class="d-flex justify-content-between mb-1 f-12">
+                        <span class="text-muted">Min Capital:</span>
+                        <strong class="text-white">{{ $settings->currency ?? '$' }}{{ number_format($plan->min_price) }}</strong>
+                      </div>
+                      <div class="d-flex justify-content-between f-12">
+                        <span class="text-muted">Max Capital:</span>
+                        <strong class="text-white">{{ $settings->currency ?? '$' }}{{ number_format($plan->max_price) }}</strong>
+                      </div>
+                    </div>
+
+                    <!-- Key Features -->
+                    <ul class="list-unstyled mb-4 f-12 text-muted" style="line-height: 2;">
+                      <li><i class="fa-solid fa-circle-check text-success me-2"></i><strong>Duration:</strong> {{ $plan->expiration }}</li>
+                      <li><i class="fa-solid fa-circle-check text-success me-2"></i><strong>Principal:</strong> 100% Guaranteed</li>
+                      <li><i class="fa-solid fa-circle-check text-success me-2"></i><strong>Daily Drops:</strong> Fully Automated</li>
+                      <li><i class="fa-solid fa-circle-check text-success me-2"></i><strong>Support:</strong> 24/7 Dedicated Desk</li>
+                    </ul>
                   </div>
 
-                  <!-- Plan Limits Box -->
-                  <div class="p-3 rounded-3 mb-3" style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08);">
-                    <div class="d-flex justify-content-between mb-1 f-12">
-                      <span class="text-muted">Min Capital:</span>
-                      <strong class="text-white">{{ $settings->currency ?? '$' }}{{ number_format($plan->min_price) }}</strong>
-                    </div>
-                    <div class="d-flex justify-content-between f-12">
-                      <span class="text-muted">Max Capital:</span>
-                      <strong class="text-white">{{ $settings->currency ?? '$' }}{{ number_format($plan->max_price) }}</strong>
-                    </div>
+                  <div>
+                    @auth
+                      <a href="{{ url('/dashboard/mplans') }}" class="trk-btn trk-btn--primary w-100 text-center py-2.5 f-13 f-w-700">
+                        Invest in {{ explode(' ', $plan->name)[0] }} &rarr;
+                      </a>
+                    @else
+                      <a href="{{ route('register') }}" class="trk-btn trk-btn--primary w-100 text-center py-2.5 f-13 f-w-700">
+                        Start with {{ $settings->currency ?? '$' }}{{ number_format($plan->min_price) }}
+                      </a>
+                    @endauth
                   </div>
-
-                  <!-- Features List -->
-                  <ul class="list-unstyled mb-4 f-12 text-muted" style="line-height: 2;">
-                    <li><i class="fa-solid fa-circle-check text-success me-2"></i><strong>Duration:</strong> {{ $plan->expiration }}</li>
-                    <li><i class="fa-solid fa-circle-check text-success me-2"></i><strong>Principal:</strong> 100% Guaranteed</li>
-                    <li><i class="fa-solid fa-circle-check text-success me-2"></i><strong>Yield Drop:</strong> Automated Daily</li>
-                    <li><i class="fa-solid fa-circle-check text-success me-2"></i><strong>Manager:</strong> Dedicated Priority</li>
-                  </ul>
                 </div>
 
-                <div>
-                  @auth
-                    <a href="{{ url('/dashboard/mplans') }}" class="trk-btn trk-btn--primary w-100 text-center py-2.5 f-13 f-w-700">
-                      Invest in {{ explode(' ', $plan->name)[0] }} &rarr;
-                    </a>
-                  @else
-                    <a href="{{ route('register') }}" class="trk-btn trk-btn--primary w-100 text-center py-2.5 f-13 f-w-700">
-                      Get Started with {{ $settings->currency ?? '$' }}{{ number_format($plan->min_price) }}
-                    </a>
-                  @endauth
-                </div>
               </div>
             </div>
           @endforeach
@@ -692,10 +1065,10 @@
       </div>
     </div>
   </section>
-  <!-- ===============>> Upgraded Investment Packages Grid End <<================= -->
+  <!-- ===============>> Upgraded 4-Tier Investment Packages Grid End <<================= -->
 
-  <!-- ===============>> Interactive ROI Yield Calculator <<================= -->
-  <section class="padding-top padding-bottom" style="background: #080e1a;">
+  <!-- ===============>> Interactive ROI Yield Simulator Start <<================= -->
+  <section class="padding-top padding-bottom" style="background: #070d18;">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-10">
@@ -704,10 +1077,10 @@
               <div class="col-lg-7">
                 <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3" style="background: rgba(0, 245, 155, 0.08); border: 1px solid rgba(0, 245, 155, 0.25);">
                   <i class="fa-solid fa-calculator text-success f-12"></i>
-                  <span class="f-11 f-w-700 text-uppercase" style="color: #00f59b; letter-spacing: 1px;">Live Returns Simulator</span>
+                  <span class="f-11 f-w-700 text-uppercase" style="color: #00f59b; letter-spacing: 1px;">Interactive Calculator</span>
                 </div>
-                <h3 class="text-white f-w-800 mb-2">Estimate Your <span>Earnings</span></h3>
-                <p class="text-muted f-13 mb-4">Drag the slider or click a preset amount to see your qualifying tier and projected net returns.</p>
+                <h3 class="text-white f-w-800 mb-2">Simulate Your <span>Returns</span></h3>
+                <p class="text-muted f-13 mb-4">Adjust the capital slider or click a preset to see your qualifying tier with live 16:9 banner preview.</p>
 
                 <!-- Slider Form -->
                 <div class="mb-4">
@@ -717,7 +1090,7 @@
                   </div>
                   <input type="range" class="calc-slider mb-3" id="calcSlider" min="100" max="150000" step="100" value="5000">
                   
-                  <!-- Quick Preset Buttons -->
+                  <!-- Quick Presets -->
                   <div class="d-flex flex-wrap gap-2">
                     <button type="button" class="calc-preset-btn" onclick="setCalcAmount(100)">$100</button>
                     <button type="button" class="calc-preset-btn" onclick="setCalcAmount(1000)">$1,000</button>
@@ -729,44 +1102,46 @@
                 </div>
               </div>
 
-              <!-- Live Calculation Result Card -->
+              <!-- Live Calculation Result Card With Widescreen Image -->
               <div class="col-lg-5">
-                <div class="calc-result-box text-center">
-                  <!-- Dynamic Tier Emblem -->
-                  <div class="tier-emblem-wrap mb-2" style="height: 105px;">
-                    <img id="calcTierImg" src="{{ asset('themes/ecx/assets/images/plans/plan_silver_badge.jpg') }}" alt="Active Tier Emblem">
-                  </div>
-                  <span id="calcTierName" class="plan-badge-pill mb-3" style="background: rgba(226, 232, 240, 0.15); color: #e2e8f0; border: 1px solid rgba(226, 232, 240, 0.3);">
-                    SILVER TIER &bull; +40% DAILY
-                  </span>
-
-                  <div class="row g-2 text-start mb-3 pt-2 border-top border-secondary border-opacity-25">
-                    <div class="col-6">
-                      <span class="text-muted f-11 d-block">Daily Drop:</span>
-                      <strong class="text-success f-15" id="calcDailyReturn">+$2,000.00</strong>
-                    </div>
-                    <div class="col-6 text-end">
-                      <span class="text-muted f-11 d-block">Duration:</span>
-                      <strong class="text-white f-13" id="calcDuration">14 Days</strong>
-                    </div>
+                <div class="ecx-widescreen-card" style="border-radius: 16px;">
+                  <div class="widescreen-banner-wrap" style="height: 125px;">
+                    <img id="calcTierImg" src="{{ asset('themes/ecx/assets/images/plans/plan_silver_ecx.jpg') }}" alt="Selected Tier">
+                    <div class="widescreen-overlay"></div>
+                    <span id="calcTierBadge" class="widescreen-badge" style="background: rgba(148, 163, 184, 0.9); color: #fff;">
+                      SILVER TIER &bull; +40% DAILY
+                    </span>
                   </div>
 
-                  <div class="p-2.5 rounded-3 mb-3 text-start" style="background: rgba(0, 245, 155, 0.08); border: 1px solid rgba(0, 245, 155, 0.2);">
-                    <div class="d-flex justify-content-between align-items-center">
-                      <span class="text-white f-12">Projected Total Return:</span>
-                      <h4 class="text-success f-w-900 mb-0" id="calcTotalReturn">$33,000</h4>
+                  <div class="p-3">
+                    <div class="row g-2 text-start mb-3">
+                      <div class="col-6">
+                        <span class="text-muted f-11 d-block">Daily Drop:</span>
+                        <strong class="text-success f-15" id="calcDailyReturn">+$2,000.00</strong>
+                      </div>
+                      <div class="col-6 text-end">
+                        <span class="text-muted f-11 d-block">Duration:</span>
+                        <strong class="text-white f-13" id="calcDuration">14 Days</strong>
+                      </div>
                     </div>
-                  </div>
 
-                  @auth
-                    <a href="{{ url('/dashboard/mplans') }}" class="trk-btn trk-btn--primary w-100 py-2 f-13 f-w-700">
-                      Activate Package in Dashboard &rarr;
-                    </a>
-                  @else
-                    <a href="{{ route('register') }}" class="trk-btn trk-btn--primary w-100 py-2 f-13 f-w-700">
-                      Start Investing Now &rarr;
-                    </a>
-                  @endauth
+                    <div class="p-2.5 rounded-3 mb-3 text-start" style="background: rgba(0, 245, 155, 0.08); border: 1px solid rgba(0, 245, 155, 0.2);">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-white f-12">Projected Total Return:</span>
+                        <h4 class="text-success f-w-900 mb-0" id="calcTotalReturn">$33,000</h4>
+                      </div>
+                    </div>
+
+                    @auth
+                      <a href="{{ url('/dashboard/mplans') }}" class="trk-btn trk-btn--primary w-100 py-2 f-13 f-w-700">
+                        Activate Package in Dashboard &rarr;
+                      </a>
+                    @else
+                      <a href="{{ route('register') }}" class="trk-btn trk-btn--primary w-100 py-2 f-13 f-w-700">
+                        Start Investing Now &rarr;
+                      </a>
+                    @endauth
+                  </div>
                 </div>
               </div>
             </div>
@@ -775,9 +1150,9 @@
       </div>
     </div>
   </section>
-  <!-- ===============>> Interactive ROI Yield Calculator End <<================= -->
+  <!-- ===============>> Interactive ROI Yield Simulator End <<================= -->
 
-  <!-- TradingView Crypto Heatmap Widget -->
+  <!-- ===============>> TradingView Crypto Heatmap Widget Start <<================= -->
   <div class="tradingview-widget-container my-5">
     <div class="tradingview-widget-container__widget"></div>
     <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-crypto-coins-heatmap.js" async>
@@ -798,10 +1173,11 @@
       }
     </script>
   </div>
+  <!-- ===============>> TradingView Crypto Heatmap Widget End <<================= -->
 
-  <!-- ===============>> FAQ section start here <<================= -->
+  <!-- ===============>> FAQ Section Start <<================= -->
   <section class="faq padding-top padding-bottom of-hidden">
-    <div class="section-header section-header--max65">
+    <div class="section-header section-header--max65 text-center mb-50">
       <h2 class="mb-10 mt-minus-5"><span>Frequently</span> Asked Questions</h2>
       <p>Have questions about {{ $settings->site_name ?? 'ECX Groups' }}? Here are the most common inquiries from our global community.</p>
     </div>
@@ -893,18 +1269,32 @@
       </div>
     </div>
   </section>
-  <!-- ===============>> FAQ section end here <<================= -->
+  <!-- ===============>> FAQ Section End <<================= -->
 
 @endsection
 
 @section('scripts')
   <script>
-    // Live ROI Calculator Logic
-    const badgePaths = {
-      bronze: "{{ asset('themes/ecx/assets/images/plans/plan_bronze_badge.jpg') }}",
-      silver: "{{ asset('themes/ecx/assets/images/plans/plan_silver_badge.jpg') }}",
-      gold: "{{ asset('themes/ecx/assets/images/plans/plan_gold_badge.jpg') }}",
-      diamond: "{{ asset('themes/ecx/assets/images/plans/plan_diamond_badge.jpg') }}"
+    // Tab switching for Ecosystem Solutions Hub
+    function switchEcoTab(tabIndex, el) {
+      document.querySelectorAll('.eco-nav-btn').forEach(btn => btn.classList.remove('active'));
+      el.classList.add('active');
+
+      document.querySelectorAll('.eco-content-pane').forEach((pane, idx) => {
+        if (idx === (tabIndex - 1)) {
+          pane.classList.remove('d-none');
+        } else {
+          pane.classList.add('d-none');
+        }
+      });
+    }
+
+    // Live ROI Calculator Logic with Widescreen Wallpapers
+    const widescreenPaths = {
+      bronze: "{{ asset('themes/ecx/assets/images/plans/plan_bronze_ecx.jpg') }}",
+      silver: "{{ asset('themes/ecx/assets/images/plans/plan_silver_ecx.jpg') }}",
+      gold: "{{ asset('themes/ecx/assets/images/plans/plan_gold_ecx.jpg') }}",
+      diamond: "{{ asset('themes/ecx/assets/images/plans/plan_diamond_ecx.jpg') }}"
     };
 
     function updateCalculator(val) {
@@ -914,36 +1304,40 @@
       let tierName = 'BRONZE TIER';
       let tierRate = 0.20;
       let durationDays = 7;
-      let tierImg = badgePaths.bronze;
-      let badgeStyle = 'background: rgba(205, 127, 50, 0.15); color: #d97706; border: 1px solid rgba(205, 127, 50, 0.3);';
+      let tierImg = widescreenPaths.bronze;
+      let badgeBg = 'rgba(217, 119, 6, 0.9)';
 
       if (amt >= 75000) {
         tierName = 'DIAMOND TIER';
         tierRate = 0.80;
         durationDays = 30;
-        tierImg = badgePaths.diamond;
-        badgeStyle = 'background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);';
+        tierImg = widescreenPaths.diamond;
+        badgeBg = 'rgba(14, 165, 233, 0.95)';
       } else if (amt >= 25000) {
         tierName = 'GOLD TIER';
         tierRate = 0.60;
         durationDays = 21;
-        tierImg = badgePaths.gold;
-        badgeStyle = 'background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3);';
+        tierImg = widescreenPaths.gold;
+        badgeBg = 'rgba(245, 158, 11, 0.95)';
       } else if (amt >= 5000) {
         tierName = 'SILVER TIER';
         tierRate = 0.40;
         durationDays = 14;
-        tierImg = badgePaths.silver;
-        badgeStyle = 'background: rgba(226, 232, 240, 0.15); color: #e2e8f0; border: 1px solid rgba(226, 232, 240, 0.3);';
+        tierImg = widescreenPaths.silver;
+        badgeBg = 'rgba(148, 163, 184, 0.9)';
       }
 
       const dailyReturn = amt * tierRate;
       const totalYield = (dailyReturn * durationDays) + amt;
 
-      document.getElementById('calcTierImg').src = tierImg;
-      const tierBadge = document.getElementById('calcTierName');
-      tierBadge.innerText = tierName + ' • +' + (tierRate * 100) + '% DAILY';
-      tierBadge.setAttribute('style', badgeStyle);
+      const imgEl = document.getElementById('calcTierImg');
+      if (imgEl) imgEl.src = tierImg;
+
+      const badgeEl = document.getElementById('calcTierBadge');
+      if (badgeEl) {
+        badgeEl.innerText = tierName + ' • +' + (tierRate * 100) + '% DAILY';
+        badgeEl.style.background = badgeBg;
+      }
 
       document.getElementById('calcDailyReturn').innerText = '+$' + dailyReturn.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       document.getElementById('calcDuration').innerText = durationDays + ' Days';
@@ -952,7 +1346,7 @@
 
     function setCalcAmount(amount) {
       const slider = document.getElementById('calcSlider');
-      slider.value = amount;
+      if (slider) slider.value = amount;
       document.querySelectorAll('.calc-preset-btn').forEach(btn => {
         btn.classList.toggle('active', btn.innerText.replace(/[^0-9]/g, '') == amount);
       });
@@ -967,7 +1361,6 @@
       updateCalculator(val);
     });
 
-    // Initialize calculator on page load
     document.addEventListener('DOMContentLoaded', function() {
       updateCalculator(5000);
     });
