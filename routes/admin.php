@@ -151,6 +151,8 @@ Route::middleware(['isadmin', '2fa'])->prefix('admin')->group(function () {
 	Route::put('dashboard/updateemail', [AppSettingsController::class, 'updateemail'])->name('updateemailpreference');
 	Route::put('dashboard/update-whatsapp', [AppSettingsController::class, 'updateWhatsApp'])->name('updatewhatsapp');
 	Route::post('dashboard/test-whatsapp', [AppSettingsController::class, 'testWhatsApp'])->name('testwhatsapp');
+	Route::put('dashboard/update-maintenance', [AppSettingsController::class, 'updateMaintenance'])->name('updatemaintenance');
+	Route::get('dashboard/maintenance-preview', [AppSettingsController::class, 'previewMaintenance'])->name('admin.maintenance.preview');
 
 	// Connect Wallet Types Management
 	Route::post('dashboard/wallet-types/add', [AppSettingsController::class, 'addWalletType'])->name('admin.wallettypes.add');

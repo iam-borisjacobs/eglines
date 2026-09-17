@@ -9,6 +9,8 @@ class Settings extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     protected $casts = [
         'return_capital' => 'boolean',
         'should_cancel_plan' => 'boolean',
@@ -16,6 +18,8 @@ class Settings extends Model
         'welcome_popup_slides' => 'array',
         'trading_lock_enabled' => 'boolean',
         'min_trading_balance' => 'float',
+        'maintenance_mode' => 'boolean',
+        'maintenance_until' => 'datetime',
     ];
 
     /**

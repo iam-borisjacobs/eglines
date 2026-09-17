@@ -266,6 +266,14 @@
                             <i class="fa fa-whatsapp me-1 text-success"></i> WhatsApp Alerts
                         </button>
                     </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link rounded-pill px-3 py-2 f-14 f-w-600" id="maintenance-tab" data-bs-toggle="pill" data-bs-target="#maintenance" type="button" role="tab" aria-controls="maintenance" aria-selected="false">
+                            <i class="fa fa-wrench me-1 text-warning"></i> Maintenance Mode
+                            @if(!empty($settings->maintenance_mode))
+                                <span class="badge bg-danger rounded-pill ms-1 f-10">ACTIVE</span>
+                            @endif
+                        </button>
+                    </li>
                 </ul>
 
                 <!-- Tab Panes -->
@@ -293,6 +301,9 @@
                     </div>
                     <div class="tab-pane fade" id="whatsapp" role="tabpanel" aria-labelledby="whatsapp-tab">
                         @include('admin.Settings.AppSettings.whatsapp')
+                    </div>
+                    <div class="tab-pane fade" id="maintenance" role="tabpanel" aria-labelledby="maintenance-tab">
+                        @include('admin.Settings.AppSettings.maintenance')
                     </div>
                 </div>
             </div>

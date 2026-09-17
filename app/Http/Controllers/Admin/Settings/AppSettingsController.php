@@ -326,4 +326,37 @@ class AppSettingsController extends Controller
             'message' => $res['message']
         ]);
     }
+
+    /**
+     * Update platform maintenance mode configuration
+     */
+    public function updateMaintenance(Request $request)
+    {
+        $mode = ($request->maintenance_mode == '1' || $request->maintenance_mode == 'true' || $request->maintenance_mode === true);
+
+        Settings::where('id', 1)->update([
+            'maintenance_mode' => $mode,
+            'maintenance_title' => $request->maintenance_title ?? 'System Maintenance & Infrastructure Upgrade',
+            'maintenance_message' => $request->maintenance_message ?? 'Our quantitative trading infrastructure is currently undergoing scheduled platform optimization and core security upgrades. All client funds, segregated cold vaults, and active investment plans remain 100% secure. Full operations will resume shortly.',
+            'maintenance_until' => $request->maintenance_until ? date('Y-m-d H:i:s', strtotime($request->maintenance_until)) : null,
+            'maintenance_secret' => !empty($request->maintenance_secret) ? trim($request->maintenance_secret) : 'ecx_bypass_2026',
+        ]);
+
+        return response()->json([
+            'status' => 200,
+            'success' => 'Maintenance Mode configuration updated successfully!',
+            'maintenance_mode' => $mode,
+        ]);
+    }
+
+    /**
+     * Preview the maintenance page without turning it on for users
+     */
+    public function previewMaintenance()
+    {
+        $settings = Settings::first();
+        return response()->view('errors.maintenance', [
+            'settings' => $settings,
+        ]);
+    }
 }
