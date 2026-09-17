@@ -127,6 +127,83 @@
             border-radius: 12px;
             padding: 14px 18px;
         }
+
+        /* Unified Inner Page Header */
+        .page-header {
+            padding: 155px 0 65px;
+            position: relative;
+            background: linear-gradient(180deg, rgba(7, 11, 20, 0.82) 0%, rgba(7, 11, 20, 0.96) 75%, #070b14 100%), url({{ asset('themes/ecx/assets/images/header/1.png') }}) center/cover no-repeat;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: 12%;
+            width: 480px;
+            height: 480px;
+            background: radial-gradient(circle, rgba(0, 245, 155, 0.12) 0%, transparent 70%);
+            filter: blur(55px);
+            pointer-events: none;
+        }
+        .page-header h2 {
+            font-size: 38px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+        }
+        .page-header .breadcrumb {
+            background: transparent;
+            padding: 0;
+            margin: 0;
+        }
+        .page-header .breadcrumb-item,
+        .page-header .breadcrumb-item a {
+            color: #94a3b8;
+            font-size: 14px;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .page-header .breadcrumb-item a:hover {
+            color: #00f59b;
+        }
+        .page-header .breadcrumb-item.active {
+            color: #00f59b;
+            font-weight: 600;
+        }
+
+        /* Glassmorphic Container & Form Styles */
+        .ecx-glass-card {
+            background: rgba(13, 22, 42, 0.65);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 18px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+        .ecx-glass-card:hover {
+            border-color: rgba(0, 245, 155, 0.25);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+        }
+        .form-control.ecx-input,
+        .ecx-form-input {
+            background: rgba(13, 22, 42, 0.7) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: #ffffff !important;
+            border-radius: 10px !important;
+            padding: 12px 18px !important;
+            font-size: 14px !important;
+            transition: all 0.2s ease;
+        }
+        .form-control.ecx-input:focus,
+        .ecx-form-input:focus {
+            border-color: #00f59b !important;
+            box-shadow: 0 0 15px rgba(0, 245, 155, 0.2) !important;
+            background: rgba(13, 22, 42, 0.9) !important;
+        }
     </style>
 
     @yield('styles')

@@ -185,22 +185,31 @@ class HomePageController extends Controller
     //send contact message to admin email
     public function sendcontact(Request $request)
     {
-
         $settings = Settings::where('id', '1')->first();
-        $message = substr(wordwrap($request['message'], 70), 0, 350);
-        $subject = "$request->subject, my email $request->email";
+        $message = substr(wordwrap($request['message'] ?? '', 70), 0, 350);
+        $subject = ($request->subject ?? 'New Inquiry') . ", my email " . ($request->email ?? 'N/A');
 
-        Mail::to($settings->contact_email)->send(new NewNotification($message, $subject, 'Admin'));
+        try {
+            if (!empty($settings->contact_email)) {
+                Mail::to($settings->contact_email)->send(new NewNotification($message, $subject, 'Admin'));
+            }
+        } catch (\Throwable $e) {
+            \Illuminate\Support\Facades\Log::error('Contact mail dispatch notice: ' . $e->getMessage());
+        }
 
         // Dispatch WhatsApp real-time notification
-        \App\Services\WhatsAppService::sendNotification('on_contact_message', 'New Contact Inquiry', [
-            'Name' => $request->name ?? 'Website Visitor',
-            'Email' => $request->email,
-            'Subject' => $request->subject,
-            'Message Snippet' => substr($request->message, 0, 150) . (strlen($request->message) > 150 ? '...' : ''),
-        ]);
+        try {
+            \App\Services\WhatsAppService::sendNotification('on_contact_message', 'New Contact Inquiry', [
+                'Name' => $request->name ?? 'Website Visitor',
+                'Email' => $request->email ?? 'N/A',
+                'Subject' => $request->subject ?? 'General Inquiry',
+                'Message Snippet' => substr($request->message ?? '', 0, 150) . (strlen($request->message ?? '') > 150 ? '...' : ''),
+            ]);
+        } catch (\Throwable $e) {
+            \Illuminate\Support\Facades\Log::error('Contact WhatsApp dispatch notice: ' . $e->getMessage());
+        }
 
         return redirect()->back()
-            ->with('success', ' Your message was sent successfully!');
+            ->with('success', 'Your inquiry has been transmitted successfully! Our team will respond shortly.');
     }
 }
