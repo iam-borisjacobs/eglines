@@ -34,10 +34,17 @@
     <link rel="stylesheet" href="{{ asset('themes/ecx/assets/css/style.css') }}?v={{ time() }}">
 
     <style>
+        /* Unified Canvas Background */
+        body.home-4 {
+            background-color: #070b14 !important;
+            color: #94a3b8;
+            overflow-x: hidden;
+        }
+
         /* Institutional Footer Styling */
         .ecx-footer {
-            background: #060c18 !important;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            background: linear-gradient(180deg, #070b14 0%, #050810 100%) !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
             position: relative;
             overflow: hidden;
         }

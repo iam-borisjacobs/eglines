@@ -82,9 +82,9 @@
 
     /* Institutional Trust Bar */
     .ecx-trust-bar {
-      background: rgba(11, 19, 38, 0.95);
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(180deg, rgba(7, 11, 20, 0.98) 0%, rgba(11, 18, 33, 0.75) 50%, rgba(7, 11, 20, 0.98) 100%);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       padding: 24px 0;
       backdrop-filter: blur(16px);
       position: relative;
@@ -94,6 +94,55 @@
       margin-top: 0 !important;
       position: relative;
       z-index: 4;
+      background: linear-gradient(180deg, rgba(7, 11, 20, 0.98) 0%, rgba(10, 17, 30, 0.6) 50%, #070b14 100%) !important;
+    }
+    .counter__item {
+      background: rgba(13, 22, 42, 0.65) !important;
+      border: 1px solid rgba(255, 255, 255, 0.06) !important;
+      border-radius: 16px;
+      backdrop-filter: blur(14px);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .counter__item:hover {
+      border-color: rgba(0, 245, 155, 0.3) !important;
+      transform: translateY(-4px);
+    }
+
+    /* Seamless Section Ambient Gradients */
+    .ecx-section-engine {
+      background: radial-gradient(circle at 15% 30%, rgba(0, 245, 155, 0.04) 0%, transparent 60%),
+                  radial-gradient(circle at 85% 70%, rgba(14, 165, 233, 0.035) 0%, transparent 60%),
+                  linear-gradient(180deg, #070b14 0%, rgba(11, 19, 36, 0.72) 35%, rgba(11, 19, 36, 0.72) 70%, #070b14 100%);
+      position: relative;
+    }
+
+    .ecx-section-marketwatch {
+      background: radial-gradient(circle at 80% 25%, rgba(0, 245, 155, 0.03) 0%, transparent 55%),
+                  linear-gradient(180deg, #070b14 0%, rgba(10, 17, 32, 0.65) 50%, #070b14 100%);
+      position: relative;
+    }
+
+    .ecx-section-pricing {
+      position: relative;
+      background-color: #070b14;
+      background-image: radial-gradient(circle at 50% 20%, rgba(0, 245, 155, 0.05) 0%, transparent 60%),
+                        linear-gradient(180deg, #070b14 0%, rgba(7, 11, 20, 0.62) 18%, rgba(7, 11, 20, 0.62) 82%, #070b14 100%),
+                        url('{{ asset('themes/ecx/assets/images/pricing/bg.png') }}');
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .ecx-section-calculator {
+      background: radial-gradient(circle at 45% 50%, rgba(14, 165, 233, 0.035) 0%, transparent 65%),
+                  linear-gradient(180deg, #070b14 0%, rgba(10, 18, 33, 0.65) 50%, #070b14 100%) !important;
+      position: relative;
+    }
+
+    .ecx-section-faq {
+      background: radial-gradient(circle at 10% 40%, rgba(0, 245, 155, 0.03) 0%, transparent 60%),
+                  linear-gradient(180deg, #070b14 0%, rgba(11, 19, 34, 0.7) 50%, #070b14 100%) !important;
+      position: relative;
     }
     .trust-pillar-item {
       display: flex;
@@ -487,7 +536,7 @@
   </style>
 
   <!-- ===============>> Hero Banner Section Start <<================= -->
-  <section class="banner banner--style4 bg--cover hero-glow-container" style="background-image:url({{ asset('themes/ecx/assets/images/banner/home4/1.png') }}); padding-top: 130px; padding-bottom: 25px;">
+  <section class="banner banner--style4 bg--cover hero-glow-container" style="background: linear-gradient(180deg, rgba(7, 11, 20, 0.62) 0%, rgba(7, 11, 20, 0.78) 55%, rgba(7, 11, 20, 0.95) 88%, #070b14 100%), url({{ asset('themes/ecx/assets/images/banner/home4/hero_ai_trader.jpg') }}) center top / cover no-repeat; padding-top: 140px; padding-bottom: 30px;">
     <div class="hero-glow-blob-1"></div>
     <div class="hero-glow-blob-2"></div>
 
@@ -555,9 +604,8 @@
       </div>
     </div>
 
-    <div class="banner__shape">
+    <div class="banner__shape" style="opacity: 0.35; pointer-events: none;">
       <span class="banner__shape-item banner__shape-item--1"><img src="{{ asset('themes/ecx/assets/images/banner/home1/4.png') }}" alt="shape icon"></span>
-      <span class="banner__shape-item banner__shape-item--5"><img src="{{ asset('themes/ecx/assets/images/banner/home4/2.png') }}" alt="shape icon"></span>
     </div>
   </section>
   <!-- ===============>> Hero Banner Section End <<================= -->
@@ -627,7 +675,7 @@
   <!-- ===============>> Institutional Trust & Security Bar End <<================= -->
 
   <!-- ===============>> Counter / Market Metrics Start <<================= -->
-  <div class="counter" style="margin-top: 0 !important; padding: 45px 0 35px; background: rgba(7, 13, 24, 0.95); position: relative; z-index: 4;">
+  <div class="counter" style="margin-top: 0 !important; padding: 45px 0 35px; position: relative; z-index: 4;">
     <div class="container">
       <!-- Real-Time Metrics Counters -->
       <div class="counter__wrapper">
@@ -723,7 +771,7 @@
 
 
   <!-- ===============>> Interactive Tabbed Ecosystem Solutions Hub Start <<================= -->
-  <section class="padding-top padding-bottom bg-color-7">
+  <section class="padding-top padding-bottom ecx-section-engine">
     <div class="container">
       <div class="section-header section-header--max65 text-center mb-50">
         <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3" style="background: rgba(0, 245, 155, 0.08); border: 1px solid rgba(0, 245, 155, 0.25);">
@@ -883,7 +931,7 @@
   <!-- ===============>> Interactive Tabbed Ecosystem Solutions Hub End <<================= -->
 
   <!-- ===============>> Live Crypto Watchlist Table Start <<================= -->
-  <section class="padding-top padding-bottom">
+  <section class="padding-top padding-bottom ecx-section-marketwatch">
     <div class="container">
       <div class="section-header section-header--max65 text-center mb-40">
         <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3" style="background: rgba(0, 245, 155, 0.08); border: 1px solid rgba(0, 245, 155, 0.25);">
@@ -1005,7 +1053,7 @@
   <!-- ===============>> Live Crypto Watchlist Table End <<================= -->
 
   <!-- ===============>> Upgraded 4-Tier Investment Packages Grid Start <<================= -->
-  <section class="pricing padding-top padding-bottom bg--cover" style="background-image:url({{ asset('themes/ecx/assets/images/pricing/bg.png') }})">
+  <section class="pricing padding-top padding-bottom ecx-section-pricing">
     <div class="section-header section-header--max65 text-center mb-50">
       <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3" style="background: rgba(0, 245, 155, 0.08); border: 1px solid rgba(0, 245, 155, 0.25);">
         <i class="fa-solid fa-layer-group text-success f-12"></i>
@@ -1096,7 +1144,7 @@
   <!-- ===============>> Upgraded 4-Tier Investment Packages Grid End <<================= -->
 
   <!-- ===============>> Interactive ROI Yield Simulator Start <<================= -->
-  <section class="padding-top padding-bottom" style="background: #070d18;">
+  <section class="padding-top padding-bottom ecx-section-calculator">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-10">
@@ -1181,30 +1229,32 @@
   <!-- ===============>> Interactive ROI Yield Simulator End <<================= -->
 
   <!-- ===============>> TradingView Crypto Heatmap Widget Start <<================= -->
-  <div class="tradingview-widget-container my-5">
-    <div class="tradingview-widget-container__widget"></div>
-    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-crypto-coins-heatmap.js" async>
-      {
-        "dataSource": "CryptoWithoutBTC",
-        "blockSize": "market_cap_calc",
-        "blockColor": "24h_close_change|5",
-        "locale": "en",
-        "symbolUrl": "",
-        "colorTheme": "dark",
-        "hasTopBar": false,
-        "isDataSetEnabled": false,
-        "isZoomEnabled": false,
-        "hasSymbolTooltip": true,
-        "isMonoSize": false,
-        "width": "100%",
-        "height": 480
-      }
-    </script>
+  <div class="container my-5" data-aos="fade-up" data-aos-duration="800">
+    <div class="tradingview-widget-container" style="border-radius: 18px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 12px 40px rgba(0,0,0,0.5); background: rgba(10, 18, 33, 0.85);">
+      <div class="tradingview-widget-container__widget"></div>
+      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-crypto-coins-heatmap.js" async>
+        {
+          "dataSource": "CryptoWithoutBTC",
+          "blockSize": "market_cap_calc",
+          "blockColor": "24h_close_change|5",
+          "locale": "en",
+          "symbolUrl": "",
+          "colorTheme": "dark",
+          "hasTopBar": false,
+          "isDataSetEnabled": false,
+          "isZoomEnabled": false,
+          "hasSymbolTooltip": true,
+          "isMonoSize": false,
+          "width": "100%",
+          "height": 480
+        }
+      </script>
+    </div>
   </div>
   <!-- ===============>> TradingView Crypto Heatmap Widget End <<================= -->
 
   <!-- ===============>> FAQ Section Start <<================= -->
-  <section class="faq padding-top padding-bottom of-hidden" style="background: linear-gradient(180deg, #070d18 0%, #0b1426 100%);">
+  <section class="faq padding-top padding-bottom of-hidden ecx-section-faq">
     <div class="container">
       <div class="section-header section-header--max65 text-center mb-50">
         <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3" style="background: rgba(0, 245, 155, 0.08); border: 1px solid rgba(0, 245, 155, 0.25);">
