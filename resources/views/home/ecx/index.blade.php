@@ -533,12 +533,26 @@
         opacity: 0.3 !important;
       }
     }
+
+    /* Rising Particles & Floating Bubbles Canvas */
+    .hero-particles-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
   </style>
 
   <!-- ===============>> Hero Banner Section Start <<================= -->
   <section class="banner banner--style4 bg--cover hero-glow-container" style="background: linear-gradient(180deg, rgba(7, 11, 20, 0.62) 0%, rgba(7, 11, 20, 0.78) 55%, rgba(7, 11, 20, 0.95) 88%, #070b14 100%), url({{ asset('themes/ecx/assets/images/banner/home4/hero_ai_trader.jpg') }}) center top / cover no-repeat; padding-top: 140px; padding-bottom: 30px;">
     <div class="hero-glow-blob-1"></div>
     <div class="hero-glow-blob-2"></div>
+
+    <!-- Rising Particles & Floating Bubbles Canvas Engine -->
+    <canvas id="hero-particles-canvas" class="hero-particles-canvas"></canvas>
 
     <div class="container" style="position: relative; z-index: 2;">
       <div class="banner__wrapper">
@@ -1498,5 +1512,171 @@
     document.addEventListener('DOMContentLoaded', function() {
       updateCalculator(5000);
     });
+
+    /* =====================================================================
+     * High-Performance Rising Particles & Floating Bubbles Canvas Engine
+     * (Multi-spectral glowing micro-orbs & hollow bubbles rising through hero)
+     * ===================================================================== */
+    (function() {
+      var canvas = document.getElementById('hero-particles-canvas');
+      if (!canvas) return;
+
+      var ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      var particles = [];
+      var animationFrameId = null;
+      var isRunning = true;
+      var width = 0;
+      var height = 0;
+
+      // Rich palette matching ECX / Eglines: emerald green (#00f59b), cyan (#0ea5e9), gold (#f59e0b)
+      var colorPalette = [
+        { r: 0, g: 245, b: 155 },   // Emerald Green
+        { r: 14, g: 165, b: 233 },  // Cyan / Sapphire
+        { r: 245, g: 158, b: 11 }   // Amber / Gold
+      ];
+
+      function resize() {
+        var hero = canvas.parentElement;
+        if (!hero) return;
+        var rect = hero.getBoundingClientRect();
+        var dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = rect.width;
+        height = rect.height;
+
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.scale(dpr, dpr);
+
+        initParticles();
+      }
+
+      function initParticles() {
+        particles = [];
+        // Density scaled to screen size: ~35 on mobile, ~65 on desktop
+        var count = Math.floor(Math.min(Math.max(width / 22, 32), 68));
+
+        for (var i = 0; i < count; i++) {
+          particles.push(createParticle(true));
+        }
+      }
+
+      function createParticle(randomizeY) {
+        var isBubble = Math.random() > 0.45; // ~55% hollow bubbles, ~45% solid glowing dots
+        var randColor = Math.random();
+        var rgb = randColor > 0.52 ? colorPalette[0] : (randColor > 0.22 ? colorPalette[1] : colorPalette[2]);
+        var radius = isBubble ? (Math.random() * 3.4 + 2.0) : (Math.random() * 2.4 + 1.2);
+
+        return {
+          x: Math.random() * width,
+          y: randomizeY ? (Math.random() * height) : (height + Math.random() * 30),
+          radius: radius,
+          speedY: Math.random() * 0.75 + 0.35,
+          driftAngle: Math.random() * Math.PI * 2,
+          driftSpeed: Math.random() * 0.02 + 0.01,
+          driftAmp: Math.random() * 0.7 + 0.2,
+          baseAlpha: Math.random() * 0.55 + 0.25,
+          alpha: 0,
+          isBubble: isBubble,
+          rgb: rgb
+        };
+      }
+
+      function updateAndDraw() {
+        ctx.clearRect(0, 0, width, height);
+
+        for (var i = 0; i < particles.length; i++) {
+          var p = particles[i];
+
+          // Movement: Rise upwards with smooth gentle sine drift
+          p.y -= p.speedY;
+          p.driftAngle += p.driftSpeed;
+          p.x += Math.sin(p.driftAngle) * p.driftAmp;
+
+          // Fade in when entering from bottom, fade out near top
+          var distFromTop = p.y;
+          var distFromBottom = height - p.y;
+
+          if (distFromBottom < 40) {
+            p.alpha = Math.min(p.baseAlpha, (distFromBottom / 40) * p.baseAlpha);
+          } else if (distFromTop < 80) {
+            p.alpha = Math.max(0, (distFromTop / 80) * p.baseAlpha);
+          } else {
+            p.alpha = p.baseAlpha;
+          }
+
+          // Reset when off the top or sides
+          if (p.y < -15 || p.x < -20 || p.x > width + 20) {
+            particles[i] = createParticle(false);
+            continue;
+          }
+
+          // Draw Particle
+          ctx.save();
+          if (p.isBubble) {
+            // Hollow glowing micro-bubble with luminous rim
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.lineWidth = 1.3;
+            ctx.strokeStyle = 'rgba(' + p.rgb.r + ',' + p.rgb.g + ',' + p.rgb.b + ',' + p.alpha + ')';
+            ctx.stroke();
+
+            // Soft interior ambient glow
+            ctx.fillStyle = 'rgba(' + p.rgb.r + ',' + p.rgb.g + ',' + p.rgb.b + ',' + (p.alpha * 0.18) + ')';
+            ctx.fill();
+          } else {
+            // Solid glowing micro-dot with luminous halo
+            ctx.shadowColor = 'rgba(' + p.rgb.r + ',' + p.rgb.g + ',' + p.rgb.b + ', ' + (p.alpha * 0.8) + ')';
+            ctx.shadowBlur = 8;
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(' + p.rgb.r + ',' + p.rgb.g + ',' + p.rgb.b + ',' + p.alpha + ')';
+            ctx.fill();
+          }
+          ctx.restore();
+        }
+
+        if (isRunning) {
+          animationFrameId = requestAnimationFrame(updateAndDraw);
+        }
+      }
+
+      // Efficient IntersectionObserver: Pause when hero is scrolled out of view
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              if (!isRunning) {
+                isRunning = true;
+                animationFrameId = requestAnimationFrame(updateAndDraw);
+              }
+            } else {
+              isRunning = false;
+              if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+              }
+            }
+          });
+        }, { threshold: 0.05 });
+
+        var heroSection = canvas.closest('.hero-glow-container') || canvas.closest('section');
+        if (heroSection) {
+          observer.observe(heroSection);
+        }
+      }
+
+      // Window resize debouncing
+      var resizeTimer;
+      window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(resize, 150);
+      });
+
+      // Initial setup
+      resize();
+      animationFrameId = requestAnimationFrame(updateAndDraw);
+    })();
   </script>
 @endsection
