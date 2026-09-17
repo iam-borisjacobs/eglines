@@ -6412,7 +6412,7 @@ textarea:focus-within {
   -ms-transition: all 0.3s ease-out;
   -o-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
-  width: 100%;
+  width: auto;
   border: 1px solid var(--brand-color);
   color: #0C263A;
 }
