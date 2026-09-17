@@ -230,7 +230,7 @@
     </footer>
 
     <!-- Scroll to Top -->
-    <a href="#" class="scrollToTop scrollToTop--style1"><i class="fa-solid fa-arrow-up-from-bracket"></i></a>
+    <a href="javascript:void(0)" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="scrollToTop scrollToTop--style1" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></a>
 
     <!-- Scripts -->
     <script src="{{ asset('themes/ecx/assets/js/bootstrap.bundle.min.js') }}"></script>

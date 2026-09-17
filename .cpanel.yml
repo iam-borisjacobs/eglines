@@ -1,6 +1,6 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/<CPANEL_USERNAME>/eglines.yourdomain.com/
+    - export DEPLOYPATH=/home/maxihold/ecxgroups.com/
     - /bin/cp -R * $DEPLOYPATH
 

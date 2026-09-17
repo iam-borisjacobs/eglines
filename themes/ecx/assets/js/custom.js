@@ -294,11 +294,13 @@ window.addEventListener("scroll", function () {
     if (window.pageYOffset > 300) {
       scrollToTop.style.bottom = "7%";
       scrollToTop.style.opacity = "1";
-      scrollToTop.style.transition = "all .5s ease";
+      scrollToTop.style.pointerEvents = "auto";
+      scrollToTop.style.transition = "all .4s ease";
     } else {
       scrollToTop.style.bottom = "-30%";
       scrollToTop.style.opacity = "0";
-      scrollToTop.style.transition = "all .5s ease";
+      scrollToTop.style.pointerEvents = "none";
+      scrollToTop.style.transition = "all .4s ease";
     }
   }
 });
@@ -306,18 +308,13 @@ window.addEventListener("scroll", function () {
 var scrollToTop = document.querySelector(".scrollToTop");
 
 if (scrollToTop) {
-  // Click event to scroll to top
+  // Click event to smoothly scroll to top
   scrollToTop.addEventListener("click", function (e) {
     e.preventDefault();
-    var scrollDuration = 100; // Set scroll duration in milliseconds
-    var scrollStep = -window.scrollY / (scrollDuration / 15);
-    var scrollInterval = setInterval(function () {
-      if (window.scrollY !== 0) {
-        window.scrollBy(0, scrollStep);
-      } else {
-        clearInterval(scrollInterval);
-      }
-    }, 15);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   });
 }
 

@@ -66,7 +66,7 @@
             <div class="counter__item" data-aos="fade-up" data-aos-duration="800">
               <div class="counter__item-inner">
                 <div class="counter__item-thumb">
-                  <img src="{{ asset('themes/ecx/assets/images/counter/1.png') }}" alt="counter icon">
+                  <img src="{{ asset('themes/ecx/assets/images/banner/home4/icon/1.png') }}" alt="counter icon" style="max-height: 48px; object-fit: contain;">
                 </div>
                 <div class="counter__item-content">
                   <h3><span class="purecounter" data-purecounter-start="0" data-purecounter-end="{{ $total_users ?? 25 }}"></span>+</h3>
@@ -79,7 +79,7 @@
             <div class="counter__item" data-aos="fade-up" data-aos-duration="1000">
               <div class="counter__item-inner">
                 <div class="counter__item-thumb">
-                  <img src="{{ asset('themes/ecx/assets/images/counter/2.png') }}" alt="counter icon">
+                  <img src="{{ asset('themes/ecx/assets/images/banner/home4/icon/2.png') }}" alt="counter icon" style="max-height: 48px; object-fit: contain;">
                 </div>
                 <div class="counter__item-content">
                   <h3>$<span class="purecounter" data-purecounter-start="0" data-purecounter-end="18"></span>M+</h3>
@@ -92,7 +92,7 @@
             <div class="counter__item" data-aos="fade-up" data-aos-duration="1200">
               <div class="counter__item-inner">
                 <div class="counter__item-thumb">
-                  <img src="{{ asset('themes/ecx/assets/images/counter/3.png') }}" alt="counter icon">
+                  <img src="{{ asset('themes/ecx/assets/images/banner/home4/icon/3.png') }}" alt="counter icon" style="max-height: 48px; object-fit: contain;">
                 </div>
                 <div class="counter__item-content">
                   <h3><span class="purecounter" data-purecounter-start="0" data-purecounter-end="99"></span>.9%</h3>
@@ -105,7 +105,7 @@
             <div class="counter__item" data-aos="fade-up" data-aos-duration="1400">
               <div class="counter__item-inner">
                 <div class="counter__item-thumb">
-                  <img src="{{ asset('themes/ecx/assets/images/counter/4.png') }}" alt="counter icon">
+                  <img src="{{ asset('themes/ecx/assets/images/banner/home4/icon/4.png') }}" alt="counter icon" style="max-height: 48px; object-fit: contain;">
                 </div>
                 <div class="counter__item-content">
                   <h3><span class="purecounter" data-purecounter-start="0" data-purecounter-end="12"></span></h3>
@@ -128,7 +128,7 @@
           <div class="col-md-6">
             <div class="about__thumb" data-aos="fade-right" data-aos-duration="800">
               <div class="about__thumb-inner">
-                <img src="{{ asset('themes/ecx/assets/images/about/home4/1.png') }}" alt="about-image">
+                <img src="{{ asset('themes/ecx/assets/images/about/home3/1.png') }}" alt="about-image" class="img-fluid rounded-4 shadow-sm">
               </div>
             </div>
           </div>
