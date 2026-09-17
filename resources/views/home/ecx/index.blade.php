@@ -329,10 +329,82 @@
       border-color: #00f59b;
       color: #00f59b;
     }
+
+    /* FAQ Custom Glassmorphic Cards */
+    .ecx-faq-card {
+      background: rgba(13, 22, 42, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      margin-bottom: 14px;
+      overflow: hidden;
+      transition: all 0.25s ease;
+      backdrop-filter: blur(12px);
+    }
+    .ecx-faq-card:hover {
+      border-color: rgba(0, 245, 155, 0.35);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+    .ecx-faq-btn {
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: none;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .ecx-faq-btn:not(.collapsed) {
+      color: #00f59b;
+    }
+    .ecx-faq-btn .faq-arrow {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      flex-shrink: 0;
+      transition: transform 0.3s, background 0.3s, color 0.3s;
+      color: #94a3b8;
+    }
+    .ecx-faq-btn:not(.collapsed) .faq-arrow {
+      transform: rotate(180deg);
+      background: rgba(0, 245, 155, 0.15);
+      border-color: #00f59b;
+      color: #00f59b;
+    }
+    .ecx-faq-num {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: #00f59b;
+      padding: 4px 10px;
+      border-radius: 8px;
+      background: rgba(0, 245, 155, 0.1);
+      border: 1px solid rgba(0, 245, 155, 0.2);
+      flex-shrink: 0;
+    }
+    .ecx-faq-body {
+      padding: 0 24px 22px 64px;
+      color: #94a3b8;
+      font-size: 14px;
+      line-height: 1.7;
+    }
   </style>
 
   <!-- ===============>> Hero Banner Section Start <<================= -->
-  <section class="banner banner--style4 bg--cover hero-glow-container" style="background-image:url({{ asset('themes/ecx/assets/images/banner/home4/1.png') }})">
+  <section class="banner banner--style4 bg--cover hero-glow-container" style="background-image:url({{ asset('themes/ecx/assets/images/banner/home4/1.png') }}); padding-top: 130px; padding-bottom: 25px;">
     <div class="hero-glow-blob-1"></div>
     <div class="hero-glow-blob-2"></div>
 
@@ -340,7 +412,7 @@
       <div class="banner__wrapper">
         <div class="row justify-content-center">
           <div class="col-md-10 justify-content-center text-center">
-            <div class="banner__content" data-aos="fade-up" data-aos-duration="800">
+            <div class="banner__content mb-4" data-aos="fade-up" data-aos-duration="800">
               
               <!-- Ambient Live Pulse Pill -->
               <div class="ecx-glow-pill">
@@ -350,9 +422,9 @@
               </div>
 
               <h1>Institutional Capital Growth. <br> Automated Yield at Scale.</h1>
-              <p>Execute non-custodial algorithmic arbitrage with automated daily distribution. Transparent, secure, and regulated yields spanning from $100 to $150,000.</p>
+              <p class="mb-4">Execute non-custodial algorithmic arbitrage with automated daily distribution. Transparent, secure, and regulated yields spanning from $100 to $150,000.</p>
               
-              <div class="banner__content-btn btn-group justify-content-center">
+              <div class="banner__content-btn btn-group justify-content-center mb-3">
                 @auth
                   <a href="{{ url('/dashboard') }}" class="trk-btn trk-btn--primary trk-btn--arrow">Go to Dashboard</a>
                   <a href="{{ url('/dashboard/mplans') }}" class="trk-btn trk-btn--primary trk-btn--arrow" style="margin-left: 15px;">Explore 4 Tiers</a>
@@ -363,7 +435,7 @@
               </div>
 
               <!-- Quick Security Badges Under CTA -->
-              <div class="mt-4 pt-2 d-flex flex-wrap align-items-center justify-content-center gap-3 text-muted f-12">
+              <div class="d-flex flex-wrap align-items-center justify-content-center gap-3 text-muted f-12 mb-4">
                 <span><i class="fa-solid fa-shield-halved text-success me-1"></i> Multi-Sig Vaults</span>
                 <span>&bull;</span>
                 <span><i class="fa-solid fa-bolt text-warning me-1"></i> 24/7 AI Arbitrage</span>
@@ -375,6 +447,28 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- Docked TradingView Ticker Tape Widget (No Dead Space) -->
+      <div class="tradingview-widget-container" style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.35);">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+          {
+            "symbols": [
+              { "description": "Bitcoin", "proName": "BINANCE:BTCUSDT" },
+              { "description": "Ethereum", "proName": "BINANCE:ETHUSDT" },
+              { "description": "Solana", "proName": "BINANCE:SOLUSDT" },
+              { "description": "XRP", "proName": "BINANCE:XRPUSDT" },
+              { "description": "Litecoin", "proName": "BINANCE:LTCUSDT" },
+              { "description": "BNB", "proName": "BINANCE:BNBUSDT" }
+            ],
+            "showSymbolLogo": true,
+            "isTransparent": false,
+            "displayMode": "adaptive",
+            "colorTheme": "dark",
+            "locale": "en"
+          }
+        </script>
       </div>
     </div>
 
@@ -449,31 +543,9 @@
   </div>
   <!-- ===============>> Institutional Trust & Security Bar End <<================= -->
 
-  <!-- ===============>> Counter / Market Ticker Start <<================= -->
-  <div class="counter padding-top padding-bottom">
+  <!-- ===============>> Counter / Market Metrics Start <<================= -->
+  <div class="counter" style="padding: 45px 0 35px; background: rgba(7, 13, 24, 0.95);">
     <div class="container">
-      <!-- TradingView Ticker Tape Widget -->
-      <div class="tradingview-widget-container mb-40">
-        <div class="tradingview-widget-container__widget"></div>
-        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-          {
-            "symbols": [
-              { "description": "Bitcoin", "proName": "BINANCE:BTCUSDT" },
-              { "description": "Ethereum", "proName": "BINANCE:ETHUSDT" },
-              { "description": "Solana", "proName": "BINANCE:SOLUSDT" },
-              { "description": "XRP", "proName": "BINANCE:XRPUSDT" },
-              { "description": "Litecoin", "proName": "BINANCE:LTCUSDT" },
-              { "description": "BNB", "proName": "BINANCE:BNBUSDT" }
-            ],
-            "showSymbolLogo": true,
-            "isTransparent": false,
-            "displayMode": "adaptive",
-            "colorTheme": "dark",
-            "locale": "en"
-          }
-        </script>
-      </div>
-
       <!-- Real-Time Metrics Counters -->
       <div class="counter__wrapper">
         <div class="row g-4">
@@ -565,134 +637,7 @@
   </div>
   <!-- ===============>> Live Platform Transparency Activity Ticker End <<================= -->
 
-  <!-- ===============>> Dedicated 4-Tier Architecture Showcase Start <<================= -->
-  <section class="padding-top padding-bottom" style="background: linear-gradient(180deg, rgba(8, 14, 26, 0) 0%, rgba(13, 22, 40, 0.75) 50%, rgba(8, 14, 26, 0) 100%);">
-    <div class="container">
-      <div class="section-header section-header--max65 text-center mb-50">
-        <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3" style="background: rgba(0, 245, 155, 0.08); border: 1px solid rgba(0, 245, 155, 0.25);">
-          <i class="fa-solid fa-gem text-success f-12"></i>
-          <span class="f-11 f-w-700 text-uppercase" style="color: #00f59b; letter-spacing: 1px;">Institutional Standard</span>
-        </div>
-        <h2 class="mb-10 mt-minus-5">The ECX <span>Tier Architecture</span></h2>
-        <p class="text-muted">Four precision-engineered capitalization tiers crafted for retail traders and private wealth clients from $100 to $150,000.</p>
-      </div>
 
-      <div class="row g-4 justify-content-center">
-        <!-- Tier 1: Bronze -->
-        <div class="col-sm-6 col-lg-3">
-          <div class="ecx-widescreen-card tier-bronze" data-aos="fade-up" data-aos-duration="700">
-            <!-- Full-Bleed 16:9 Wallpaper Header -->
-            <div class="widescreen-banner-wrap">
-              <img src="{{ asset('themes/ecx/assets/images/plans/plan_bronze_ecx.jpg') }}" alt="Bronze Tier">
-              <div class="widescreen-overlay"></div>
-              <span class="widescreen-badge" style="background: rgba(205, 127, 50, 0.85); color: #fff;">
-                Tier 1 &bull; Entry Pro
-              </span>
-            </div>
-            <div class="p-4 d-flex flex-column justify-content-between flex-grow-1">
-              <div>
-                <h4 class="text-white f-w-800 mb-1">BRONZE TIER</h4>
-                <p class="text-muted f-12 mb-3">Algorithmic spot arbitrage &amp; foundational daily yield.</p>
-                <div class="p-2.5 rounded-3 mb-3" style="background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(205, 127, 50, 0.3);">
-                  <div class="f-11 text-muted">Capital Range</div>
-                  <div class="f-15 f-w-800 text-white">$100 &ndash; $4,999</div>
-                </div>
-              </div>
-              <div>
-                <div class="f-14 f-w-700 text-success mb-3">+20% Daily Yield</div>
-                <a href="{{ route('register') }}" class="trk-btn trk-btn--outline w-100 py-2 f-12" style="border-color: rgba(205, 127, 50, 0.4); color: #f59e0b;">Select Bronze</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tier 2: Silver -->
-        <div class="col-sm-6 col-lg-3">
-          <div class="ecx-widescreen-card tier-silver" data-aos="fade-up" data-aos-duration="900">
-            <!-- Full-Bleed 16:9 Wallpaper Header -->
-            <div class="widescreen-banner-wrap">
-              <img src="{{ asset('themes/ecx/assets/images/plans/plan_silver_ecx.jpg') }}" alt="Silver Tier">
-              <div class="widescreen-overlay"></div>
-              <span class="widescreen-badge" style="background: rgba(148, 163, 184, 0.85); color: #fff;">
-                Tier 2 &bull; Growth
-              </span>
-            </div>
-            <div class="p-4 d-flex flex-column justify-content-between flex-grow-1">
-              <div>
-                <h4 class="text-white f-w-800 mb-1">SILVER TIER</h4>
-                <p class="text-muted f-12 mb-3">Cross-DEX liquidity pooling &amp; accelerated yield drops.</p>
-                <div class="p-2.5 rounded-3 mb-3" style="background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(203, 213, 225, 0.3);">
-                  <div class="f-11 text-muted">Capital Range</div>
-                  <div class="f-15 f-w-800 text-white">$5,000 &ndash; $24,999</div>
-                </div>
-              </div>
-              <div>
-                <div class="f-14 f-w-700 text-success mb-3">+40% Daily Yield</div>
-                <a href="{{ route('register') }}" class="trk-btn trk-btn--outline w-100 py-2 f-12" style="border-color: rgba(203, 213, 225, 0.4); color: #e2e8f0;">Select Silver</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tier 3: Gold -->
-        <div class="col-sm-6 col-lg-3">
-          <div class="ecx-widescreen-card tier-gold" data-aos="fade-up" data-aos-duration="1100">
-            <!-- Full-Bleed 16:9 Wallpaper Header -->
-            <div class="widescreen-banner-wrap">
-              <img src="{{ asset('themes/ecx/assets/images/plans/plan_gold_ecx.jpg') }}" alt="Gold Tier">
-              <div class="widescreen-overlay"></div>
-              <span class="widescreen-badge" style="background: rgba(245, 158, 11, 0.9); color: #fff;">
-                Tier 3 &bull; Institutional
-              </span>
-            </div>
-            <div class="p-4 d-flex flex-column justify-content-between flex-grow-1">
-              <div>
-                <h4 class="text-white f-w-800 mb-1">GOLD TIER</h4>
-                <p class="text-muted f-12 mb-3">Priority isolated vault &amp; institutional order execution.</p>
-                <div class="p-2.5 rounded-3 mb-3" style="background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(245, 158, 11, 0.3);">
-                  <div class="f-11 text-muted">Capital Range</div>
-                  <div class="f-15 f-w-800 text-white">$25,000 &ndash; $74,999</div>
-                </div>
-              </div>
-              <div>
-                <div class="f-14 f-w-700 text-success mb-3">+60% Daily Yield</div>
-                <a href="{{ route('register') }}" class="trk-btn trk-btn--outline w-100 py-2 f-12" style="border-color: rgba(245, 158, 11, 0.4); color: #fbbf24;">Select Gold</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tier 4: Diamond -->
-        <div class="col-sm-6 col-lg-3">
-          <div class="ecx-widescreen-card tier-diamond" data-aos="fade-up" data-aos-duration="1300">
-            <!-- Full-Bleed 16:9 Wallpaper Header -->
-            <div class="widescreen-banner-wrap">
-              <img src="{{ asset('themes/ecx/assets/images/plans/plan_diamond_ecx.jpg') }}" alt="Diamond Tier">
-              <div class="widescreen-overlay"></div>
-              <span class="widescreen-badge" style="background: rgba(14, 165, 233, 0.85); color: #fff;">
-                Tier 4 &bull; VIP Sovereign
-              </span>
-            </div>
-            <div class="p-4 d-flex flex-column justify-content-between flex-grow-1">
-              <div>
-                <h4 class="text-white f-w-800 mb-1">DIAMOND TIER</h4>
-                <p class="text-muted f-12 mb-3">Private wealth desk, bespoke hedging &amp; maximal return.</p>
-                <div class="p-2.5 rounded-3 mb-3" style="background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(56, 189, 248, 0.3);">
-                  <div class="f-11 text-muted">Capital Range</div>
-                  <div class="f-15 f-w-800 text-white">$75,000 &ndash; $150,000</div>
-                </div>
-              </div>
-              <div>
-                <div class="f-14 f-w-700 text-success mb-3">+80% Daily Yield</div>
-                <a href="{{ route('register') }}" class="trk-btn trk-btn--outline w-100 py-2 f-12" style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8;">Select Diamond</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- ===============>> Dedicated 4-Tier Architecture Showcase End <<================= -->
 
   <!-- ===============>> Interactive Tabbed Ecosystem Solutions Hub Start <<================= -->
   <section class="padding-top padding-bottom bg-color-7">
@@ -1176,94 +1121,150 @@
   <!-- ===============>> TradingView Crypto Heatmap Widget End <<================= -->
 
   <!-- ===============>> FAQ Section Start <<================= -->
-  <section class="faq padding-top padding-bottom of-hidden">
-    <div class="section-header section-header--max65 text-center mb-50">
-      <h2 class="mb-10 mt-minus-5"><span>Frequently</span> Asked Questions</h2>
-      <p>Have questions about {{ $settings->site_name ?? 'ECX Groups' }}? Here are the most common inquiries from our global community.</p>
-    </div>
+  <section class="faq padding-top padding-bottom of-hidden" style="background: linear-gradient(180deg, #070d18 0%, #0b1426 100%);">
     <div class="container">
-      <div class="faq__wrapper">
-        <div class="row g-5 align-items-center justify-content-between">
-          <div class="col-lg-12">
-            <div class="accordion accordion--style1" id="faqAccordion1" data-aos="fade-up" data-aos-duration="1000">
-              <div class="row g-3">
-                @if(isset($faqs) && count($faqs) > 0)
-                  @foreach($faqs as $faq)
-                    <div class="col-md-6">
-                      <div class="accordion__item accordion-item">
-                        <div class="accordion__header accordion-header" id="faqHeader{{ $faq->id }}">
-                          <button class="accordion__button accordion-button {{ $loop->first ? '' : 'collapsed' }}" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse{{ $faq->id }}" aria-expanded="{{ $loop->first ? 'true' : 'false' }}">
-                            <span class="accordion__button-content">{{ $faq->question }}</span>
-                          </button>
-                        </div>
-                        <div id="faqCollapse{{ $faq->id }}" class="accordion-collapse collapse {{ $loop->first ? 'show' : '' }}" data-bs-parent="#faqAccordion1">
-                          <div class="accordion__body accordion-body">
-                            <p class="mb-0">{{ $faq->answer }}</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  @endforeach
-                @else
-                  <div class="col-md-6">
-                    <div class="accordion__item accordion-item">
-                      <div class="accordion__header accordion-header" id="faqH1">
-                        <button class="accordion__button accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqB1" aria-expanded="true">
-                          <span class="accordion__button-content">How do the four investment tiers work?</span>
-                        </button>
-                      </div>
-                      <div id="faqB1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion1">
-                        <div class="accordion__body accordion-body">
-                          <p class="mb-0">Our ecosystem provides four capitalization tiers (Bronze, Silver, Gold, and Diamond) scaling from $100 up to $150,000. Each tier utilizes automated arbitrage bots with institutional risk protocols to deliver daily drops directly to your balance.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="accordion__item accordion-item">
-                      <div class="accordion__header accordion-header" id="faqH2">
-                        <button class="accordion__button accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqB2" aria-expanded="false">
-                          <span class="accordion__button-content">How fast are deposits and withdrawals processed?</span>
-                        </button>
-                      </div>
-                      <div id="faqB2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion1">
-                        <div class="accordion__body accordion-body">
-                          <p class="mb-0">Crypto deposits are credited automatically once confirmed on the blockchain (typically 1–3 network confirmations). Withdrawal requests are processed efficiently by our automated treasury system.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="accordion__item accordion-item">
-                      <div class="accordion__header accordion-header" id="faqH3">
-                        <button class="accordion__button accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqB3" aria-expanded="false">
-                          <span class="accordion__button-content">Is my capital secure on {{ $settings->site_name ?? 'ECX Groups' }}?</span>
-                        </button>
-                      </div>
-                      <div id="faqB3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion1">
-                        <div class="accordion__body accordion-body">
-                          <p class="mb-0">Yes. We implement military-grade 256-bit SSL encryption, multi-signature cold storage vaults, two-factor authentication (2FA), and strict regulatory compliance controls.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="accordion__item accordion-item">
-                      <div class="accordion__header accordion-header" id="faqH4">
-                        <button class="accordion__button accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqB4" aria-expanded="false">
-                          <span class="accordion__button-content">Can I connect my Web3 wallet directly?</span>
-                        </button>
-                      </div>
-                      <div id="faqB4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion1">
-                        <div class="accordion__body accordion-body">
-                          <p class="mb-0">Yes. We support all major Web3 wallet providers including MetaMask, Trust Wallet, Coinbase Wallet, and WalletConnect for instant non-custodial linkups.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                @endif
+      <div class="section-header section-header--max65 text-center mb-50">
+        <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3" style="background: rgba(0, 245, 155, 0.08); border: 1px solid rgba(0, 245, 155, 0.25);">
+          <i class="fa-solid fa-circle-question text-success f-12"></i>
+          <span class="f-11 f-w-700 text-uppercase" style="color: #00f59b; letter-spacing: 1px;">Support &amp; Answers</span>
+        </div>
+        <h2 class="mb-10 mt-minus-5">Frequently <span>Asked Questions</span></h2>
+        <p class="text-muted">Explore clear answers about capitalization tiers, automated yield distribution, non-custodial custody, and security protocols.</p>
+      </div>
+
+      <div class="row g-4 justify-content-between align-items-start">
+        <!-- Left Side: Interactive 24/7 Institutional Support Card -->
+        <div class="col-lg-4" data-aos="fade-right" data-aos-duration="800">
+          <div class="p-4 p-md-5 rounded-4 shadow-sm position-relative overflow-hidden" style="background: rgba(13, 22, 42, 0.88); border: 1px solid rgba(0, 245, 155, 0.25); backdrop-filter: blur(16px);">
+            <!-- Ambient Glow blob -->
+            <div style="position: absolute; top: -20%; right: -20%; width: 180px; height: 180px; background: radial-gradient(circle, rgba(0,245,155,0.15) 0%, transparent 70%); filter: blur(30px); pointer-events: none;"></div>
+            
+            <div class="d-inline-flex align-items-center justify-content-center mb-4 rounded-3" style="width: 52px; height: 52px; background: rgba(0, 245, 155, 0.12); border: 1px solid rgba(0, 245, 155, 0.3); color: #00f59b; font-size: 22px;">
+              <i class="fa-solid fa-headset"></i>
+            </div>
+            <h4 class="text-white f-w-800 mb-2">Have Custom Inquiries?</h4>
+            <p class="text-muted f-13 mb-4">Our institutional desk is available 24/7 to assist with private tier allocations, API keys, or Web3 connectivity.</p>
+
+            <div class="d-flex flex-column gap-3 mb-4">
+              <div class="d-flex align-items-center gap-3 p-2.5 rounded-3" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.06);">
+                <div class="text-success"><i class="fa-solid fa-bolt f-16"></i></div>
+                <div>
+                  <div class="f-12 f-w-700 text-white">&lt; 5 Min Response Time</div>
+                  <div class="f-11 text-muted">Dedicated Senior Account Officers</div>
+                </div>
+              </div>
+              <div class="d-flex align-items-center gap-3 p-2.5 rounded-3" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.06);">
+                <div class="text-warning"><i class="fa-solid fa-shield-halved f-16"></i></div>
+                <div>
+                  <div class="f-12 f-w-700 text-white">Audited &amp; Compliant</div>
+                  <div class="f-11 text-muted">Proof of reserves &amp; multi-sig security</div>
+                </div>
               </div>
             </div>
+
+            <a href="{{ route('contact') }}" class="trk-btn trk-btn--primary w-100 text-center py-2.5 f-13 f-w-700">
+              Contact Support Desk &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Side: State-of-the-Art Numbered Glassmorphic Accordion -->
+        <div class="col-lg-8" data-aos="fade-left" data-aos-duration="1000">
+          <div class="d-flex flex-column" id="faqAccordion1">
+            @if(isset($faqs) && count($faqs) > 0)
+              @foreach($faqs as $faq)
+                <div class="ecx-faq-card">
+                  <button class="ecx-faq-btn {{ $loop->first ? '' : 'collapsed' }}" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse{{ $faq->id }}" aria-expanded="{{ $loop->first ? 'true' : 'false' }}">
+                    <div class="d-flex align-items-center gap-3">
+                      <span class="ecx-faq-num">{{ sprintf('%02d', $loop->iteration) }}</span>
+                      <span>{{ $faq->question }}</span>
+                    </div>
+                    <span class="faq-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                  </button>
+                  <div id="faqCollapse{{ $faq->id }}" class="collapse {{ $loop->first ? 'show' : '' }}" data-bs-parent="#faqAccordion1">
+                    <div class="ecx-faq-body">
+                      <p class="mb-0">{{ $faq->answer }}</p>
+                    </div>
+                  </div>
+                </div>
+              @endforeach
+            @else
+              <!-- Default Institutional FAQs -->
+              <div class="ecx-faq-card">
+                <button class="ecx-faq-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faqB1" aria-expanded="true">
+                  <div class="d-flex align-items-center gap-3">
+                    <span class="ecx-faq-num">01</span>
+                    <span>How do the four investment tiers work?</span>
+                  </div>
+                  <span class="faq-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                </button>
+                <div id="faqB1" class="collapse show" data-bs-parent="#faqAccordion1">
+                  <div class="ecx-faq-body">
+                    <p class="mb-0">Our ecosystem provides four capitalization tiers (Bronze, Silver, Gold, and Diamond) scaling from $100 up to $150,000. Each tier utilizes automated arbitrage bots with institutional risk protocols to deliver daily drops directly to your balance.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ecx-faq-card">
+                <button class="ecx-faq-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqB2" aria-expanded="false">
+                  <div class="d-flex align-items-center gap-3">
+                    <span class="ecx-faq-num">02</span>
+                    <span>How fast are deposits and withdrawals processed?</span>
+                  </div>
+                  <span class="faq-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                </button>
+                <div id="faqB2" class="collapse" data-bs-parent="#faqAccordion1">
+                  <div class="ecx-faq-body">
+                    <p class="mb-0">Crypto deposits are credited automatically once confirmed on the blockchain (typically 1–3 network confirmations). Withdrawal requests are processed efficiently by our automated treasury system without delays.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ecx-faq-card">
+                <button class="ecx-faq-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqB3" aria-expanded="false">
+                  <div class="d-flex align-items-center gap-3">
+                    <span class="ecx-faq-num">03</span>
+                    <span>Is my capital secure on {{ $settings->site_name ?? 'ECX Groups' }}?</span>
+                  </div>
+                  <span class="faq-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                </button>
+                <div id="faqB3" class="collapse" data-bs-parent="#faqAccordion1">
+                  <div class="ecx-faq-body">
+                    <p class="mb-0">Yes. We implement military-grade 256-bit SSL encryption, multi-signature cold storage vaults, two-factor authentication (2FA), and strict 1:1 reserve backing with transparent cryptographic audits.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ecx-faq-card">
+                <button class="ecx-faq-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqB4" aria-expanded="false">
+                  <div class="d-flex align-items-center gap-3">
+                    <span class="ecx-faq-num">04</span>
+                    <span>Can I connect my Web3 wallet directly?</span>
+                  </div>
+                  <span class="faq-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                </button>
+                <div id="faqB4" class="collapse" data-bs-parent="#faqAccordion1">
+                  <div class="ecx-faq-body">
+                    <p class="mb-0">Yes. We support all major Web3 wallet providers including MetaMask, Trust Wallet, Coinbase Wallet, and WalletConnect for instant non-custodial capital deposits and withdrawals.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ecx-faq-card">
+                <button class="ecx-faq-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqB5" aria-expanded="false">
+                  <div class="d-flex align-items-center gap-3">
+                    <span class="ecx-faq-num">05</span>
+                    <span>How are daily profit yields calculated and credited?</span>
+                  </div>
+                  <span class="faq-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                </button>
+                <div id="faqB5" class="collapse" data-bs-parent="#faqAccordion1">
+                  <div class="ecx-faq-body">
+                    <p class="mb-0">Yields are generated by our high-frequency cross-market arbitrage bots and credited to your account balance every 24 hours. You can reinvest for compound growth or withdraw immediately.</p>
+                  </div>
+                </div>
+              </div>
+            @endif
           </div>
         </div>
       </div>

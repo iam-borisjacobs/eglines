@@ -33,6 +33,95 @@
     <link rel="stylesheet" href="{{ asset('themes/ecx/assets/css/swiper-bundle.min.css') }}">
     <link rel="stylesheet" href="{{ asset('themes/ecx/assets/css/style.css') }}?v={{ time() }}">
 
+    <style>
+        /* Institutional Footer Styling */
+        .ecx-footer {
+            background: #060c18 !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            position: relative;
+            overflow: hidden;
+        }
+        .ecx-footer-title {
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 22px;
+            letter-spacing: 0.5px;
+            position: relative;
+            display: inline-block;
+        }
+        .ecx-footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 28px;
+            height: 2px;
+            background: #00f59b;
+            border-radius: 2px;
+        }
+        .ecx-footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .ecx-footer-links li {
+            margin-bottom: 11px;
+        }
+        .ecx-footer-links a {
+            color: #94a3b8;
+            font-size: 13.5px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .ecx-footer-links a:hover {
+            color: #00f59b;
+            transform: translateX(4px);
+        }
+        .ecx-social-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all 0.25s ease;
+            text-decoration: none;
+        }
+        .ecx-social-btn:hover {
+            background: rgba(0, 245, 155, 0.15);
+            border-color: #00f59b;
+            color: #00f59b;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0, 245, 155, 0.2);
+        }
+        .ecx-trust-badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 12px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 11px;
+            color: #cbd5e1;
+            font-weight: 600;
+        }
+        .ecx-footer-status-box {
+            background: rgba(0, 245, 155, 0.04);
+            border: 1px solid rgba(0, 245, 155, 0.2);
+            border-radius: 12px;
+            padding: 14px 18px;
+        }
+    </style>
+
     @yield('styles')
 </head>
 
@@ -105,127 +194,158 @@
     <!-- Main Page Content -->
     @yield('content')
 
-    <!-- Footer Section -->
-    <footer class="footer brand-4">
-        <div class="container">
-            <div class="footer__wrapper">
-                <div class="footer__top padding-bottom padding-top">
-                    <div class="row g-5">
-                        <div class="col-xl-4 col-md-6">
-                            <div class="footer__about">
-                                <a href="{{ route('home') }}" class="footer__about-logo mb-3 d-inline-block">
-                                    @if(!empty($settings->logo))
-                                        <img src="{{ asset('storage/app/public/' . $settings->logo) }}" alt="{{ $settings->site_name }}" style="max-height: 44px; object-fit: contain;">
-                                    @else
-                                        <img src="{{ asset('themes/ecx/assets/images/logo/logo-dark.png') }}" alt="{{ $settings->site_name ?? 'ECX Groups' }}" style="max-height: 44px;">
-                                    @endif
-                                </a>
-                                <p class="footer__about-text">
-                                    {{ $settings->description ?? 'Experience the power of institutional-grade crypto trading and automated yield management. Secure, reliable, and compliant.' }}
-                                </p>
-                                <div class="mt-3">
-                                    @if(!empty($settings->contact_email))
-                                        <p class="mb-1 text-muted f-13"><i class="fa fa-envelope me-2 text-primary"></i> <a href="mailto:{{ $settings->contact_email }}" class="text-white text-opacity-75">{{ $settings->contact_email }}</a></p>
-                                    @endif
-                                    @if(!empty($settings->phone))
-                                        <p class="mb-1 text-muted f-13"><i class="fa fa-phone me-2 text-primary"></i> <span class="text-white text-opacity-75">{{ $settings->phone }}</span></p>
-                                    @endif
-                                    @if(!empty($settings->location ?? $settings->address))
-                                        <p class="mb-1 text-muted f-13"><i class="fa fa-map-marker-alt me-2 text-primary"></i> <span class="text-white text-opacity-75">{{ $settings->location ?? $settings->address }}</span></p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-2 col-md-3 col-6">
-                            <div class="footer__links">
-                                <div class="footer__links-tittle">
-                                    <h6>Quick Links</h6>
-                                </div>
-                                <div class="footer__links-content">
-                                    <ul class="footer__linklist">
-                                        <li class="footer__linklist-item"><a href="{{ route('home') }}">Home</a></li>
-                                        <li class="footer__linklist-item"><a href="{{ route('about') }}">About Us</a></li>
-                                        <li class="footer__linklist-item"><a href="{{ route('services') }}">Services</a></li>
-                                        <li class="footer__linklist-item"><a href="{{ route('contact') }}">Contact Us</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-3 col-md-3 col-6">
-                            <div class="footer__links">
-                                <div class="footer__links-tittle">
-                                    <h6>Legal &amp; Support</h6>
-                                </div>
-                                <div class="footer__links-content">
-                                    <ul class="footer__linklist">
-                                        <li class="footer__linklist-item"><a href="{{ route('terms') }}">Terms of Service</a></li>
-                                        <li class="footer__linklist-item"><a href="{{ route('privacy') }}">Privacy Policy</a></li>
-                                        <li class="footer__linklist-item"><a href="{{ route('faq') }}">Frequently Asked Questions</a></li>
-                                        @if(Route::has('security'))
-                                            <li class="footer__linklist-item"><a href="{{ route('security') }}">Security Architecture</a></li>
-                                        @endif
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-3 col-md-6 col-12">
-                            <div class="footer__links">
-                                <div class="footer__links-tittle">
-                                    <h6>Client Portal</h6>
-                                </div>
-                                <div class="footer__links-content">
-                                    <p class="text-muted f-13 mb-3">Access institutional liquidity and automated asset management via your secure account.</p>
-                                    <div class="d-flex flex-column gap-2">
-                                        @auth
-                                            <a href="{{ url('/dashboard') }}" class="trk-btn trk-btn--border trk-btn--primary btn-sm text-center">
-                                                <span>Go to Dashboard</span>
-                                            </a>
-                                        @else
-                                            <a href="{{ route('register') }}" class="trk-btn trk-btn--border trk-btn--primary btn-sm text-center mb-1">
-                                                <span>Create Free Account</span>
-                                            </a>
-                                            <a href="{{ route('login') }}" class="trk-btn trk-btn--outline btn-sm text-center text-white border-secondary">
-                                                <span>Member Login</span>
-                                            </a>
-                                        @endauth
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+    <!-- ===============>> Pre-Footer Floating Newsletter / Advisory Card <<================= -->
+    <div class="container" style="margin-bottom: -50px; position: relative; z-index: 10;">
+        <div class="p-4 p-md-5 rounded-4 shadow-lg" style="background: rgba(13, 22, 42, 0.96); border: 1px solid rgba(0, 245, 155, 0.28); backdrop-filter: blur(20px); box-shadow: 0 20px 50px rgba(0,0,0,0.55);">
+            <div class="row g-4 align-items-center justify-content-between">
+                <div class="col-lg-7">
+                    <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-2" style="background: rgba(0, 245, 155, 0.1); border: 1px solid rgba(0, 245, 155, 0.25);">
+                        <span style="width: 7px; height: 7px; background: #00f59b; border-radius: 50%; box-shadow: 0 0 8px #00f59b; display: inline-block;"></span>
+                        <span class="f-11 f-w-700 text-uppercase" style="color: #00f59b; letter-spacing: 1px;">Institutional Intelligence Desk</span>
                     </div>
+                    <h3 class="text-white f-w-800 mb-2">Automated Yield &amp; Market Intelligence</h3>
+                    <p class="text-muted f-13 mb-0">Join over 25+ verified traders receiving daily arbitrage updates, APY performance reports, and reserve audit snapshots.</p>
                 </div>
-
-                <div class="footer__bottom">
-                    <div class="footer__end">
-                        <div class="footer__end-copyright">
-                            <p class="mb-0">&copy; {{ date('Y') }} All Rights Reserved By {{ $settings->site_name ?? 'ECX Groups' }}</p>
-                        </div>
-                        <div>
-                            <ul class="social">
-                                <li class="social__item">
-                                    <a href="#" class="social__link social__link--style22"><i class="fab fa-facebook-f"></i></a>
-                                </li>
-                                <li class="social__item">
-                                    <a href="#" class="social__link social__link--style22"><i class="fab fa-instagram"></i></a>
-                                </li>
-                                <li class="social__item">
-                                    <a href="#" class="social__link social__link--style22"><i class="fab fa-linkedin-in"></i></a>
-                                </li>
-                                <li class="social__item">
-                                    <a href="#" class="social__link social__link--style22"><i class="fab fa-twitter"></i></a>
-                                </li>
-                            </ul>
-                        </div>
+                <div class="col-lg-5">
+                    <form onsubmit="event.preventDefault(); alert('Subscribed successfully to institutional market updates!');" class="d-flex flex-column flex-sm-row gap-2">
+                        <input type="email" placeholder="Enter your business email" required class="form-control" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #fff; border-radius: 10px; padding: 12px 18px; font-size: 13px;">
+                        <button type="submit" class="trk-btn trk-btn--primary px-4 py-2.5 flex-shrink-0 text-nowrap" style="border-radius: 10px; font-weight: 700; font-size: 13px;">
+                            Subscribe &rarr;
+                        </button>
+                    </form>
+                    <div class="f-11 text-muted mt-2 d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-lock text-success"></i> 100% Non-Custodial &amp; Zero Spam Guarantee.
                     </div>
                 </div>
             </div>
         </div>
-        <div class="footer__shape">
-            <span class="footer__shape-item footer__shape-item--1"><img src="{{ asset('themes/ecx/assets/images/footer/1.png') }}" alt="shape icon"></span>
-            <span class="footer__shape-item footer__shape-item--2"> <span></span> </span>
+    </div>
+
+    <!-- ===============>> State-of-the-Art Institutional Footer <<================= -->
+    <footer class="footer ecx-footer" style="padding-top: 100px; padding-bottom: 30px;">
+        <div class="container">
+            <div class="row g-4 justify-content-between mb-5">
+                <!-- Column 1: Brand & Trust -->
+                <div class="col-xl-4 col-lg-4 col-md-12">
+                    <a href="{{ route('home') }}" class="mb-3 d-inline-block">
+                        @if(!empty($settings->logo))
+                            <img src="{{ asset('storage/app/public/' . $settings->logo) }}" alt="{{ $settings->site_name }}" style="max-height: 46px; object-fit: contain;">
+                        @else
+                            <img src="{{ asset('themes/ecx/assets/images/logo/logo-dark.png') }}" alt="{{ $settings->site_name ?? 'ECX Groups' }}" style="max-height: 46px;">
+                        @endif
+                    </a>
+                    <p class="text-muted f-13 mb-4" style="line-height: 1.8;">
+                        {{ $settings->description ?? 'Institutional digital asset algorithmic trading and asset management. Regulated arbitrage, non-custodial custody, and automated daily distributions.' }}
+                    </p>
+                    
+                    <!-- Trust Badges -->
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <span class="ecx-trust-badge-pill">
+                            <i class="fa-solid fa-shield-halved text-success"></i> AES-256 Bit SSL
+                        </span>
+                        <span class="ecx-trust-badge-pill">
+                            <i class="fa-solid fa-vault text-warning"></i> Multi-Sig Cold Vaults
+                        </span>
+                        <span class="ecx-trust-badge-pill">
+                            <i class="fa-solid fa-scale-balanced text-info"></i> 1:1 Audited Reserves
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Column 2: Investment Solutions -->
+                <div class="col-xl-2 col-lg-2 col-sm-6 col-6">
+                    <div class="ecx-footer-title">Investment Plans</div>
+                    <ul class="ecx-footer-links">
+                        <li><a href="{{ route('home') }}#plans"><i class="fa-solid fa-chevron-right f-10 text-success"></i> Bronze Tier ($100+)</a></li>
+                        <li><a href="{{ route('home') }}#plans"><i class="fa-solid fa-chevron-right f-10 text-success"></i> Silver Tier ($5K+)</a></li>
+                        <li><a href="{{ route('home') }}#plans"><i class="fa-solid fa-chevron-right f-10 text-success"></i> Gold Tier ($25K+)</a></li>
+                        <li><a href="{{ route('home') }}#plans"><i class="fa-solid fa-chevron-right f-10 text-success"></i> Diamond Tier ($75K+)</a></li>
+                        <li><a href="{{ route('home') }}#calculator"><i class="fa-solid fa-calculator f-10 text-warning"></i> ROI Calculator</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Platform & Legal -->
+                <div class="col-xl-2 col-lg-2 col-sm-6 col-6">
+                    <div class="ecx-footer-title">Platform &amp; Legal</div>
+                    <ul class="ecx-footer-links">
+                        <li><a href="{{ route('about') }}">About Us</a></li>
+                        <li><a href="{{ route('services') }}">Services &amp; Engine</a></li>
+                        <li><a href="{{ route('faq') }}">FAQ Knowledgebase</a></li>
+                        <li><a href="{{ route('terms') }}">Terms of Service</a></li>
+                        <li><a href="{{ route('privacy') }}">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Global Desk & Infrastructure Status -->
+                <div class="col-xl-4 col-lg-4 col-md-12">
+                    <div class="ecx-footer-title">Global Desk &amp; Status</div>
+                    
+                    <div class="d-flex flex-column gap-2 mb-3 f-13">
+                        @if(!empty($settings->location ?? $settings->address))
+                            <div class="d-flex align-items-center gap-2 text-muted">
+                                <i class="fa-solid fa-location-dot text-success"></i>
+                                <span>{{ $settings->location ?? $settings->address }}</span>
+                            </div>
+                        @endif
+                        @if(!empty($settings->contact_email))
+                            <div class="d-flex align-items-center gap-2 text-muted">
+                                <i class="fa-solid fa-envelope text-success"></i>
+                                <a href="mailto:{{ $settings->contact_email }}" class="text-white text-opacity-80 text-decoration-none">{{ $settings->contact_email }}</a>
+                            </div>
+                        @endif
+                        @if(!empty($settings->phone))
+                            <div class="d-flex align-items-center gap-2 text-muted">
+                                <i class="fa-solid fa-phone text-success"></i>
+                                <span class="text-white text-opacity-80">{{ $settings->phone }}</span>
+                            </div>
+                        @endif
+                    </div>
+
+                    <!-- Live System Status Card -->
+                    <div class="ecx-footer-status-box">
+                        <div class="d-flex align-items-center justify-content-between mb-1">
+                            <div class="d-flex align-items-center gap-2">
+                                <span style="width: 8px; height: 8px; background: #00f59b; border-radius: 50%; box-shadow: 0 0 8px #00f59b; display: inline-block;"></span>
+                                <span class="f-12 f-w-700 text-white">All Systems Operational</span>
+                            </div>
+                            <span class="badge bg-success bg-opacity-20 text-success border border-success border-opacity-30 f-10">99.98%</span>
+                        </div>
+                        <div class="f-11 text-muted">High-frequency AI arbitrage &amp; daily treasury drops active.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Risk Warning Box -->
+            <div class="p-3 rounded-3 mb-4" style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05);">
+                <p class="text-muted f-11 mb-0" style="line-height: 1.7;">
+                    <strong>Risk Warning:</strong> Digital asset trading and algorithmic arbitrage yield generation involve substantial risk of volatility and may not be suitable for all investors. Capital allocated into algorithmic strategies is protected by smart-contract treasury reserves. Past performance does not guarantee future results.
+                </p>
+            </div>
+
+            <!-- Footer Bottom Bar -->
+            <div class="pt-4 d-flex flex-column flex-md-row justify-content-between align-items-center gap-3" style="border-top: 1px solid rgba(255, 255, 255, 0.06);">
+                <div class="f-12 text-muted">
+                    &copy; {{ date('Y') }} {{ $settings->site_name ?? 'ECX Groups' }}. All rights reserved.
+                </div>
+
+                <!-- Social Links -->
+                <div class="d-flex align-items-center gap-2">
+                    <a href="#" class="ecx-social-btn" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" class="ecx-social-btn" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="#" class="ecx-social-btn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" class="ecx-social-btn" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="ecx-social-btn" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                </div>
+
+                <!-- Quick Policy Links -->
+                <div class="d-flex align-items-center gap-3 f-12 text-muted">
+                    <a href="{{ route('terms') }}" class="text-muted text-decoration-none hover-white">Terms</a>
+                    <span>&bull;</span>
+                    <a href="{{ route('privacy') }}" class="text-muted text-decoration-none hover-white">Privacy</a>
+                    <span>&bull;</span>
+                    <a href="{{ route('faq') }}" class="text-muted text-decoration-none hover-white">FAQ</a>
+                </div>
+            </div>
         </div>
     </footer>
 
