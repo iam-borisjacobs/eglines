@@ -41,6 +41,14 @@
             overflow-x: hidden;
         }
 
+        /* Breadcrumb Divider & Item Clean Styling */
+        .breadcrumb-item + .breadcrumb-item::before {
+            content: var(--bs-breadcrumb-divider, "/") !important;
+            color: #64748b !important;
+            padding-right: 0.5rem;
+            padding-left: 0.5rem;
+        }
+
         /* Institutional Footer Styling */
         .ecx-footer {
             background: linear-gradient(180deg, #070b14 0%, #050810 100%) !important;

@@ -100,8 +100,8 @@
                 <i class="fas fa-phone-alt"></i>
               </div>
               <div>
-                <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #94a3b8; font-weight: 700;">Direct Telephony</span>
-                <h5 class="text-white mb-0" style="font-size: 17px; font-weight: 700;">Telephone & WhatsApp</h5>
+                <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #94a3b8; font-weight: 700;">Direct Telephone</span>
+                <h5 class="text-white mb-0" style="font-size: 17px; font-weight: 700;">Telephone & Telegram</h5>
               </div>
             </div>
             <p style="font-size: 13.5px; color: #94a3b8; line-height: 1.6; margin-bottom: 16px;">
@@ -113,18 +113,14 @@
                   <i class="fas fa-phone-volume f-12"></i>
                   <span>{{ $settings->phone }}</span>
                 </a>
-                @php
-                  $cleanPhone = preg_replace('/[^0-9]/', '', $settings->phone);
-                @endphp
-                @if(!empty($cleanPhone))
-                  <a href="https://wa.me/{{ $cleanPhone }}?text={{ urlencode('Hello ' . ($settings->site_name ?? 'Support') . ', I would like to inquire about institutional investment plans.') }}" target="_blank" class="d-inline-flex align-items-center gap-2 fw-semibold" style="color: #25D366; text-decoration: none; font-size: 13.5px;">
-                    <i class="fab fa-whatsapp f-14"></i>
-                    <span>Connect on WhatsApp</span>
-                  </a>
-                @endif
-              @else
-                <span style="color: #cbd5e1; font-size: 14px;">24/7 Digital Operations Desk</span>
               @endif
+              @php
+                $tgUrl = $settings->getTelegramUrl() ?: 'https://t.me/' . ($settings->telegram_username ?: 'ecxgroups');
+              @endphp
+              <a href="{{ $tgUrl }}" target="_blank" rel="noopener noreferrer" class="d-inline-flex align-items-center gap-2 fw-semibold" style="color: #229ED9; text-decoration: none; font-size: 13.5px;">
+                <i class="fab fa-telegram-plane f-14"></i>
+                <span>Connect on Telegram</span>
+              </a>
             </div>
           </div>
         </div>
