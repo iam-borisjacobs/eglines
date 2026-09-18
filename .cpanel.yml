@@ -11,5 +11,3 @@ deployment:
     - /usr/local/bin/php $DEPLOYPATH/artisan view:clear 2>/dev/null || php $DEPLOYPATH/artisan view:clear 2>/dev/null || true
     - /usr/local/bin/php $DEPLOYPATH/artisan config:clear 2>/dev/null || php $DEPLOYPATH/artisan config:clear 2>/dev/null || true
     - /usr/local/bin/php $DEPLOYPATH/artisan route:clear 2>/dev/null || php $DEPLOYPATH/artisan route:clear 2>/dev/null || true
-
-
