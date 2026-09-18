@@ -172,65 +172,7 @@
             </div>
         </div>
 
-        <!-- Section 1: Quick Action Direct Channels -->
-        <div class="row g-3 mb-4">
-            <!-- WhatsApp Support Card -->
-            <div class="col-lg-4 col-md-6 col-12">
-                <div class="channel-action-card border-top border-4" style="border-top-color: #25D366 !important;">
-                    <div class="d-flex align-items-center justify-content-between mb-3">
-                        <div class="rounded-circle d-flex align-items-center justify-content-center text-white" style="width: 48px; height: 48px; background-color: #25D366; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);">
-                            <i class="fa-brands fa-whatsapp f-24"></i>
-                        </div>
-                        <span class="badge rounded-pill text-white px-2.5 py-1 f-11" style="background-color: #25D366;">Instant Chat</span>
-                    </div>
-                    <h5 class="it-title f-17 mb-1">WhatsApp Live Chat</h5>
-                    <p class="it-muted f-12 mb-4 flex-grow-1">Direct encrypted messaging with our official customer service executives for immediate withdrawal and account clearance.</p>
-                    <a href="{{ $waUrl }}" target="_blank" rel="noopener noreferrer" class="btn btn-channel-wa w-100 py-2.5 rounded-3 d-inline-flex align-items-center justify-content-center gap-2 text-white f-13">
-                        <i class="fa-brands fa-whatsapp f-16"></i>
-                        <span>Start WhatsApp Chat</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square f-11 ms-auto"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Telegram VIP Support Card -->
-            <div class="col-lg-4 col-md-6 col-12">
-                <div class="channel-action-card border-top border-4" style="border-top-color: #229ED9 !important;">
-                    <div class="d-flex align-items-center justify-content-between mb-3">
-                        <div class="rounded-circle d-flex align-items-center justify-content-center text-white" style="width: 48px; height: 48px; background-color: #229ED9; box-shadow: 0 4px 12px rgba(34, 158, 217, 0.3);">
-                            <i class="fa-brands fa-telegram f-24"></i>
-                        </div>
-                        <span class="badge rounded-pill text-white px-2.5 py-1 f-11" style="background-color: #229ED9;">VIP Concierge</span>
-                    </div>
-                    <h5 class="it-title f-17 mb-1">Telegram Priority Desk</h5>
-                    <p class="it-muted f-12 mb-4 flex-grow-1">Official Telegram desk for institutional investors, high-tier allocations, identity verification, and OTC support.</p>
-                    <a href="{{ $tgUrl }}" target="_blank" rel="noopener noreferrer" class="btn btn-channel-tg w-100 py-2.5 rounded-3 d-inline-flex align-items-center justify-content-center gap-2 text-white f-13">
-                        <i class="fa-brands fa-telegram f-16"></i>
-                        <span>Open Telegram Desk</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square f-11 ms-auto"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Official Email Card -->
-            <div class="col-lg-4 col-md-12 col-12">
-                <div class="channel-action-card border-top border-4" style="border-top-color: #4f46e5 !important;">
-                    <div class="d-flex align-items-center justify-content-between mb-3">
-                        <div class="rounded-circle d-flex align-items-center justify-content-center text-white" style="width: 48px; height: 48px; background-color: #4f46e5; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);">
-                            <i class="fa-solid fa-envelope-open-text f-20"></i>
-                        </div>
-                        <span class="badge rounded-pill bg-primary text-white px-2.5 py-1 f-11">Official Email</span>
-                    </div>
-                    <h5 class="it-title f-17 mb-1">Official Support Desk</h5>
-                    <p class="it-muted f-12 mb-4 flex-grow-1">Direct correspondence with our central compliance, financial auditing, and technical infrastructure operations.</p>
-                    <a href="mailto:{{ $settings->contact_email ?? 'support@ecxgroups.com' }}" class="btn btn-channel-mail w-100 py-2.5 rounded-3 d-inline-flex align-items-center justify-content-center gap-2 text-white f-13">
-                        <i class="fa-solid fa-envelope f-14"></i>
-                        <span>{{ $settings->contact_email ?? 'support@ecxgroups.com' }}</span>
-                        <i class="fa-solid fa-arrow-right f-11 ms-auto"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
+        
 
         <!-- Section 2: Support Ticket Submission Form -->
         <div class="row">
