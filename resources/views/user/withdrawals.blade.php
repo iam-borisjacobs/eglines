@@ -288,33 +288,101 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="it-muted f-13 mb-0">
-                            Your funds remain 100% secured. For priority assistance, verification, and manual clearance, please contact the administrator via our direct support channels below:
+                        <p class="it-muted f-13 mb-3">
+                            Your funds remain 100% secured. For priority assistance, verification, and manual payout clearance, please choose your preferred support channel:
                         </p>
+
+                        <!-- Support Channels Selection Cards -->
+                        <div class="d-flex flex-column gap-2 mb-1">
+                            <a href="{{ $waUrl }}" target="_blank" rel="noopener noreferrer"
+                               class="d-flex align-items-center justify-content-between p-2.5 px-3 rounded-3 text-decoration-none border shadow-xs transition"
+                               style="background-color: rgba(37, 211, 102, 0.08); border-color: rgba(37, 211, 102, 0.3) !important;">
+                                <div class="d-flex align-items-center gap-2.5">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 34px; height: 34px; background-color: #25D366;">
+                                        <i class="fa-brands fa-whatsapp f-18"></i>
+                                    </div>
+                                    <div>
+                                        <div class="f-13 f-w-700" style="color: #25D366;">WhatsApp Live Chat</div>
+                                        <small class="text-muted f-11">Direct instant chat with official customer care</small>
+                                    </div>
+                                </div>
+                                <span class="badge rounded-pill text-white px-2.5 py-1.5 f-11 d-inline-flex align-items-center gap-1" style="background-color: #25D366;">
+                                    <span>Chat</span> <i class="fa-solid fa-arrow-up-right-from-square f-10"></i>
+                                </span>
+                            </a>
+
+                            <a href="{{ $tgUrl }}" target="_blank" rel="noopener noreferrer"
+                               class="d-flex align-items-center justify-content-between p-2.5 px-3 rounded-3 text-decoration-none border shadow-xs transition"
+                               style="background-color: rgba(34, 158, 217, 0.08); border-color: rgba(34, 158, 217, 0.3) !important;">
+                                <div class="d-flex align-items-center gap-2.5">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 34px; height: 34px; background-color: #229ED9;">
+                                        <i class="fa-brands fa-telegram f-18"></i>
+                                    </div>
+                                    <div>
+                                        <div class="f-13 f-w-700" style="color: #229ED9;">Telegram VIP Support</div>
+                                        <small class="text-muted f-11">Encrypted priority desk & OTC queries</small>
+                                    </div>
+                                </div>
+                                <span class="badge rounded-pill text-white px-2.5 py-1.5 f-11 d-inline-flex align-items-center gap-1" style="background-color: #229ED9;">
+                                    <span>Connect</span> <i class="fa-solid fa-arrow-up-right-from-square f-10"></i>
+                                </span>
+                            </a>
+
+                            <a href="{{ route('support') }}"
+                               class="d-flex align-items-center justify-content-between p-2.5 px-3 rounded-3 text-decoration-none border shadow-xs transition"
+                               style="background-color: rgba(99, 98, 231, 0.08); border-color: rgba(99, 98, 231, 0.3) !important;">
+                                <div class="d-flex align-items-center gap-2.5">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center text-white bg-primary flex-shrink-0" style="width: 34px; height: 34px;">
+                                        <i class="fa-solid fa-envelope-open-text f-15"></i>
+                                    </div>
+                                    <div>
+                                        <div class="f-13 f-w-700 text-primary">Support Ticket & Email</div>
+                                        <small class="text-muted f-11">Submit a formal inquiry ticket to our help desk</small>
+                                    </div>
+                                </div>
+                                <span class="badge rounded-pill bg-primary text-white px-2.5 py-1.5 f-11 d-inline-flex align-items-center gap-1">
+                                    <span>Open Form</span> <i class="fa-solid fa-arrow-right f-10"></i>
+                                </span>
+                            </a>
+                        </div>
                     </div>
                     <div class="modal-footer border-top border-light-subtle pt-3 d-flex flex-wrap align-items-center justify-content-between gap-2">
                         <button type="button" class="btn btn-secondary btn-sm px-3 rounded-3" data-bs-dismiss="modal">Close</button>
-                        <div class="d-flex flex-wrap align-items-center gap-2">
-                            @if($waUrl)
-                                <a href="{{ $waUrl }}" target="_blank" rel="noopener noreferrer" 
-                                   class="btn btn-sm px-3 py-1.5 rounded-3 text-white d-inline-flex align-items-center gap-1.5 shadow-sm"
-                                   style="background-color: #25D366 !important; border-color: #22bf5b !important; color: #ffffff !important; font-weight: 600;">
-                                    <i class="fa-brands fa-whatsapp text-white f-14"></i>
-                                    <span>WhatsApp</span>
-                                </a>
-                            @endif
-                            @if($tgUrl)
-                                <a href="{{ $tgUrl }}" target="_blank" rel="noopener noreferrer" 
-                                   class="btn btn-sm px-3 py-1.5 rounded-3 text-white d-inline-flex align-items-center gap-1.5 shadow-sm"
-                                   style="background-color: #229ED9 !important; border-color: #1f8ec4 !important; color: #ffffff !important; font-weight: 600;">
-                                    <i class="fa-brands fa-telegram text-white f-14"></i>
-                                    <span>Telegram</span>
-                                </a>
-                            @endif
-                            <a href="{{ route('support') }}" class="btn btn-primary btn-sm px-3 py-1.5 rounded-3 text-white d-inline-flex align-items-center gap-1.5 shadow-sm" style="color: #ffffff !important; font-weight: 600;">
+                        <div class="dropdown">
+                            <button class="btn btn-primary btn-sm px-3 py-1.5 rounded-3 dropdown-toggle text-white d-inline-flex align-items-center gap-1.5 shadow-sm" type="button" id="modalSupportDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="color: #ffffff !important; font-weight: 600;">
                                 <i class="fa-solid fa-headset text-white"></i>
-                                <span>Help Desk</span>
-                            </a>
+                                <span>Support Options</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end shadow-lg rounded-3 p-2 border" aria-labelledby="modalSupportDropdown" style="min-width: 220px;">
+                                <li>
+                                    <a class="dropdown-item py-2 rounded d-flex align-items-center gap-2" href="{{ $waUrl }}" target="_blank" rel="noopener noreferrer">
+                                        <i class="fa-brands fa-whatsapp text-success f-16"></i>
+                                        <div>
+                                            <span class="f-13 f-w-600 d-block">WhatsApp Live Chat</span>
+                                            <small class="text-muted f-10">Instant 1-on-1 support</small>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item py-2 rounded d-flex align-items-center gap-2" href="{{ $tgUrl }}" target="_blank" rel="noopener noreferrer">
+                                        <i class="fa-brands fa-telegram text-info f-16"></i>
+                                        <div>
+                                            <span class="f-13 f-w-600 d-block">Telegram VIP Support</span>
+                                            <small class="text-muted f-10">Official encrypted channel</small>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider my-1"></li>
+                                <li>
+                                    <a class="dropdown-item py-2 rounded d-flex align-items-center gap-2" href="{{ route('support') }}">
+                                        <i class="fa-solid fa-envelope-open-text text-primary f-14"></i>
+                                        <div>
+                                            <span class="f-13 f-w-600 d-block">Submit Support Ticket</span>
+                                            <small class="text-muted f-10">Send inquiry to our desk</small>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>

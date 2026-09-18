@@ -177,8 +177,11 @@ class Settings extends Model
             $raw = trim($this->phone ?? '');
         }
 
+        $defaultMsg = 'Hello, I need assistance with my account on ' . ($this->site_name ?? 'ECX Groups') . '.';
+        $msg = $customMessage ? urlencode($customMessage) : urlencode($defaultMsg);
+
         if (empty($raw)) {
-            return null;
+            return "https://api.whatsapp.com/send?text={$msg}";
         }
 
         // If admin entered a full URL
@@ -189,11 +192,8 @@ class Settings extends Model
         // Clean number (keep only digits)
         $clean = preg_replace('/[^0-9]/', '', $raw);
         if (empty($clean)) {
-            return null;
+            return "https://api.whatsapp.com/send?text={$msg}";
         }
-
-        $defaultMsg = 'Hello, I need assistance with my account on ' . ($this->site_name ?? 'ECX Groups') . '.';
-        $msg = $customMessage ? urlencode($customMessage) : urlencode($defaultMsg);
 
         return "https://wa.me/{$clean}?text={$msg}";
     }
@@ -205,7 +205,7 @@ class Settings extends Model
     {
         $raw = trim($this->telegram_username ?? '');
         if (empty($raw)) {
-            return null;
+            return 'https://t.me/ecxgroups';
         }
 
         if (str_starts_with($raw, 'http://') || str_starts_with($raw, 'https://')) {
