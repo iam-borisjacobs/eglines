@@ -1033,7 +1033,7 @@
               <tr id="row-BTCUSDT">
                 <td>
                   <div class="d-flex align-items-center gap-3">
-                    <img src="{{ asset('themes/ecx/assets/images/banner/home4/icon/1.png') }}" alt="BTC" style="width: 28px; height: 28px; object-fit: contain;">
+                    <img src="{{ asset('themes/ecx/assets/images/coins/btc.svg') }}" alt="Bitcoin" style="width: 32px; height: 32px; object-fit: contain; border-radius: 50%; box-shadow: 0 2px 8px rgba(247, 147, 26, 0.25);">
                     <div>
                       <strong class="text-white d-block">Bitcoin</strong>
                       <span class="text-muted f-11">BTC/USDT</span>
@@ -1062,7 +1062,7 @@
               <tr id="row-ETHUSDT">
                 <td>
                   <div class="d-flex align-items-center gap-3">
-                    <img src="{{ asset('themes/ecx/assets/images/banner/home4/icon/2.png') }}" alt="ETH" style="width: 28px; height: 28px; object-fit: contain;">
+                    <img src="{{ asset('themes/ecx/assets/images/coins/eth.svg') }}" alt="Ethereum" style="width: 32px; height: 32px; object-fit: contain; border-radius: 50%; box-shadow: 0 2px 8px rgba(98, 126, 234, 0.25);">
                     <div>
                       <strong class="text-white d-block">Ethereum</strong>
                       <span class="text-muted f-11">ETH/USDT</span>
@@ -1091,7 +1091,7 @@
               <tr id="row-SOLUSDT">
                 <td>
                   <div class="d-flex align-items-center gap-3">
-                    <img src="{{ asset('themes/ecx/assets/images/banner/home4/icon/3.png') }}" alt="SOL" style="width: 28px; height: 28px; object-fit: contain;">
+                    <img src="{{ asset('themes/ecx/assets/images/coins/sol.svg') }}" alt="Solana" style="width: 32px; height: 32px; object-fit: contain; border-radius: 50%; box-shadow: 0 2px 8px rgba(0, 255, 163, 0.25);">
                     <div>
                       <strong class="text-white d-block">Solana</strong>
                       <span class="text-muted f-11">SOL/USDT</span>
@@ -1120,7 +1120,7 @@
               <tr id="row-BNBUSDT">
                 <td>
                   <div class="d-flex align-items-center gap-3">
-                    <img src="{{ asset('themes/ecx/assets/images/banner/home4/icon/4.png') }}" alt="BNB" style="width: 28px; height: 28px; object-fit: contain;">
+                    <img src="{{ asset('themes/ecx/assets/images/coins/bnb.svg') }}" alt="BNB Chain" style="width: 32px; height: 32px; object-fit: contain; border-radius: 50%; box-shadow: 0 2px 8px rgba(243, 186, 47, 0.25);">
                     <div>
                       <strong class="text-white d-block">BNB Chain</strong>
                       <span class="text-muted f-11">BNB/USDT</span>
