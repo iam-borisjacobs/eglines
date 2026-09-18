@@ -5,9 +5,9 @@
         
         <!-- Header Banner / Image Thumbnail -->
         @if(!empty($plan->image))
-            <div class="position-relative overflow-hidden" style="height: 135px; background-color: #0f172a;">
-                <img src="{{ $plan->image_url }}" alt="{{ $plan->name }}" class="w-100 h-100" style="object-fit: cover;">
-                <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.7) 100%);"></div>
+            <div class="position-relative overflow-hidden plan-card-media" style="width: 100%; aspect-ratio: 16 / 9; min-height: 180px; background-color: #0b1120;">
+                <img src="{{ $plan->image_url }}" alt="{{ $plan->name }}" class="w-100 h-100 plan-card-img" style="object-fit: cover; object-position: center; display: block;">
+                <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.35) 100%); pointer-events: none;"></div>
                 
                 <!-- Category Badge on Photo -->
                 <span class="position-absolute top-0 start-0 m-2 badge {{ $plan->isTruck() ? 'bg-warning text-dark' : 'bg-primary text-white' }} f-10 rounded-pill px-2 py-1 shadow-sm">

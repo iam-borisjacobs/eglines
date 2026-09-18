@@ -10,6 +10,24 @@
         transform: translateY(-3px);
         box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12) !important;
     }
+    .plan-card-media {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        min-height: 180px;
+        background-color: #0b1120;
+        overflow: hidden;
+    }
+    .plan-card-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        transition: transform 0.35s ease;
+    }
+    .plan-admin-card:hover .plan-card-img {
+        transform: scale(1.04);
+    }
     .plan-metric-box {
         background-color: #f8fafc;
         border: 1px solid #e2e8f0;
