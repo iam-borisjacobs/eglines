@@ -4,6 +4,7 @@
 *.sql
 *.bak
 *.log
+error_log
 *.key
 *.zip
 .lic
