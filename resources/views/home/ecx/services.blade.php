@@ -192,7 +192,7 @@
         <div class="col-12 col-md-6 col-xl-3" data-aos="fade-up" data-aos-duration="800">
           <div class="ecx-glass-card h-100 p-0 overflow-hidden d-flex flex-column" style="border: 1px solid rgba(205, 127, 50, 0.35);">
             <div style="width: 100%; aspect-ratio: 16/9; overflow: hidden; position: relative;">
-              <img src="{{ asset('themes/ecx/assets/images/banner/home4/tier_bronze_widescreen.png') }}" alt="Bronze Tier" class="w-100 h-100" style="object-fit: cover;">
+              <img src="{{ asset('themes/ecx/assets/images/plans/plan_bronze_ecx.jpg') }}" alt="Bronze Tier" class="w-100 h-100" style="object-fit: cover;" onerror="this.src='{{ asset('themes/ecx/assets/images/banner/home4/tier_bronze_widescreen.png') }}';">
               <span class="position-absolute top-0 end-0 m-2 badge px-2 py-1" style="background: rgba(205, 127, 50, 0.85); font-size: 10px; font-weight: 700;">BRONZE TIER</span>
             </div>
             <div class="p-4 d-flex flex-column flex-grow-1">
@@ -220,7 +220,7 @@
         <div class="col-12 col-md-6 col-xl-3" data-aos="fade-up" data-aos-duration="900">
           <div class="ecx-glass-card h-100 p-0 overflow-hidden d-flex flex-column" style="border: 1px solid rgba(148, 163, 184, 0.45);">
             <div style="width: 100%; aspect-ratio: 16/9; overflow: hidden; position: relative;">
-              <img src="{{ asset('themes/ecx/assets/images/banner/home4/tier_silver_widescreen.png') }}" alt="Silver Tier" class="w-100 h-100" style="object-fit: cover;">
+              <img src="{{ asset('themes/ecx/assets/images/plans/plan_silver_ecx.jpg') }}" alt="Silver Tier" class="w-100 h-100" style="object-fit: cover;" onerror="this.src='{{ asset('themes/ecx/assets/images/banner/home4/tier_silver_widescreen.png') }}';">
               <span class="position-absolute top-0 end-0 m-2 badge px-2 py-1" style="background: rgba(148, 163, 184, 0.9); font-size: 10px; font-weight: 700; color: #0f172a;">SILVER TIER</span>
             </div>
             <div class="p-4 d-flex flex-column flex-grow-1">
@@ -251,7 +251,7 @@
               MOST POPULAR
             </span>
             <div style="width: 100%; aspect-ratio: 16/9; overflow: hidden; position: relative;">
-              <img src="{{ asset('themes/ecx/assets/images/banner/home4/tier_gold_widescreen.png') }}" alt="Gold Tier" class="w-100 h-100" style="object-fit: cover;">
+              <img src="{{ asset('themes/ecx/assets/images/plans/plan_gold_ecx.jpg') }}" alt="Gold Tier" class="w-100 h-100" style="object-fit: cover;" onerror="this.src='{{ asset('themes/ecx/assets/images/banner/home4/tier_gold_widescreen.png') }}';">
               <span class="position-absolute top-0 end-0 m-2 badge px-2 py-1" style="background: rgba(245, 158, 11, 0.95); color: #000; font-size: 10px; font-weight: 800;">GOLD TIER</span>
             </div>
             <div class="p-4 d-flex flex-column flex-grow-1">
@@ -279,7 +279,7 @@
         <div class="col-12 col-md-6 col-xl-3" data-aos="fade-up" data-aos-duration="1100">
           <div class="ecx-glass-card h-100 p-0 overflow-hidden d-flex flex-column" style="border: 1px solid rgba(0, 245, 155, 0.4);">
             <div style="width: 100%; aspect-ratio: 16/9; overflow: hidden; position: relative;">
-              <img src="{{ asset('themes/ecx/assets/images/banner/home4/tier_diamond_widescreen.png') }}" alt="Diamond Tier" class="w-100 h-100" style="object-fit: cover;">
+              <img src="{{ asset('themes/ecx/assets/images/plans/plan_diamond_ecx.jpg') }}" alt="Diamond Tier" class="w-100 h-100" style="object-fit: cover;" onerror="this.src='{{ asset('themes/ecx/assets/images/banner/home4/tier_diamond_widescreen.png') }}';">
               <span class="position-absolute top-0 end-0 m-2 badge px-2 py-1" style="background: rgba(0, 245, 155, 0.9); color: #000; font-size: 10px; font-weight: 800;">DIAMOND TIER</span>
             </div>
             <div class="p-4 d-flex flex-column flex-grow-1">
