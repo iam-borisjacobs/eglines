@@ -104,6 +104,169 @@
             box-shadow: 0 6px 18px rgba(99, 98, 231, 0.35);
             color: #ffffff !important;
         }
+
+        /* Notice Modal Sleek Styling */
+        #withdrawdisabled .modal-content {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 20px !important;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25) !important;
+        }
+        body.dark-only #withdrawdisabled .modal-content {
+            background: #141c2e !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65) !important;
+        }
+
+        #withdrawdisabled .modal-header {
+            padding: 18px 24px;
+            background: rgba(0, 0, 0, 0.02);
+            border-bottom: 1px solid #eef2f6 !important;
+        }
+        body.dark-only #withdrawdisabled .modal-header {
+            background: rgba(255, 255, 255, 0.02);
+            border-bottom-color: rgba(255, 255, 255, 0.07) !important;
+        }
+
+        #withdrawdisabled .modal-body {
+            padding: 24px;
+        }
+        #withdrawdisabled .modal-footer {
+            padding: 16px 24px;
+            background: rgba(0, 0, 0, 0.02);
+            border-top: 1px solid #eef2f6 !important;
+        }
+        body.dark-only #withdrawdisabled .modal-footer {
+            background: rgba(255, 255, 255, 0.02);
+            border-top-color: rgba(255, 255, 255, 0.07) !important;
+        }
+
+        @media (max-width: 576px) {
+            #withdrawdisabled .modal-body {
+                padding: 18px 16px !important;
+            }
+            #withdrawdisabled .modal-header {
+                padding: 16px !important;
+            }
+            #withdrawdisabled .modal-footer {
+                padding: 14px 16px !important;
+            }
+        }
+
+        /* Notice Alert Banner */
+        .notice-amber-card {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.12) 0%, rgba(217, 119, 6, 0.05) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.35) !important;
+            border-radius: 14px;
+            padding: 16px 18px;
+            position: relative;
+        }
+        body.dark-only .notice-amber-card {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.16) 0%, rgba(217, 119, 6, 0.08) 100%);
+            border-color: rgba(245, 158, 11, 0.35) !important;
+        }
+
+        /* Support Channel Interactive Cards */
+        .support-channel-tile {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 13px 16px;
+            border-radius: 14px;
+            text-decoration: none !important;
+            transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            cursor: pointer;
+        }
+        .support-channel-tile:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        .support-channel-tile:active {
+            transform: scale(0.985);
+        }
+
+        /* WhatsApp Tile */
+        .support-channel-tile.tile-wa {
+            background: rgba(37, 211, 102, 0.08);
+            border: 1px solid rgba(37, 211, 102, 0.28);
+        }
+        .support-channel-tile.tile-wa:hover {
+            background: rgba(37, 211, 102, 0.16);
+            border-color: #25D366;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.25);
+        }
+        .support-channel-tile.tile-wa .tile-badge {
+            background-color: #25D366 !important;
+            color: #ffffff !important;
+            box-shadow: 0 2px 8px rgba(37, 211, 102, 0.4);
+            font-weight: 700;
+        }
+
+        /* Telegram Tile */
+        .support-channel-tile.tile-tg {
+            background: rgba(34, 158, 217, 0.08);
+            border: 1px solid rgba(34, 158, 217, 0.28);
+        }
+        .support-channel-tile.tile-tg:hover {
+            background: rgba(34, 158, 217, 0.16);
+            border-color: #229ED9;
+            box-shadow: 0 6px 20px rgba(34, 158, 217, 0.25);
+        }
+        .support-channel-tile.tile-tg .tile-badge {
+            background-color: #229ED9 !important;
+            color: #ffffff !important;
+            box-shadow: 0 2px 8px rgba(34, 158, 217, 0.4);
+            font-weight: 700;
+        }
+
+        /* Ticket Tile */
+        .support-channel-tile.tile-ticket {
+            background: rgba(99, 98, 231, 0.08);
+            border: 1px solid rgba(99, 98, 231, 0.28);
+        }
+        .support-channel-tile.tile-ticket:hover {
+            background: rgba(99, 98, 231, 0.16);
+            border-color: #6362e7;
+            box-shadow: 0 6px 20px rgba(99, 98, 231, 0.25);
+        }
+        .support-channel-tile.tile-ticket .tile-badge {
+            background: linear-gradient(135deg, #6362e7 0%, #4f46e5 100%) !important;
+            color: #ffffff !important;
+            box-shadow: 0 2px 8px rgba(99, 98, 231, 0.4);
+            font-weight: 700;
+        }
+
+        .tile-icon-bubble {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: #ffffff;
+        }
+
+        @media (max-width: 576px) {
+            .support-channel-tile {
+                padding: 10px 12px;
+            }
+            .tile-icon-bubble {
+                width: 34px;
+                height: 34px;
+                border-radius: 8px;
+                font-size: 15px;
+            }
+            .tile-subtitle {
+                display: none !important;
+            }
+            .tile-badge {
+                padding: 4px 10px !important;
+                font-size: 11px !important;
+            }
+        }
     </style>
 
     <div class="withdrawals-view">
@@ -265,125 +428,123 @@
             @endforelse
         </div>
 
+        @php
+            $waUrl = $settings->getWhatsAppUrl("Hello, I need assistance regarding withdrawal processing on {$settings->site_name}.");
+            $tgUrl = $settings->getTelegramUrl();
+        @endphp
+
         <!-- Withdrawal Disabled Modal -->
-        <div id="withdrawdisabled" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content terminal-card border-0 shadow">
-                    <div class="modal-header border-bottom border-light-subtle pb-3">
-                        <div class="d-flex align-items-center gap-2">
-                            <div class="metric-icon-circle warning" style="width: 32px; height: 32px; font-size: 14px;">
-                                <i class="fa-solid fa-triangle-exclamation"></i>
+        <div id="withdrawdisabled" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-bs-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered" style="max-width: 530px;">
+                <div class="modal-content shadow-lg border-0">
+                    <!-- Modal Header -->
+                    <div class="modal-header d-flex align-items-center justify-content-between border-bottom pb-3">
+                        <div class="d-flex align-items-center gap-2.5">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" 
+                                 style="width: 38px; height: 38px; background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.35);">
+                                <i class="fa-solid fa-triangle-exclamation f-16"></i>
                             </div>
-                            <h5 class="modal-title it-title f-w-700 f-16">Withdrawal Notice</h5>
+                            <div>
+                                <h5 class="modal-title it-title f-w-700 f-16 mb-0">Withdrawal Notice</h5>
+                                <span class="it-muted f-11 d-block">Institutional Qualification Required</span>
+                            </div>
                         </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="opacity: 0.7;"></button>
                     </div>
-                    <div class="modal-body py-4">
-                        <div class="alert alert-warning border-0 bg-warning bg-opacity-10 p-3 rounded-3 mb-3">
-                            <div class="d-flex align-items-start gap-2">
-                                <i class="fa-solid fa-triangle-exclamation text-warning mt-1"></i>
-                                <div>
-                                    <strong class="d-block text-warning mb-1 f-12">INVESTMENT WALLET NOTICE</strong>
-                                    <span class="f-13 it-title">Your wallet is currently ineligible. Eligible wallets must record over $50,000 in transaction volume and be listed or affiliated with the company.</span>
-                                </div>
+
+                    <!-- Modal Body -->
+                    <div class="modal-body py-3">
+                        <!-- High-Contrast Notice Card -->
+                        <div class="notice-amber-card mb-3">
+                            <div class="d-flex align-items-center gap-1.5 mb-2">
+                                <span class="badge rounded-pill text-uppercase px-2.5 py-1 f-10 f-w-700" 
+                                      style="background: rgba(245, 158, 11, 0.25); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.45); letter-spacing: 0.5px;">
+                                    <i class="fa-solid fa-shield-halved me-1"></i> Ineligible Wallet Notice
+                                </span>
+                            </div>
+                            <p class="mb-2 f-13 it-text" style="line-height: 1.55;">
+                                Your connected wallet is currently ineligible for automated instant payout. Eligible wallets must record over <strong class="text-warning f-w-700">$50,000</strong> in verified cumulative trading volume and maintain company affiliation.
+                            </p>
+                            <div class="d-flex align-items-center gap-2 pt-2 border-top border-warning border-opacity-25 f-11 it-muted">
+                                <i class="fa-solid fa-circle-check text-success f-12 flex-shrink-0"></i>
+                                <span>Your capital remains 100% secured in audited cold storage.</span>
                             </div>
                         </div>
-                        <p class="it-muted f-13 mb-3">
-                            Your funds remain 100% secured. For priority assistance, verification, and manual payout clearance, please choose your preferred support channel:
-                        </p>
 
-                        <!-- Support Channels Selection Cards -->
+                        <!-- Instructions Prompt -->
+                        <div class="d-flex align-items-center justify-content-between mb-2.5 px-1">
+                            <span class="f-12 f-w-700 it-title text-uppercase" style="letter-spacing: 0.4px;">Direct Priority Channels:</span>
+                            <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 f-10 px-2.5 py-1 rounded-pill d-inline-flex align-items-center gap-1">
+                                <span class="rounded-circle bg-success" style="width: 6px; height: 6px; display: inline-block;"></span>
+                                <span>Live Support Online</span>
+                            </span>
+                        </div>
+
+                        <!-- 3 Responsive Channel Action Cards -->
                         <div class="d-flex flex-column gap-2 mb-1">
-                            <a href="{{ $waUrl }}" target="_blank" rel="noopener noreferrer"
-                               class="d-flex align-items-center justify-content-between p-2.5 px-3 rounded-3 text-decoration-none border shadow-xs transition"
-                               style="background-color: rgba(37, 211, 102, 0.08); border-color: rgba(37, 211, 102, 0.3) !important;">
+                            <!-- WhatsApp Channel -->
+                            <a href="{{ $waUrl }}" target="_blank" rel="noopener noreferrer" class="support-channel-tile tile-wa">
                                 <div class="d-flex align-items-center gap-2.5">
-                                    <div class="rounded-circle d-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 34px; height: 34px; background-color: #25D366;">
-                                        <i class="fa-brands fa-whatsapp f-18"></i>
+                                    <div class="tile-icon-bubble" style="background-color: #25D366; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.35);">
+                                        <i class="fa-brands fa-whatsapp f-20"></i>
                                     </div>
-                                    <div>
+                                    <div class="text-start">
                                         <div class="f-13 f-w-700" style="color: #25D366;">WhatsApp Live Chat</div>
-                                        <small class="text-muted f-11">Direct instant chat with official customer care</small>
+                                        <div class="it-muted f-11 tile-subtitle">Instant 1-on-1 chat with official support desk</div>
                                     </div>
                                 </div>
-                                <span class="badge rounded-pill text-white px-2.5 py-1.5 f-11 d-inline-flex align-items-center gap-1" style="background-color: #25D366;">
-                                    <span>Chat</span> <i class="fa-solid fa-arrow-up-right-from-square f-10"></i>
+                                <span class="badge rounded-pill tile-badge px-3 py-1.5 f-11 d-inline-flex align-items-center gap-1.5 flex-shrink-0">
+                                    <span>Chat Now</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square f-10"></i>
                                 </span>
                             </a>
 
-                            <a href="{{ $tgUrl }}" target="_blank" rel="noopener noreferrer"
-                               class="d-flex align-items-center justify-content-between p-2.5 px-3 rounded-3 text-decoration-none border shadow-xs transition"
-                               style="background-color: rgba(34, 158, 217, 0.08); border-color: rgba(34, 158, 217, 0.3) !important;">
+                            <!-- Telegram Channel -->
+                            <a href="{{ $tgUrl }}" target="_blank" rel="noopener noreferrer" class="support-channel-tile tile-tg">
                                 <div class="d-flex align-items-center gap-2.5">
-                                    <div class="rounded-circle d-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 34px; height: 34px; background-color: #229ED9;">
-                                        <i class="fa-brands fa-telegram f-18"></i>
+                                    <div class="tile-icon-bubble" style="background-color: #229ED9; box-shadow: 0 4px 10px rgba(34, 158, 217, 0.35);">
+                                        <i class="fa-brands fa-telegram f-20"></i>
                                     </div>
-                                    <div>
-                                        <div class="f-13 f-w-700" style="color: #229ED9;">Telegram VIP Support</div>
-                                        <small class="text-muted f-11">Encrypted priority desk & OTC queries</small>
+                                    <div class="text-start">
+                                        <div class="f-13 f-w-700" style="color: #229ED9;">Telegram VIP Desk</div>
+                                        <div class="it-muted f-11 tile-subtitle">Encrypted priority verification & OTC desk</div>
                                     </div>
                                 </div>
-                                <span class="badge rounded-pill text-white px-2.5 py-1.5 f-11 d-inline-flex align-items-center gap-1" style="background-color: #229ED9;">
-                                    <span>Connect</span> <i class="fa-solid fa-arrow-up-right-from-square f-10"></i>
+                                <span class="badge rounded-pill tile-badge px-3 py-1.5 f-11 d-inline-flex align-items-center gap-1.5 flex-shrink-0">
+                                    <span>Connect</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square f-10"></i>
                                 </span>
                             </a>
 
-                            <a href="{{ route('support') }}"
-                               class="d-flex align-items-center justify-content-between p-2.5 px-3 rounded-3 text-decoration-none border shadow-xs transition"
-                               style="background-color: rgba(99, 98, 231, 0.08); border-color: rgba(99, 98, 231, 0.3) !important;">
+                            <!-- Support Ticket Channel -->
+                            <a href="{{ route('support') }}" class="support-channel-tile tile-ticket">
                                 <div class="d-flex align-items-center gap-2.5">
-                                    <div class="rounded-circle d-flex align-items-center justify-content-center text-white bg-primary flex-shrink-0" style="width: 34px; height: 34px;">
-                                        <i class="fa-solid fa-envelope-open-text f-15"></i>
+                                    <div class="tile-icon-bubble" style="background: linear-gradient(135deg, #6362e7 0%, #4f46e5 100%); box-shadow: 0 4px 10px rgba(99, 98, 231, 0.35);">
+                                        <i class="fa-solid fa-ticket-simple f-17"></i>
                                     </div>
-                                    <div>
-                                        <div class="f-13 f-w-700 text-primary">Support Ticket & Email</div>
-                                        <small class="text-muted f-11">Submit a formal inquiry ticket to our help desk</small>
+                                    <div class="text-start">
+                                        <div class="f-13 f-w-700 text-primary">Submit Support Ticket</div>
+                                        <div class="it-muted f-11 tile-subtitle">Official inquiry form with email status updates</div>
                                     </div>
                                 </div>
-                                <span class="badge rounded-pill bg-primary text-white px-2.5 py-1.5 f-11 d-inline-flex align-items-center gap-1">
-                                    <span>Open Form</span> <i class="fa-solid fa-arrow-right f-10"></i>
+                                <span class="badge rounded-pill tile-badge px-3 py-1.5 f-11 d-inline-flex align-items-center gap-1.5 flex-shrink-0">
+                                    <span>Open Form</span>
+                                    <i class="fa-solid fa-arrow-right f-10"></i>
                                 </span>
                             </a>
                         </div>
                     </div>
-                    <div class="modal-footer border-top border-light-subtle pt-3 d-flex flex-wrap align-items-center justify-content-between gap-2">
-                        <button type="button" class="btn btn-secondary btn-sm px-3 rounded-3" data-bs-dismiss="modal">Close</button>
-                        <div class="dropdown">
-                            <button class="btn btn-primary btn-sm px-3 py-1.5 rounded-3 dropdown-toggle text-white d-inline-flex align-items-center gap-1.5 shadow-sm" type="button" id="modalSupportDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="color: #ffffff !important; font-weight: 600;">
-                                <i class="fa-solid fa-headset text-white"></i>
-                                <span>Support Options</span>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end shadow-lg rounded-3 p-2 border" aria-labelledby="modalSupportDropdown" style="min-width: 220px;">
-                                <li>
-                                    <a class="dropdown-item py-2 rounded d-flex align-items-center gap-2" href="{{ $waUrl }}" target="_blank" rel="noopener noreferrer">
-                                        <i class="fa-brands fa-whatsapp text-success f-16"></i>
-                                        <div>
-                                            <span class="f-13 f-w-600 d-block">WhatsApp Live Chat</span>
-                                            <small class="text-muted f-10">Instant 1-on-1 support</small>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item py-2 rounded d-flex align-items-center gap-2" href="{{ $tgUrl }}" target="_blank" rel="noopener noreferrer">
-                                        <i class="fa-brands fa-telegram text-info f-16"></i>
-                                        <div>
-                                            <span class="f-13 f-w-600 d-block">Telegram VIP Support</span>
-                                            <small class="text-muted f-10">Official encrypted channel</small>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li><hr class="dropdown-divider my-1"></li>
-                                <li>
-                                    <a class="dropdown-item py-2 rounded d-flex align-items-center gap-2" href="{{ route('support') }}">
-                                        <i class="fa-solid fa-envelope-open-text text-primary f-14"></i>
-                                        <div>
-                                            <span class="f-13 f-w-600 d-block">Submit Support Ticket</span>
-                                            <small class="text-muted f-10">Send inquiry to our desk</small>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
+
+                    <!-- Modal Footer -->
+                    <div class="modal-footer border-top d-flex align-items-center justify-content-between py-3 px-4">
+                        <div class="d-flex align-items-center gap-1.5 it-muted f-11">
+                            <i class="fa-solid fa-lock text-success f-12"></i>
+                            <span class="d-none d-sm-inline">Institutional Security • </span>
+                            <span>24/7 Concierge</span>
                         </div>
+                        <button type="button" class="btn btn-secondary btn-sm px-4 py-1.5 rounded-pill f-12 f-w-600 shadow-xs" data-bs-dismiss="modal">
+                            Close Notice
+                        </button>
                     </div>
                 </div>
             </div>
