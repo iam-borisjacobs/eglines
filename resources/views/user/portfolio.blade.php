@@ -281,7 +281,7 @@
                     <div class="w-100">
                         <!-- Card Top Bar: Provider and Balance by the side -->
                         <div class="d-flex align-items-start justify-content-between gap-2 mb-3">
-                            <div class="d-flex align-items-center gap-2.5">
+                            <div class="d-flex align-items-center gap-2">
                                 <div class="wallet-avatar-box">
                                     @if($iconUrl)
                                         <img src="{{ $iconUrl }}" alt="{{ $w->wallet_provider }}" style="width: 32px; height: 32px; object-fit: contain;" onerror="this.outerHTML='<i class=\'fa-solid fa-wallet text-primary f-20\'></i>'">
@@ -391,7 +391,7 @@
                                 Non-Custodial Isolated Vault
                             </span>
                         </div>
-                        <a href="{{ route('mplans') }}?method=Connected+Wallet" class="btn btn-sm btn-primary rounded-pill px-3 py-1.5 f-11 f-w-600 d-inline-flex align-items-center gap-1.5 shadow-sm text-nowrap">
+                        <a href="{{ route('mplans') }}?method=Connected+Wallet" class="btn btn-sm btn-primary rounded-pill px-3 py-1.5 f-11 f-w-600 d-inline-flex align-items-center gap-2 shadow-sm text-nowrap">
                             <span>Invest from Wallet</span>
                             <i class="fa-solid fa-arrow-right f-10"></i>
                         </a>

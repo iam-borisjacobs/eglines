@@ -164,7 +164,7 @@
                     <p class="it-muted mb-0 f-13">Direct access to our priority trading operations, compliance department, and dedicated account managers.</p>
                 </div>
                 <div class="d-flex align-items-center gap-2">
-                    <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-3 py-2 rounded-pill f-12 d-inline-flex align-items-center gap-1.5">
+                    <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-3 py-2 rounded-pill f-12 d-inline-flex align-items-center" style="gap: 6px;">
                         <span class="rounded-circle bg-success" style="width: 7px; height: 7px; display: inline-block;"></span>
                         <span>Help Desk Online • Avg Response: &lt; 15 mins</span>
                     </span>
