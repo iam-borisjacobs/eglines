@@ -161,9 +161,19 @@ class AppSettingsController extends Controller
             $return_capital = false;
         }
 
+        $settings = Settings::find(1);
+        $requireWallet = $request->has('require_wallet_for_investment')
+            ? ($request->require_wallet_for_investment == '1' || $request->require_wallet_for_investment == 'yes' || $request->require_wallet_for_investment == 'on' || $request->require_wallet_for_investment === true)
+            : false;
+
+        $modules = $settings ? ($settings->modules ?? []) : [];
+        $modules['require_wallet_investment'] = $requireWallet;
+
         Settings::where('id', 1)->update([
             'contact_email' => $request['contact_email'],
             'phone' => $request['phone'],
+            'whatsapp_number' => $request->filled('whatsapp_number') ? trim($request->whatsapp_number) : null,
+            'telegram_username' => $request->filled('telegram_username') ? trim($request->telegram_username) : null,
             'location' => $request['location'],
             'map_iframe' => $request['map_iframe'],
             'currency' => $request['currency'],
@@ -183,6 +193,8 @@ class AppSettingsController extends Controller
             'should_cancel_plan' => $request->should_cancel_plan,
             'trading_lock_enabled' => $request->has('trading_lock_enabled') ? ($request->trading_lock_enabled == '1' || $request->trading_lock_enabled == 'on' || $request->trading_lock_enabled === true) : true,
             'min_trading_balance' => $request->has('min_trading_balance') ? floatval($request->min_trading_balance) : 100000.00,
+            'require_wallet_for_investment' => $requireWallet,
+            'modules' => $modules,
         ]);
         return response()->json(['status' => 200, 'success' => 'Settings Saved successfully']);
     }

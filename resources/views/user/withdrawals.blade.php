@@ -235,9 +235,31 @@
                         <p class="it-muted f-13 mb-4 mx-auto" style="max-width: 480px;">
                             There are currently no withdrawal channels enabled for your region. Please contact our 24/7 client support desk for manual payout processing.
                         </p>
-                        <a href="{{ route('support') }}" class="btn btn-primary px-4 py-2 rounded-3 shadow-sm text-white" style="color: #ffffff !important;">
-                            <i class="fa-solid fa-headset me-1 text-white"></i>Contact Client Support
-                        </a>
+                        @php
+                            $waUrl = $settings->getWhatsAppUrl("Hello, I need assistance regarding withdrawal processing on {$settings->site_name}.");
+                            $tgUrl = $settings->getTelegramUrl();
+                        @endphp
+                        <div class="d-flex flex-wrap justify-content-center align-items-center gap-2">
+                            @if($waUrl)
+                                <a href="{{ $waUrl }}" target="_blank" rel="noopener noreferrer" 
+                                   class="btn btn-sm px-3 py-2 rounded-3 text-white shadow-sm d-inline-flex align-items-center gap-1.5"
+                                   style="background-color: #25D366 !important; border-color: #22bf5b !important; color: #ffffff !important; font-weight: 600;">
+                                    <i class="fa-brands fa-whatsapp text-white f-14"></i>
+                                    <span>WhatsApp</span>
+                                </a>
+                            @endif
+                            @if($tgUrl)
+                                <a href="{{ $tgUrl }}" target="_blank" rel="noopener noreferrer" 
+                                   class="btn btn-sm px-3 py-2 rounded-3 text-white shadow-sm d-inline-flex align-items-center gap-1.5"
+                                   style="background-color: #229ED9 !important; border-color: #1f8ec4 !important; color: #ffffff !important; font-weight: 600;">
+                                    <i class="fa-brands fa-telegram text-white f-14"></i>
+                                    <span>Telegram</span>
+                                </a>
+                            @endif
+                            <a href="{{ route('support') }}" class="btn btn-primary px-4 py-2 rounded-3 shadow-sm text-white d-inline-flex align-items-center gap-1.5" style="color: #ffffff !important; font-weight: 600;">
+                                <i class="fa-solid fa-headset me-1 text-white"></i>Contact Support
+                            </a>
+                        </div>
                     </div>
                 </div>
             @endforelse
@@ -257,18 +279,43 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body py-4">
+                        <div class="alert alert-warning border-0 bg-warning bg-opacity-10 p-3 rounded-3 mb-3">
+                            <div class="d-flex align-items-start gap-2">
+                                <i class="fa-solid fa-triangle-exclamation text-warning mt-1"></i>
+                                <div>
+                                    <strong class="d-block text-warning mb-1 f-12">INVESTMENT WALLET NOTICE</strong>
+                                    <span class="f-13 it-title">Your wallet is currently ineligible. Eligible wallets must record over $50,000 in transaction volume and be listed or affiliated with the company.</span>
+                                </div>
+                            </div>
+                        </div>
                         <p class="it-muted f-13 mb-0">
-                            <span class="text-warning"><i class="fa-solid fa-triangle-exclamation me-2"></i> INVESTMENT WALLET NOTICE</span><br><br>
-                            Your wallet is currently ineligible. Eligible wallets must record over $50,000 in transaction volume and be listed or affiliated with the company.
-                            <br><br>
-                            Your funds remain 100% secured. For assistance, please contact the official administrator or our 24/7 Customer Support Desk.
+                            Your funds remain 100% secured. For priority assistance, verification, and manual clearance, please contact the administrator via our direct support channels below:
                         </p>
                     </div>
-                    <div class="modal-footer border-top border-light-subtle pt-3">
+                    <div class="modal-footer border-top border-light-subtle pt-3 d-flex flex-wrap align-items-center justify-content-between gap-2">
                         <button type="button" class="btn btn-secondary btn-sm px-3 rounded-3" data-bs-dismiss="modal">Close</button>
-                        <a href="{{ route('support') }}" class="btn btn-primary btn-sm px-3 rounded-3 text-white" style="color: #ffffff !important;">
-                            <i class="fa-solid fa-headset me-1 text-white"></i>Contact Support
-                        </a>
+                        <div class="d-flex flex-wrap align-items-center gap-2">
+                            @if($waUrl)
+                                <a href="{{ $waUrl }}" target="_blank" rel="noopener noreferrer" 
+                                   class="btn btn-sm px-3 py-1.5 rounded-3 text-white d-inline-flex align-items-center gap-1.5 shadow-sm"
+                                   style="background-color: #25D366 !important; border-color: #22bf5b !important; color: #ffffff !important; font-weight: 600;">
+                                    <i class="fa-brands fa-whatsapp text-white f-14"></i>
+                                    <span>WhatsApp</span>
+                                </a>
+                            @endif
+                            @if($tgUrl)
+                                <a href="{{ $tgUrl }}" target="_blank" rel="noopener noreferrer" 
+                                   class="btn btn-sm px-3 py-1.5 rounded-3 text-white d-inline-flex align-items-center gap-1.5 shadow-sm"
+                                   style="background-color: #229ED9 !important; border-color: #1f8ec4 !important; color: #ffffff !important; font-weight: 600;">
+                                    <i class="fa-brands fa-telegram text-white f-14"></i>
+                                    <span>Telegram</span>
+                                </a>
+                            @endif
+                            <a href="{{ route('support') }}" class="btn btn-primary btn-sm px-3 py-1.5 rounded-3 text-white d-inline-flex align-items-center gap-1.5 shadow-sm" style="color: #ffffff !important; font-weight: 600;">
+                                <i class="fa-solid fa-headset text-white"></i>
+                                <span>Help Desk</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

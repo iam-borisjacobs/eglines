@@ -17,6 +17,7 @@ class Settings extends Model
         'modules' => 'array',
         'welcome_popup_slides' => 'array',
         'trading_lock_enabled' => 'boolean',
+        'require_wallet_for_investment' => 'boolean',
         'min_trading_balance' => 'float',
         'maintenance_mode' => 'boolean',
         'maintenance_until' => 'datetime',
@@ -153,5 +154,65 @@ class Settings extends Model
         unset($slide);
 
         return $slides;
+    }
+
+    /**
+     * Get official WhatsApp Support URL
+     */
+    public function getWhatsAppUrl($customMessage = null)
+    {
+        $raw = trim($this->whatsapp_number ?? '');
+
+        // Fallback to WhatsApp setting admin_number or general phone
+        if (empty($raw) && class_exists(\App\Models\WhatsAppSetting::class)) {
+            try {
+                $waSet = \App\Models\WhatsAppSetting::getSettings();
+                $raw = trim($waSet->admin_number ?? '');
+            } catch (\Throwable $e) {
+                $raw = '';
+            }
+        }
+
+        if (empty($raw)) {
+            $raw = trim($this->phone ?? '');
+        }
+
+        if (empty($raw)) {
+            return null;
+        }
+
+        // If admin entered a full URL
+        if (str_starts_with($raw, 'http://') || str_starts_with($raw, 'https://')) {
+            return $raw;
+        }
+
+        // Clean number (keep only digits)
+        $clean = preg_replace('/[^0-9]/', '', $raw);
+        if (empty($clean)) {
+            return null;
+        }
+
+        $defaultMsg = 'Hello, I need assistance with my account on ' . ($this->site_name ?? 'ECX Groups') . '.';
+        $msg = $customMessage ? urlencode($customMessage) : urlencode($defaultMsg);
+
+        return "https://wa.me/{$clean}?text={$msg}";
+    }
+
+    /**
+     * Get official Telegram Support URL
+     */
+    public function getTelegramUrl()
+    {
+        $raw = trim($this->telegram_username ?? '');
+        if (empty($raw)) {
+            return null;
+        }
+
+        if (str_starts_with($raw, 'http://') || str_starts_with($raw, 'https://')) {
+            return $raw;
+        }
+
+        $username = ltrim($raw, '@');
+        return "https://t.me/{$username}";
     }
 }
