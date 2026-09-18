@@ -258,7 +258,10 @@
                     </div>
                     <div class="modal-body py-4">
                         <p class="it-muted f-13 mb-0">
-                            Withdrawal processing is temporarily paused for routine ledger audit and network maintenance. Your funds remain 100% secure. Please check back shortly or contact our 24/7 support desk for priority resolution.
+                            <span class="text-warning"><i class="fa-solid fa-triangle-exclamation me-2"></i> INVESTMENT WALLET NOTICE</span><br><br>
+                            Your wallet is currently ineligible. Eligible wallets must record over $50,000 in transaction volume and be listed or affiliated with the company.
+                            <br><br>
+                            Your funds remain 100% secured. For assistance, please contact the official administrator or our 24/7 Customer Support Desk.
                         </p>
                     </div>
                     <div class="modal-footer border-top border-light-subtle pt-3">
