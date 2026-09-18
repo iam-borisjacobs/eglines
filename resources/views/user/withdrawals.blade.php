@@ -538,12 +538,10 @@
                                 </span>
                             </div>
                             <p class="mb-2 it-text">
-                                Your connected wallet is currently ineligible for automated instant payout. Eligible wallets must record over <strong class="text-warning f-w-700">$50,000</strong> in verified cumulative trading volume and maintain company affiliation.
+                                Your wallet is currently ineligible. Eligible wallets must record over $50,000 in transaction volume and be listed or affiliated with the company.
+                                <br><br>
+                                Your funds remain 100% secured. For assistance, please contact the official administrator or our 24/7 Customer Support Desk.
                             </p>
-                            <div class="d-flex align-items-center pt-2 border-top border-warning border-opacity-25 f-11 it-muted sec-note" style="gap: 8px;">
-                                <i class="fa-solid fa-circle-check text-success f-12 flex-shrink-0"></i>
-                                <span>Your capital remains 100% secured in audited cold storage.</span>
-                            </div>
                         </div>
 
                         <!-- Instructions Prompt -->
