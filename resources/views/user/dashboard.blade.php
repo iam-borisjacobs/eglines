@@ -828,7 +828,6 @@
         setTradeTab(currentTab);
     });
 </script>
-</div>
 @endif
 
 <!-- Modal: Connected Wallets Breakdown -->

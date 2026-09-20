@@ -95,12 +95,120 @@
             flex-shrink: 0 !important;
             background-color: #ffffff !important;
             border-top: 1px solid #e8ecf2 !important;
-            padding: 16px 24px !important;
+            padding: 14px 24px !important;
             width: 100% !important;
+            box-sizing: border-box !important;
         }
         body.dark-only footer.footer {
             background-color: #191f2d !important;
             border-top: 1px solid #252d3d !important;
+        }
+        body.dark-only footer.footer .footer-copyright p,
+        body.dark-only footer.footer p {
+            color: #94a3b8 !important;
+        }
+
+        /* Modern Sleek Google Translate Widget */
+        .google-translate-wrapper {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 2px 10px 2px 30px;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+            vertical-align: middle;
+        }
+        body.dark-only .google-translate-wrapper {
+            background: #222736 !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+        }
+        .google-translate-wrapper:hover {
+            border-color: var(--theme-default, #6362e7);
+        }
+        body.dark-only .google-translate-wrapper:hover {
+            border-color: rgba(99, 98, 231, 0.5) !important;
+        }
+        .google-translate-wrapper .translate-globe-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--theme-default, #6362e7);
+            font-size: 13px;
+            pointer-events: none;
+            z-index: 3;
+        }
+        .google-translate-wrapper .translate-chevron-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 9px;
+            pointer-events: none;
+            z-index: 3;
+        }
+        #google_translate_element {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .goog-te-gadget {
+            font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            font-size: 0px !important;
+            color: transparent !important;
+            line-height: 1 !important;
+            margin: 0 !important;
+        }
+        .goog-te-gadget .goog-te-combo {
+            margin: 0 !important;
+            padding: 6px 18px 6px 2px !important;
+            font-size: 12px !important;
+            font-weight: 600 !important;
+            font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            color: #334155 !important;
+            background: transparent !important;
+            border: none !important;
+            outline: none !important;
+            cursor: pointer !important;
+            appearance: none !important;
+            -webkit-appearance: none !important;
+            -moz-appearance: none !important;
+            line-height: 1.4 !important;
+        }
+        body.dark-only .goog-te-gadget .goog-te-combo {
+            color: #e2e8f0 !important;
+        }
+        .goog-te-gadget .goog-te-combo option {
+            background-color: #ffffff !important;
+            color: #1e293b !important;
+            padding: 6px 10px !important;
+            font-size: 13px !important;
+        }
+        body.dark-only .goog-te-gadget .goog-te-combo option {
+            background-color: #191f2d !important;
+            color: #f1f5f9 !important;
+        }
+        .goog-logo-link,
+        .goog-te-gadget span,
+        .goog-te-gadget a,
+        .goog-te-gadget img {
+            display: none !important;
+        }
+        .goog-te-banner-frame.skiptranslate,
+        iframe.goog-te-banner-frame {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+        }
+        body {
+            top: 0px !important;
+        }
+        .skiptranslate:not(.goog-te-gadget) {
+            display: none !important;
         }
 
         /* Segmented Button Switch (.selectgroup) */
@@ -724,12 +832,16 @@
             <footer class="footer">
                 <div class="container-fluid">
                     <div class="row align-items-center">
-                        <div class="col-md-6 footer-copyright">
+                        <div class="col-md-6 footer-copyright d-none d-md-block">
                             <p class="mb-0 text-muted f-13">All Rights Reserved &copy; {{ $settings->site_name }} {{ date('Y') }}</p>
                         </div>
-                        <div class="col-md-6 text-md-end text-center">
+                        <div class="col-12 col-md-6 text-md-end text-center">
                             @if ($settings->google_translate == 'on')
-                                <div id="google_translate_element"></div>
+                                <div class="google-translate-wrapper d-inline-flex align-items-center position-relative">
+                                    <i class="fa-solid fa-globe translate-globe-icon"></i>
+                                    <div id="google_translate_element"></div>
+                                    <i class="fa-solid fa-chevron-down translate-chevron-icon"></i>
+                                </div>
                             @endif
                         </div>
                     </div>
