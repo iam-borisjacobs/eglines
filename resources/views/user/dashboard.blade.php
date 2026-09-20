@@ -19,25 +19,28 @@
         <div class="col-sm-auto d-flex align-items-center gap-2">
             @if(($userWallets ?? collect())->count() > 0)
                 <div class="dropdown">
-                    <button class="btn btn-outline-success rounded-pill px-3 py-2 d-inline-flex align-items-center gap-2 f-13 f-w-600 shadow-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="header-wallet-badge" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa-solid fa-circle-check text-success"></i>
                         <span>Wallet Connected</span>
+                        <i class="fa-solid fa-chevron-down f-10 opacity-75 ms-1"></i>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3 p-2" style="min-width: 220px;">
-                        <li class="px-3 py-1">
-                            <small class="text-muted d-block f-11">Synchronized Wallets</small>
-                            <strong class="text-dark f-13">{{ ($userWallets ?? collect())->count() }} Active</strong>
+                    <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-3 p-2" style="min-width: 230px;">
+                        <li class="px-3 py-1.5">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <small class="text-muted f-11 text-uppercase f-w-700">Synchronized</small>
+                                <span class="badge bg-light-success text-success f-10 rounded-pill">{{ ($userWallets ?? collect())->count() }} Active</span>
+                            </div>
                         </li>
                         <li><hr class="dropdown-divider my-1"></li>
                         @foreach(($userWallets ?? collect()) as $w)
                             <li class="px-3 py-1.5 d-flex justify-content-between align-items-center">
-                                <span class="f-12 text-dark f-w-600"><i class="fa-solid fa-wallet text-primary me-1"></i> {{ $w->wallet_provider }}</span>
+                                <span class="f-12 text-dark f-w-600"><i class="fa-solid fa-wallet text-primary me-1.5"></i>{{ $w->wallet_provider }}</span>
                                 <span class="badge bg-light-success text-success f-10 rounded-pill">Active</span>
                             </li>
                         @endforeach
                         <li><hr class="dropdown-divider my-1"></li>
                         <li>
-                            <a class="dropdown-item f-12 text-primary f-w-600 rounded-2" href="{{ route('connect.wallet') }}">
+                            <a class="dropdown-item f-12 text-primary f-w-600 rounded-2 py-1.5" href="{{ route('connect.wallet') }}">
                                 <i class="fa-solid fa-plus me-1"></i> Connect Another Wallet
                             </a>
                         </li>
@@ -53,11 +56,42 @@
     </div>
 </div>
 
-
-
-
-    
 <style>
+    .header-wallet-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 14px;
+        border-radius: 50px;
+        font-size: 12px;
+        font-weight: 600;
+        background: rgba(16, 185, 129, 0.1);
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        color: #059669;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        white-space: nowrap;
+    }
+    .header-wallet-badge::after {
+        display: none !important;
+    }
+    body.dark-only .header-wallet-badge {
+        background: rgba(16, 185, 129, 0.12);
+        border-color: rgba(16, 185, 129, 0.35);
+        color: #34d399;
+    }
+    .header-wallet-badge:hover, .header-wallet-badge:focus {
+        background: rgba(16, 185, 129, 0.18);
+        border-color: #10b981;
+        color: #059669;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+    }
+    body.dark-only .header-wallet-badge:hover, body.dark-only .header-wallet-badge:focus {
+        color: #6ee7b7;
+        box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+    }
     .web3-vault-card {
         background: linear-gradient(145deg, #f8fafc 0%, #eef2ff 100%);
         border: 1px solid rgba(99, 102, 241, 0.22);
