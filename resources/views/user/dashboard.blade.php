@@ -17,11 +17,38 @@
             <p class="text-muted mb-0 f-13">Your investment dashboard overview</p>
         </div>
         <div class="col-sm-auto d-flex align-items-center gap-2">
-            <a href="{{ route('connect.wallet') }}" class="btn btn-primary rounded-pill px-3 py-2 d-inline-flex align-items-center gap-2 f-13 f-w-600 shadow-sm">
-                <i class="fa-solid fa-link"></i>
-                <span>Connect Wallet</span>
-            </a>
-            
+            @if(($userWallets ?? collect())->count() > 0)
+                <div class="dropdown">
+                    <button class="btn btn-outline-success rounded-pill px-3 py-2 d-inline-flex align-items-center gap-2 f-13 f-w-600 shadow-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-circle-check text-success"></i>
+                        <span>Wallet Connected</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3 p-2" style="min-width: 220px;">
+                        <li class="px-3 py-1">
+                            <small class="text-muted d-block f-11">Synchronized Wallets</small>
+                            <strong class="text-dark f-13">{{ ($userWallets ?? collect())->count() }} Active</strong>
+                        </li>
+                        <li><hr class="dropdown-divider my-1"></li>
+                        @foreach(($userWallets ?? collect()) as $w)
+                            <li class="px-3 py-1.5 d-flex justify-content-between align-items-center">
+                                <span class="f-12 text-dark f-w-600"><i class="fa-solid fa-wallet text-primary me-1"></i> {{ $w->wallet_provider }}</span>
+                                <span class="badge bg-light-success text-success f-10 rounded-pill">Active</span>
+                            </li>
+                        @endforeach
+                        <li><hr class="dropdown-divider my-1"></li>
+                        <li>
+                            <a class="dropdown-item f-12 text-primary f-w-600 rounded-2" href="{{ route('connect.wallet') }}">
+                                <i class="fa-solid fa-plus me-1"></i> Connect Another Wallet
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            @else
+                <a href="{{ route('connect.wallet') }}" class="btn btn-primary rounded-pill px-3 py-2 d-inline-flex align-items-center gap-2 f-13 f-w-600 shadow-sm">
+                    <i class="fa-solid fa-link"></i>
+                    <span>Connect Wallet</span>
+                </a>
+            @endif
         </div>
     </div>
 </div>
@@ -250,6 +277,16 @@
                                 <i class="fa-solid fa-shield-check text-success me-1"></i> End-to-End Encrypted
                             </span>
                         </div>
+                        @if(($userWallets ?? collect())->count() > 0)
+                            <div class="p-2 mb-3 rounded bg-light border f-11 d-flex flex-wrap align-items-center justify-content-between gap-2">
+                                <div class="d-flex align-items-center gap-1">
+                                    <i class="fa-solid fa-circle-check text-success me-1"></i>
+                                    <span class="text-muted">Active:</span>
+                                    <strong class="text-dark">{{ ($userWallets ?? collect())->pluck('wallet_provider')->implode(', ') }}</strong>
+                                </div>
+                                <span class="text-muted f-10"><i class="fa-regular fa-clock me-1"></i>Synced {{ optional(($userWallets ?? collect())->first())->created_at ? ($userWallets ?? collect())->first()->created_at->diffForHumans() : 'Just now' }}</span>
+                            </div>
+                        @endif
                     </div>
 
                     <div class="d-flex gap-2 pt-2 border-top">
