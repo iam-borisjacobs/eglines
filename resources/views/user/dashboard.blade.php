@@ -24,24 +24,74 @@
                         <span>Wallet Connected</span>
                         <i class="fa-solid fa-chevron-down f-10 opacity-75 ms-1"></i>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-3 p-2" style="min-width: 230px;">
-                        <li class="px-3 py-1.5">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <small class="text-muted f-11 text-uppercase f-w-700">Synchronized</small>
-                                <span class="badge bg-light-success text-success f-10 rounded-pill">{{ ($userWallets ?? collect())->count() }} Active</span>
+                    <ul class="dropdown-menu dropdown-menu-end wallet-dropdown-menu">
+                        <!-- Dropdown Header -->
+                        <li class="px-2 pb-2 mb-2 border-bottom border-light border-opacity-10 d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center gap-1.5">
+                                <span class="pulse-beacon" style="width: 6px; height: 6px;"></span>
+                                <span class="f-11 f-w-700 text-uppercase tracking-wider text-muted">Synchronized Wallets</span>
                             </div>
+                            <span class="badge bg-success bg-opacity-20 text-success rounded-pill f-10 px-2 py-0.5 f-w-700">
+                                {{ ($userWallets ?? collect())->count() }} Active
+                            </span>
                         </li>
-                        <li><hr class="dropdown-divider my-1"></li>
-                        @foreach(($userWallets ?? collect()) as $w)
-                            <li class="px-3 py-1.5 d-flex justify-content-between align-items-center">
-                                <span class="f-12 text-dark f-w-600"><i class="fa-solid fa-wallet text-primary me-1.5"></i>{{ $w->wallet_provider }}</span>
-                                <span class="badge bg-light-success text-success f-10 rounded-pill">Active</span>
-                            </li>
-                        @endforeach
-                        <li><hr class="dropdown-divider my-1"></li>
-                        <li>
-                            <a class="dropdown-item f-12 text-primary f-w-600 rounded-2 py-1.5" href="{{ route('connect.wallet') }}">
-                                <i class="fa-solid fa-plus me-1"></i> Connect Another Wallet
+
+                        <!-- Scrollable list of wallets -->
+                        <li style="max-height: 230px; overflow-y: auto; padding: 2px;">
+                            @foreach(($userWallets ?? collect()) as $w)
+                                @php
+                                    $prov = strtolower(trim($w->wallet_provider ?? ''));
+                                    $uIcon = null;
+                                    if (isset($walletTypes)) {
+                                        $m = $walletTypes->get($prov);
+                                        if (!$m) {
+                                            $m = $walletTypes->first(function($wt, $k) use ($prov) {
+                                                return str_contains($prov, (string)$k) || str_contains((string)$k, $prov);
+                                            });
+                                        }
+                                        if ($m && !empty($m->icon_url)) {
+                                            $uIcon = $m->icon_url;
+                                        }
+                                    }
+                                    if (!$uIcon) {
+                                        if (str_contains($prov, 'metamask')) {
+                                            $uIcon = asset('assets/wallet-types/icons/1NS1POo31VhHeJuQOv2IOgLwI6jAe8KK6QG2WLPI.png');
+                                        } elseif (str_contains($prov, 'trust')) {
+                                            $uIcon = asset('assets/wallet-types/icons/kxF43fXtB3B0m0C8Tz5ZZ3ckEYwKZFHCVJOh1BVr.png');
+                                        } elseif (str_contains($prov, 'coinbase')) {
+                                            $uIcon = asset('assets/wallet-types/icons/fW86jwztjOyUCIiaf8XX7bAmxPx2BCwtRMy9RK5Z.jpg');
+                                        } elseif (str_contains($prov, 'bakkt')) {
+                                            $uIcon = asset('assets/wallet-types/icons/yRqNYjy782hPVqJXhrvKuYqMe9FcnJegeSzDO5Ok.png');
+                                        }
+                                    }
+                                @endphp
+                                <div class="wallet-item-card">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="wallet-logo-avatar">
+                                            @if($uIcon)
+                                                <img src="{{ $uIcon }}" alt="{{ $w->wallet_provider }}" style="width: 20px; height: 20px; object-fit: contain;" onerror="this.outerHTML='<i class=\'fa-solid fa-wallet text-warning f-11\'></i>'">
+                                            @else
+                                                <i class="fa-solid fa-wallet text-primary f-11"></i>
+                                            @endif
+                                        </div>
+                                        <div>
+                                            <div class="f-w-700 text-dark f-12" style="line-height: 1.2;">{{ $w->wallet_provider }}</div>
+                                            <small class="text-muted f-10 d-block">Synced {{ $w->created_at ? $w->created_at->diffForHumans(null, true) : 'Active' }}</small>
+                                        </div>
+                                    </div>
+                                    <span class="badge bg-success bg-opacity-15 text-success rounded-pill f-10 px-2 py-0.5 d-flex align-items-center gap-1">
+                                        <span style="width: 5px; height: 5px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
+                                        Active
+                                    </span>
+                                </div>
+                            @endforeach
+                        </li>
+
+                        <!-- Connect Another Wallet Action -->
+                        <li class="pt-2 border-top border-light border-opacity-10 mt-1">
+                            <a class="wallet-add-action-btn" href="{{ route('connect.wallet') }}">
+                                <i class="fa-solid fa-circle-plus"></i>
+                                <span>Connect Another Wallet</span>
                             </a>
                         </li>
                     </ul>
@@ -57,6 +107,83 @@
 </div>
 
 <style>
+    .wallet-dropdown-menu {
+        min-width: 290px;
+        background: #151c30 !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        border-radius: 16px !important;
+        padding: 12px !important;
+        box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08) !important;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+    body:not(.dark-only) .wallet-dropdown-menu {
+        background: #ffffff !important;
+        border: 1px solid rgba(0, 0, 0, 0.08) !important;
+        box-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.15) !important;
+    }
+    .wallet-item-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 10px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        margin-bottom: 6px;
+        transition: all 0.2s ease;
+    }
+    body:not(.dark-only) .wallet-item-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+    }
+    .wallet-item-card:hover {
+        background: rgba(99, 102, 241, 0.08);
+        border-color: rgba(99, 102, 241, 0.3);
+        transform: translateX(2px);
+    }
+    body.dark-only .wallet-item-card .text-dark {
+        color: #ffffff !important;
+    }
+    .wallet-logo-avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 1.5px solid rgba(255, 255, 255, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3px;
+        flex-shrink: 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
+        overflow: hidden;
+    }
+    .wallet-add-action-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        width: 100%;
+        padding: 9px 12px;
+        border-radius: 10px;
+        background: rgba(99, 102, 241, 0.12);
+        border: 1.5px dashed rgba(99, 102, 241, 0.35);
+        color: #818cf8 !important;
+        font-size: 12px;
+        font-weight: 700;
+        text-decoration: none !important;
+        transition: all 0.2s ease;
+        margin-top: 4px;
+    }
+    .wallet-add-action-btn:hover {
+        background: #6366f1;
+        border-color: #6366f1;
+        border-style: solid;
+        color: #ffffff !important;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+    }
     .header-wallet-badge {
         display: inline-flex;
         align-items: center;
