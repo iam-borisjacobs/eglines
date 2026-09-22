@@ -343,6 +343,10 @@
                                 <span class="badge bg-success text-white f-11 px-2.5 py-1 rounded-pill">
                                     <i class="fa-solid fa-circle-check me-1"></i> Verified
                                 </span>
+                            @elseif(Auth::user()->account_verify == 'Under review')
+                                <span class="badge bg-warning text-dark f-11 px-2.5 py-1 rounded-pill">
+                                    <i class="fa-solid fa-clock-rotate-left me-1"></i> Under Review
+                                </span>
                             @else
                                 <span class="badge bg-danger text-white f-11 px-2.5 py-1 rounded-pill">
                                     <i class="fa-solid fa-circle-xmark me-1"></i> Unverified
@@ -559,6 +563,10 @@
                     <small class="text-muted f-12">
                         @if(Auth::user()->account_verify == 'Verified')
                             Your account is fully verified. All features and higher limits are enabled.
+                        @elseif(Auth::user()->account_verify == 'Under review')
+                            Your verification documents are currently under review by our compliance team.
+                        @elseif(Auth::user()->account_verify == 'Rejected')
+                            Your previous verification was rejected. Please resubmit your document with clear photos.
                         @else
                             Complete verification to access all trading features and increase withdrawal limits.
                         @endif
@@ -566,8 +574,14 @@
                 </div>
             </div>
             <div>
-                <a href="{{ route('account.verify') }}" class="btn btn-primary rounded-pill px-3 py-2 f-12 f-w-600">
-                    <span>View Details</span> <i class="fa-solid fa-chevron-down ms-1 f-10"></i>
+                <a href="{{ route('account.verify') }}" class="btn {{ Auth::user()->account_verify == 'Verified' ? 'btn-outline-success' : (Auth::user()->account_verify == 'Under review' ? 'btn-outline-warning text-dark' : 'btn-primary') }} rounded-pill px-3 py-2 f-12 f-w-600">
+                    @if(Auth::user()->account_verify == 'Verified')
+                        <span><i class="fa-solid fa-shield-check me-1"></i> Verified</span>
+                    @elseif(Auth::user()->account_verify == 'Under review')
+                        <span><i class="fa-solid fa-clock me-1"></i> Under Review</span>
+                    @else
+                        <span>View Details</span> <i class="fa-solid fa-arrow-right ms-1 f-10"></i>
+                    @endif
                 </a>
             </div>
         </div>

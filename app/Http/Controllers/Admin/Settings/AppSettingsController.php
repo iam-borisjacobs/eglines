@@ -180,7 +180,7 @@ class AppSettingsController extends Controller
             's_currency' => $request['s_currency'],
             'weekend_trade' => $request['weekend_trade'],
             'trade_mode' => $request['trade_mode'],
-            'enable_verification' => $request['enail_verify'],
+            'enable_verification' => $request['email_verify'] ?? $request['enail_verify'] ?? 'false',
             'google_translate' => $request['googlet'],
             'enable_kyc' => $request['enable_kyc'],
             'enable_kyc_registration' => $request['enable_kyc_registration'],
