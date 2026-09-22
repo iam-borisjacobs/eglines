@@ -67,6 +67,12 @@
             color: #cbd5e1 !important;
             border-color: #334155 !important;
         }
+        body.dark-only .text-dark {
+            color: #f8fafc !important;
+        }
+        body.dark-only .bg-light {
+            background-color: #1a1e2b !important;
+        }
 
         /* Metric card icon containers with rich, high-contrast tinted circles */
         .metric-icon-circle {
