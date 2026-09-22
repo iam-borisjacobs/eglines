@@ -21,7 +21,11 @@
 
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10 col-12">
-            @if (Auth::user()->account_verify == 'Verified')
+            @php
+                $isVerified = Auth::user()->isKycVerified();
+                $isUnderReview = !$isVerified && (Auth::user()->account_verify == 'Under review' || (Auth::user()->kyc && Auth::user()->kyc->status == 'Under review'));
+            @endphp
+            @if ($isVerified)
                 <!-- VERIFIED STATE -->
                 <div class="card kyc-status-card mb-4">
                     <div class="card-body p-4 p-md-5 text-center">
@@ -90,7 +94,7 @@
                     </div>
                 </div>
 
-            @elseif (Auth::user()->account_verify == 'Under review')
+            @elseif ($isUnderReview)
                 <!-- UNDER REVIEW STATE -->
                 <div class="card kyc-status-card mb-4">
                     <div class="card-body p-4 p-md-5 text-center">

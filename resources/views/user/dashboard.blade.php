@@ -339,11 +339,15 @@
                             <span class="badge badge-subtle-neutral f-11 px-2.5 py-1 rounded-pill">
                                 <i class="fa-solid fa-circle-check text-success me-1"></i> Available
                             </span>
-                            @if(Auth::user()->account_verify == 'Verified')
+                            @php
+                                $userKycVerified = Auth::user()->isKycVerified();
+                                $userKycUnderReview = !$userKycVerified && (Auth::user()->account_verify == 'Under review' || (Auth::user()->kyc && Auth::user()->kyc->status == 'Under review'));
+                            @endphp
+                            @if($userKycVerified)
                                 <span class="badge bg-success text-white f-11 px-2.5 py-1 rounded-pill">
                                     <i class="fa-solid fa-circle-check me-1"></i> Verified
                                 </span>
-                            @elseif(Auth::user()->account_verify == 'Under review')
+                            @elseif($userKycUnderReview)
                                 <span class="badge bg-warning text-dark f-11 px-2.5 py-1 rounded-pill">
                                     <i class="fa-solid fa-clock-rotate-left me-1"></i> Under Review
                                 </span>
@@ -561,9 +565,9 @@
                 <div>
                     <h6 class="f-w-700 text-dark mb-0 f-14">Identity Verification</h6>
                     <small class="text-muted f-12">
-                        @if(Auth::user()->account_verify == 'Verified')
+                        @if($userKycVerified)
                             Your account is fully verified. All features and higher limits are enabled.
-                        @elseif(Auth::user()->account_verify == 'Under review')
+                        @elseif($userKycUnderReview)
                             Your verification documents are currently under review by our compliance team.
                         @elseif(Auth::user()->account_verify == 'Rejected')
                             Your previous verification was rejected. Please resubmit your document with clear photos.
@@ -574,10 +578,10 @@
                 </div>
             </div>
             <div>
-                <a href="{{ route('account.verify') }}" class="btn {{ Auth::user()->account_verify == 'Verified' ? 'btn-outline-success' : (Auth::user()->account_verify == 'Under review' ? 'btn-outline-warning text-dark' : 'btn-primary') }} rounded-pill px-3 py-2 f-12 f-w-600">
-                    @if(Auth::user()->account_verify == 'Verified')
+                <a href="{{ route('account.verify') }}" class="btn {{ $userKycVerified ? 'btn-outline-success' : ($userKycUnderReview ? 'btn-outline-warning text-dark' : 'btn-primary') }} rounded-pill px-3 py-2 f-12 f-w-600">
+                    @if($userKycVerified)
                         <span><i class="fa-solid fa-shield-check me-1"></i> Verified</span>
-                    @elseif(Auth::user()->account_verify == 'Under review')
+                    @elseif($userKycUnderReview)
                         <span><i class="fa-solid fa-clock me-1"></i> Under Review</span>
                     @else
                         <span>View Details</span> <i class="fa-solid fa-arrow-right ms-1 f-10"></i>

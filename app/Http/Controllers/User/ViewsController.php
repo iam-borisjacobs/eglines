@@ -391,7 +391,7 @@ class ViewsController extends Controller
 
     public function verificationForm()
     {
-        if (Auth::user()->account_verify == 'Verified') {
+        if (Auth::user()->isKycVerified()) {
             return redirect()->route('account.verify')->with('message', 'Your account is already verified.');
         }
         return view('user.verification', [
