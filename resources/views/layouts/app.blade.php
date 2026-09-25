@@ -582,6 +582,46 @@
             .page-wrapper .page-body-wrapper {
                 margin-top: 67px !important;
             }
+            .page-wrapper .page-body-wrapper .page-body,
+            .page-body {
+                padding: 16px 12px 36px 12px !important;
+            }
+            .card.p-4 {
+                padding: 18px 14px !important;
+            }
+            .container-fluid {
+                padding-left: 4px !important;
+                padding-right: 4px !important;
+            }
+            /* Smooth touch scrolling for tables */
+            .table-responsive {
+                -webkit-overflow-scrolling: touch;
+                margin-bottom: 1rem;
+                border-radius: 8px;
+            }
+            /* Touch-friendly input fields without safari zoom */
+            .form-control, .form-select {
+                font-size: 14px !important;
+                min-height: 40px;
+            }
+            /* DataTables mobile layout */
+            .dataTables_wrapper .dataTables_length,
+            .dataTables_wrapper .dataTables_filter {
+                text-align: left !important;
+                float: none !important;
+                margin-bottom: 8px;
+            }
+            .dataTables_wrapper .dataTables_filter input {
+                width: 100% !important;
+                margin-left: 0 !important;
+                margin-top: 4px;
+            }
+            .dataTables_wrapper .dataTables_info,
+            .dataTables_wrapper .dataTables_paginate {
+                text-align: center !important;
+                float: none !important;
+                margin-top: 10px;
+            }
         }
         /* Admin Header Custom Dropdowns (Profile & Palette) */
         #profileMenu,

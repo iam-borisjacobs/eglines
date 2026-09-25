@@ -366,7 +366,7 @@
                                             @if(!empty($plan->image))
                                                 <div class="plan-card-image-wrap mb-3 overflow-hidden position-relative shadow-sm" 
                                                      style="margin: -16px -16px 14px -16px; width: calc(100% + 32px); height: 125px; border-radius: 10px 10px 0 0; background: #0b1329;">
-                                                    <img src="{{ $plan->image_url }}" alt="{{ $plan->name }}" class="w-100 h-100" style="object-fit: cover; object-position: center;">
+                                                    <img src="{{ $plan->image_url }}" alt="{{ $plan->name }}" class="w-100 h-100" style="object-fit: cover; object-position: center;" onerror="this.onerror=null; this.src='{{ asset('themes/ecx/assets/images/plans/' . ($plan->isTruck() ? 'truck_logistics_fleet.jpg' : 'plan_gold_ecx.jpg')) }}';">
                                                     <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(11, 19, 41, 0.75) 100%); pointer-events: none;"></div>
                                                     <span class="position-absolute bottom-0 start-0 m-2 badge bg-black bg-opacity-75 text-white f-10 rounded-pill px-2.5 py-1 border border-white border-opacity-25" style="backdrop-filter: blur(4px);">
                                                         <i class="fa-solid {{ $plan->isTruck() ? 'fa-truck' : 'fa-gem' }} me-1"></i>{{ $plan->isTruck() ? $plan->category_label : 'ECX Tier' }}

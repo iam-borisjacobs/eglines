@@ -74,14 +74,44 @@
         background: rgba(99, 98, 231, 0.12);
         border-color: rgba(99, 98, 231, 0.3);
     }
+    .plan-tabs-scroll-wrap {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-bottom: 2px;
+    }
+    .plan-tabs-scroll-wrap::-webkit-scrollbar {
+        display: none;
+    }
+    .admin-plan-tabs {
+        display: inline-flex !important;
+        flex-wrap: nowrap !important;
+        white-space: nowrap !important;
+        background-color: #f1f5f9;
+        border: 1px solid #e2e8f0;
+        border-radius: 50px;
+        padding: 4px;
+        margin-bottom: 0;
+    }
+    body.dark-only .admin-plan-tabs {
+        background-color: #151c30 !important;
+        border-color: rgba(255, 255, 255, 0.08) !important;
+    }
+    .admin-plan-tabs .nav-item {
+        flex-shrink: 0;
+    }
     .admin-plan-tabs .nav-link {
         color: #64748b;
         font-weight: 600;
         border-radius: 50px;
-        padding: 8px 18px;
+        padding: 8px 16px;
         transition: all 0.2s ease;
         border: 1px solid transparent;
         font-size: 13px;
+        white-space: nowrap;
+        display: inline-flex;
+        align-items: center;
     }
     .admin-plan-tabs .nav-link:hover {
         color: #0f172a;
@@ -91,10 +121,6 @@
         background-color: var(--theme-default, #6362e7) !important;
         color: #ffffff !important;
         box-shadow: 0 4px 12px rgba(99, 98, 231, 0.35);
-    }
-    body.dark-only .admin-plan-tabs {
-        background-color: #151c30 !important;
-        border-color: rgba(255, 255, 255, 0.08) !important;
     }
     body.dark-only .admin-plan-tabs .nav-link {
         color: #94a3b8;
@@ -107,18 +133,30 @@
         background-color: #6362e7 !important;
         color: #ffffff !important;
     }
+    @media (max-width: 575.98px) {
+        .admin-plan-tabs {
+            border-radius: 12px;
+            padding: 4px;
+            width: max-content;
+        }
+        .admin-plan-tabs .nav-link {
+            border-radius: 8px;
+            padding: 7px 12px;
+            font-size: 12px;
+        }
+    }
 </style>
 
 <div class="container-fluid">
-    <div class="row mb-4">
-        <div class="col-12 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+    <div class="row mb-3 mb-md-4">
+        <div class="col-12 d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-3">
             <div>
-                <h3 class="f-w-700 mb-1">Investment Plans</h3>
-                <p class="text-muted mb-0 f-14">Configure, publish, and manage investment packages available to clients.</p>
+                <h3 class="f-w-800 text-dark mb-1 f-20 f-md-24">Investment Plans</h3>
+                <p class="text-muted mb-0 f-13 f-md-14">Configure, publish, and manage investment packages available to clients.</p>
             </div>
-            <div>
-                <a class="btn btn-primary px-4 py-2 rounded-pill shadow-sm" href="{{ route('newplan') }}">
-                    <i class="fa fa-plus me-1"></i> Add New Plan
+            <div class="w-100 w-sm-auto flex-shrink-0">
+                <a class="btn btn-primary px-4 py-2 rounded-pill shadow-sm w-100 w-sm-auto d-inline-flex align-items-center justify-content-center f-w-600 f-13" href="{{ route('newplan') }}">
+                    <i class="fa fa-plus-circle me-2"></i> Add New Plan
                 </a>
             </div>
         </div>
@@ -132,31 +170,33 @@
         $cryptoPlans = $plans->filter(fn($p) => !$p->isTruck());
     @endphp
 
-    <!-- Category Filter Tabs -->
-    <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
-        <ul class="nav nav-pills admin-plan-tabs p-1 rounded-pill bg-light border gap-1 d-inline-flex mb-0" id="planTabs" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="tab-truck-btn" data-bs-toggle="pill" data-bs-target="#tab-truck" type="button" role="tab" aria-controls="tab-truck" aria-selected="true">
-                    <i class="fa fa-truck text-warning me-1"></i> Truck & Asset Investments 
-                    <span class="badge bg-warning text-dark ms-1 px-2 py-1 rounded-pill f-11">{{ $truckPlans->count() }}</span>
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="tab-crypto-btn" data-bs-toggle="pill" data-bs-target="#tab-crypto" type="button" role="tab" aria-controls="tab-crypto" aria-selected="false">
-                    <i class="fa fa-coins text-primary me-1"></i> Crypto & Trading Plans
-                    <span class="badge bg-primary text-white ms-1 px-2 py-1 rounded-pill f-11">{{ $cryptoPlans->count() }}</span>
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="tab-all-btn" data-bs-toggle="pill" data-bs-target="#tab-all" type="button" role="tab" aria-controls="tab-all" aria-selected="false">
-                    <i class="fa fa-th-large me-1"></i> All Plans
-                    <span class="badge bg-secondary text-white ms-1 px-2 py-1 rounded-pill f-11">{{ $plans->count() }}</span>
-                </button>
-            </li>
-        </ul>
+    <!-- Category Filter Tabs & Total Count -->
+    <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center justify-content-between gap-3 mb-4">
+        <div class="plan-tabs-scroll-wrap">
+            <ul class="nav nav-pills admin-plan-tabs" id="planTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="tab-truck-btn" data-bs-toggle="pill" data-bs-target="#tab-truck" type="button" role="tab" aria-controls="tab-truck" aria-selected="true">
+                        <i class="fa fa-truck text-warning me-1.5"></i> Truck & Asset Investments 
+                        <span class="badge bg-warning text-dark ms-1.5 px-2 py-0.5 rounded-pill f-11">{{ $truckPlans->count() }}</span>
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="tab-crypto-btn" data-bs-toggle="pill" data-bs-target="#tab-crypto" type="button" role="tab" aria-controls="tab-crypto" aria-selected="false">
+                        <i class="fa fa-coins text-primary me-1.5"></i> Crypto & Trading Plans
+                        <span class="badge bg-primary text-white ms-1.5 px-2 py-0.5 rounded-pill f-11">{{ $cryptoPlans->count() }}</span>
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="tab-all-btn" data-bs-toggle="pill" data-bs-target="#tab-all" type="button" role="tab" aria-controls="tab-all" aria-selected="false">
+                        <i class="fa fa-th-large me-1.5"></i> All Plans
+                        <span class="badge bg-secondary text-white ms-1.5 px-2 py-0.5 rounded-pill f-11">{{ $plans->count() }}</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
 
-        <div class="text-muted f-13">
-            Showing <strong>{{ $plans->count() }}</strong> packages total across all asset classes
+        <div class="text-muted f-12 d-flex align-items-center flex-shrink-0">
+            <i class="fa fa-layer-group text-primary me-1.5"></i> Showing <strong class="mx-1 text-dark">{{ $plans->count() }}</strong> packages total across all asset classes
         </div>
     </div>
 
