@@ -589,10 +589,6 @@
             .card.p-4 {
                 padding: 18px 14px !important;
             }
-            .container-fluid {
-                padding-left: 4px !important;
-                padding-right: 4px !important;
-            }
             /* Smooth touch scrolling for tables */
             .table-responsive {
                 -webkit-overflow-scrolling: touch;
